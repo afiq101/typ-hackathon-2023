@@ -84,10 +84,10 @@ const validateCancelCallback = () => {
           }"
         >
           <div
-            class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white dark:bg-slate-800 bg-clip-padding rounded-md outline-none text-current"
+            class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white dark:bg-gray-800 bg-clip-padding rounded-md outline-none text-current"
           >
             <div
-              class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 dark:border-slate-700 rounded-t-md"
+              class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 rounded-t-md"
             >
               <h4 v-if="!$slots.header">
                 {{ title }}

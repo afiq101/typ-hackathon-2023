@@ -1,16 +1,17 @@
 export default [
   {
-    "header": "",
-    "description": "",
+    "header": "Main",
+    "description": "All the main options",
     "child": [
       {
-        "title": "Dashboard",
-        "path": "/dashboard",
-        "icon": "ic:outline-dashboard",
+        "title": "Home",
+        "path": "/home",
+        "icon": "material-symbols:home-outline-rounded",
         "child": [],
         "meta": {}
       }
-    ]
+    ],
+    "meta": {}
   },
   {
     "header": "Administration",

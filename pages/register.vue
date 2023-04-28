@@ -16,7 +16,7 @@ const togglePasswordVisibility2 = ref(false);
     <div class="w-full md:w-3/4 lg:w-1/2 xl:w-2/6">
       <rs-card class="h-screen md:h-auto px-10 md:px-16 py-12 md:py-20 mb-0">
         <h3 class="mb-4">Sign Up</h3>
-        <p class="text-slate-500 mb-6 col-sp">
+        <p class="text-gray-500 mb-6 col-sp">
           Please fill in the form to create an account.
         </p>
         <FormKit label="Username" type="text" label-class="text-left" />
@@ -29,7 +29,7 @@ const togglePasswordVisibility2 = ref(false);
         >
           <template #suffix>
             <div
-              class="bg-gray-100 hover:bg-slate-200 dark:bg-slate-700 hover:dark:bg-slate-900 h-full rounded-r-md p-3 flex justify-center items-center cursor-pointer"
+              class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-900 h-full rounded-r-md p-3 flex justify-center items-center cursor-pointer"
               @click="togglePasswordVisibility = !togglePasswordVisibility"
             >
               <Icon
@@ -49,7 +49,7 @@ const togglePasswordVisibility2 = ref(false);
         >
           <template #suffix>
             <div
-              class="bg-gray-100 hover:bg-slate-200 dark:bg-slate-700 hover:dark:bg-slate-900 h-full rounded-r-md p-3 flex justify-center items-center cursor-pointer"
+              class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 hover:dark:bg-gray-900 h-full rounded-r-md p-3 flex justify-center items-center cursor-pointer"
               @click="togglePasswordVisibility2 = !togglePasswordVisibility2"
             >
               <Icon
@@ -78,7 +78,7 @@ const togglePasswordVisibility2 = ref(false);
           <FormKit type="button" input-class="w-full">Sign up</FormKit>
         </NuxtLink>
 
-        <p class="mt-3 text-center text-slate-500">
+        <p class="mt-3 text-center text-gray-500">
           Already have an account?
           <NuxtLink to="/login" class="text-primary-400 hover:underline"
             >Login</NuxtLink

@@ -3,7 +3,7 @@
 module.exports = {
   apps: [
     {
-      name: "Mawar",
+      name: "MawarWatch",
       port: "3000",
       exec_mode: "cluster",
       instances: "max",

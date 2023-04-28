@@ -518,7 +518,7 @@ watch(
           }"
         >
           <thead
-            class="text-left border-gray-200 dark:border-slate-700"
+            class="text-left border-gray-200 dark:border-gray-700"
             :class="{
               'border-y': !options.borderless,
               'border-gray-200 bg-gray-100 dark:bg-gray-800':
@@ -589,11 +589,11 @@ watch(
           <tbody>
             <tr
               :class="{
-                'border-y border-gray-200 dark:border-slate-700':
+                'border-y border-gray-200 dark:border-gray-700':
                   !options.bordered && !options.borderless,
                 'border-b': options.bordered && !options.borderless,
                 'border-b-0': options.borderless,
-                'border-gray-200 odd:bg-white even:bg-slate-50 dark:even:bg-slate-700 dark:odd:bg-slate-800':
+                'border-gray-200 odd:bg-white even:bg-gray-50 dark:even:bg-gray-700 dark:odd:bg-gray-800':
                   options.variant === 'default' && options.striped,
                 'border-primary-100 odd:bg-white even:bg-primary-50':
                   options.variant === 'primary' && options.striped,

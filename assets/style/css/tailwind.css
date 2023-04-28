@@ -16,8 +16,8 @@
   }
 
   .icon-btn:hover {
-    @apply bg-slate-200
-            dark:bg-slate-700;
+    @apply bg-gray-200
+            dark:bg-gray-700;
   }
 
   h1 {
@@ -53,11 +53,11 @@
   /* Collapse Component */
 
   .rs-collapse {
-    @apply dark:border-slate-700;
+    @apply dark:border-gray-700;
   }
 
   .rs-collapse-group {
-    @apply overflow-hidden duration-300 dark:border-slate-700;
+    @apply overflow-hidden duration-300 dark:border-gray-700;
   }
 
   .rs-collapse-header {
@@ -70,7 +70,7 @@
 
   /* Table Component */
   .table-wrapper {
-    @apply w-full border-0 rounded-md border-gray-200 dark:border-slate-700;
+    @apply w-full border-0 rounded-md border-gray-200 dark:border-gray-700;
   }
 
   .table-header {

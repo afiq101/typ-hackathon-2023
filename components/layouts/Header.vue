@@ -55,7 +55,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-header z-20 bg-white dark:bg-slate-800 fixed top-0 right-0 px-5 py-3 duration-300 shadow-md shadow-slate-200 dark:shadow-slate-900"
+    class="w-header z-20 bg-white dark:bg-gray-800 fixed top-0 right-0 px-5 py-3 duration-300 shadow-md shadow-gray-200 dark:shadow-gray-900"
   >
     <div class="flex items-stretch justify-between">
       <div v-if="isVertical" class="flex">
@@ -87,7 +87,7 @@ onMounted(() => {
       </div>
 
       <div class="flex gap-2 item-center justify-items-end">
-        <VDropdown placement="bottom-end" distance="13" name="language">
+        <!-- <VDropdown placement="bottom-end" distance="13" name="language">
           <button class="icon-btn h-10 w-10 rounded-full">
             <country-flag :country="languageNow.flagCode" />
           </button>
@@ -95,7 +95,7 @@ onMounted(() => {
             <ul class="header-dropdown w-full md:w-32">
               <li
                 v-for="lang in langList"
-                class="flex items-center justify-center hover:bg-slate-200 hover:dark:bg-slate-700"
+                class="flex items-center justify-center hover:bg-gray-200 hover:dark:bg-gray-700"
               >
                 <button
                   @click="changeLanguage(lang.value)"
@@ -109,15 +109,15 @@ onMounted(() => {
               </li>
             </ul>
           </template>
-        </VDropdown>
-        <button class="icon-btn h-10 w-10 rounded-full" @click="setColorMode">
+        </VDropdown> -->
+        <!-- <button class="icon-btn h-10 w-10 rounded-full" @click="setColorMode">
           <Icon size="22px" name="mdi:theme-light-dark" />
-        </button>
+        </button> -->
         <button class="icon-btn h-10 w-10 rounded-full">
           <Icon @click="toggleSearch" name="ic:round-search" class="" />
         </button>
 
-        <VDropdown placement="bottom-end" distance="13" name="notification">
+        <!-- <VDropdown placement="bottom-end" distance="13" name="notification">
           <button class="relative icon-btn h-10 w-10 rounded-full">
             <span
               class="w-3 h-3 absolute top-1 right-2 rounded-full bg-primary-400"
@@ -136,7 +136,7 @@ onMounted(() => {
               </li>
               <perfect-scrollbar>
                 <li>
-                  <div class="bg-slate-100 dark:bg-slate-700 py-2 px-4">
+                  <div class="bg-gray-100 dark:bg-gray-700 py-2 px-4">
                     Today
                   </div>
                   <a class="py-2 px-4 block">
@@ -180,32 +180,27 @@ onMounted(() => {
               </perfect-scrollbar>
             </ul>
           </template>
-        </VDropdown>
+        </VDropdown> -->
 
-        <VDropdown placement="bottom-end" distance="13" name="profile">
+        <VDropdown
+          placement="bottom-end"
+          distance="13"
+          name="profile"
+          class="flex justify-center items-center"
+        >
           <button
-            class="icon-btn px-2 rounded-lg border border-white md:border-gray-200 dark:border-gray-700"
+            class="icon-btn rounded-lg border-white md:border-gray-200 dark:border-gray-700"
           >
             <img
               class="w-8 h-8 object-cover rounded-full"
               src="@/assets/img/user/default.svg"
             />
-            <div
-              v-if="isDesktop"
-              class="grid grid-cols-1 text-left ml-3 flex-none"
-            >
-              <p class="font-semibold text-sm truncate w-24 mb-0">John Doe</p>
-              <span class="font-medium text-xs truncate w-24"
-                >RM 10,000.00</span
-              >
-            </div>
-            <Icon name="ic:outline-keyboard-arrow-down" class="ml-3" />
           </button>
           <template #popper>
             <ul class="header-dropdown w-full md:w-52">
               <!-- <li>
                 <a
-                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-slate-200 hover:dark:bg-slate-700"
+                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-700"
                 >
                   <Icon name="ic:outline-view-sidebar" class="mr-2" />
                   {{ isVertical ? "Horizontal Layout" : "Vertical Layout" }}
@@ -213,7 +208,7 @@ onMounted(() => {
               </li> -->
               <li>
                 <a
-                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-slate-200 hover:dark:bg-slate-700"
+                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-700"
                 >
                   <Icon name="ic:outline-account-circle" class="mr-2" />
                   Account
@@ -221,7 +216,7 @@ onMounted(() => {
               </li>
               <li>
                 <a
-                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-slate-200 hover:dark:bg-slate-700"
+                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-700"
                 >
                   <Icon name="ic:outline-settings" class="mr-2" />
                   Setting
@@ -230,13 +225,13 @@ onMounted(() => {
               <li>
                 <NuxtLink
                   to="/logout"
-                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-slate-200 hover:dark:bg-slate-700"
+                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-700"
                 >
                   <Icon name="ic:outline-logout" class="mr-2" />
                   Logout
                 </NuxtLink>
                 <!-- <a
-                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-slate-200 hover:dark:bg-slate-700"
+                  class="flex items-center cursor-pointer py-2 px-4 hover:bg-gray-200 hover:dark:bg-gray-700"
                 >
                  
                 </a> -->
@@ -251,13 +246,13 @@ onMounted(() => {
   <!-- Search Nav for Layout Vertical -->
   <div
     tabindex="0"
-    class="w-header-search bg-white dark:bg-slate-800 px-4 z-40 duration-300 shadow-md shadow-slate-200 dark:shadow-slate-900 -top-20 focus-within:top-0 right-0"
+    class="w-header-search bg-white dark:bg-gray-800 px-4 z-40 duration-300 shadow-md shadow-gray-200 dark:shadow-gray-900 -top-20 focus-within:top-0 right-0"
   >
     <Icon name="ic:outline-search" class="" />
     <input
       id="header-search"
       type="text"
-      class="w-full ml-2 px-2 py-3 appearance-none text-md rounded-lg focus:outline-none dark:bg-slate-800"
+      class="w-full ml-2 px-2 py-3 appearance-none text-md rounded-lg focus:outline-none dark:bg-gray-800"
       name="Search"
       placeholder="Search..."
     />

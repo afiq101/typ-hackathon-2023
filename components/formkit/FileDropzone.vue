@@ -106,13 +106,13 @@ const { getRootProps, getInputProps, isDragActive } = useDropzone({
         <Icon
           name="ic:round-close"
           @click="removeFiles(index)"
-          class="cursor-pointer absolute top-1 right-1 text-slate-600 hover:bg-slate-200 bg-white dark:bg-slate-800 dark:text-gray-300 dark:hover:dark:bg-slate-600 p-1 rounded-full"
+          class="cursor-pointer absolute top-1 right-1 text-gray-600 hover:bg-gray-200 bg-white dark:bg-gray-800 dark:text-gray-300 dark:hover:dark:bg-gray-600 p-1 rounded-full"
           size="18"
         />
         <div
-          class="absolute bottom-1 right-1 bg-white dark:bg-slate-800 px-2 rounded-lg"
+          class="absolute bottom-1 right-1 bg-white dark:bg-gray-800 px-2 rounded-lg"
         >
-          <span class="font-semibold text-xs text-slate-600 dark:text-gray-300">
+          <span class="font-semibold text-xs text-gray-600 dark:text-gray-300">
             {{ file.data.path }}
           </span>
         </div>

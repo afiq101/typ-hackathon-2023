@@ -11,8 +11,8 @@ const textClassification = {
     align-center
     w-full
     border
-    border-slate-200
-    dark:border-slate-700
+    border-gray-200
+    dark:border-gray-700
     formkit-invalid:border-red-500
     dark:formkit-invalid:border-danger
     rounded-lg mb-1
@@ -29,9 +29,9 @@ const textClassification = {
     text-gray-700 
     dark:text-gray-200
     bg-white
-    dark:bg-slate-800
-    border-slate-200
-    dark:border-slate-700
+    dark:bg-gray-800
+    border-gray-200
+    dark:border-gray-700
     placeholder-secondary 
     focus:outline-none 
     focus:shadow-outline
@@ -42,7 +42,7 @@ const textClassification = {
 const boxClassification = {
   inner: "relative",
   fieldset:
-    "max-w-md border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2",
+    "max-w-md border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2",
   legend: "font-bold text-sm",
   wrapper: "flex items-center mb-3 cursor-pointer",
   help: "mb-3",
@@ -51,12 +51,12 @@ const boxClassification = {
           appearance-none
           mr-2
           border-2 
-          border-slate-200
-          dark:border-slate-700
+          border-gray-200
+          dark:border-gray-700
           checked:border-transparent 
           checked:bg-primary-400
           bg-white
-          dark:bg-slate-800
+          dark:bg-gray-800
           dark:checked:bg-primary-400
           rounded-md
           checked:shadow-sm checked:shadow-primary-500/30 
@@ -87,13 +87,13 @@ const OtpClassification = {
     text-center
     rounded-lg
     border
-    border-slate-200
-    dark:border-slate-700   
+    border-gray-200
+    dark:border-gray-700   
     text-sm 
     text-gray-700 
     dark:text-gray-200
     bg-white
-    dark:bg-slate-800
+    dark:bg-gray-800
     placeholder-secondary
     focus-within:border-primary-400
     focus:outline-none 
@@ -160,7 +160,7 @@ export default {
       text-gray-700 
       dark:text-gray-200
       bg-white
-      dark:bg-slate-800
+      dark:bg-gray-800
       placeholder-secondary 
       focus:outline-none 
       focus:shadow-outline `,

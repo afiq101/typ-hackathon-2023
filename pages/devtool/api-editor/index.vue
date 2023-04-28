@@ -234,7 +234,7 @@ const deleteAPI = async (apiURL) => {
     >
       <FormKit type="text" label="Url" v-model="showModalAddForm.apiURL">
         <template #prefix>
-          <div class="bg-slate-100 dark:bg-slate-700 h-full rounded-l-md p-3">
+          <div class="bg-gray-100 dark:bg-gray-700 h-full rounded-l-md p-3">
             /api/
           </div>
         </template>
@@ -249,7 +249,7 @@ const deleteAPI = async (apiURL) => {
     >
       <FormKit type="text" label="Url" v-model="showModalEditForm.apiURL">
         <template #prefix>
-          <div class="bg-slate-100 dark:bg-slate-700 h-full rounded-l-md p-3">
+          <div class="bg-gray-100 dark:bg-gray-700 h-full rounded-l-md p-3">
             /api/
           </div>
         </template>

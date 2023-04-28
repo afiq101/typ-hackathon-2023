@@ -79,7 +79,7 @@ onMounted(() => {
     :class="{
       'border-b': type === 'default',
       'border-b last:rounded-b-lg': type === 'border',
-      'shadow-md dark:shadow-slate-900 my-4': type === 'card',
+      'shadow-md dark:shadow-gray-900 my-4': type === 'card',
     }"
     :style="`max-height: ${maxHeight}px; transition-property: max-height`"
     @click="onClick"

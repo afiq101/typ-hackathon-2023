@@ -14,8 +14,8 @@ module.exports = {
         "2xl": "1536px",
       },
       colors: ({ colors }) => ({
-        primary: colors.rose,
-        secondary: colors.gray,
+        primary: colors.red,
+        secondary: colors.fuchsia,
         success: colors.green[400],
         info: colors.blue[400],
         warning: colors.orange[400],

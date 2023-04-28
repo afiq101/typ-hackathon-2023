@@ -516,7 +516,7 @@ const addMenuFromList = () => {
                 />
                 <perfect-scrollbar
                   style="height: 735px"
-                  class="px-5 pt-5 border !bg-slate-200/60 rounded-md"
+                  class="px-5 pt-5 border !bg-gray-200/60 rounded-md"
                 >
                   <draggable
                     item-key="id"
@@ -553,7 +553,7 @@ const addMenuFromList = () => {
               </div>
               <perfect-scrollbar v-if="!showCode" style="height: 825px">
                 <rs-card
-                  class="p-4 bg-gray-50 border !bg-slate-200/60 rounded-md"
+                  class="p-4 bg-gray-50 border !bg-gray-200/60 rounded-md"
                 >
                   <div class="flex justify-end items-center">
                     <rs-button class="!p-2 mt-3 justify-center items-center" @click="addNewHeader">
@@ -616,7 +616,7 @@ const addMenuFromList = () => {
         v-model="showModalEditForm.path"
       >
         <template #prefix>
-          <div class="bg-slate-100 dark:bg-slate-700 h-full rounded-l-md p-3">
+          <div class="bg-gray-100 dark:bg-gray-700 h-full rounded-l-md p-3">
             /
           </div>
         </template>
@@ -646,7 +646,7 @@ const addMenuFromList = () => {
         v-model="showModalAddForm.path"
       >
         <template #prefix>
-          <div class="bg-slate-100 dark:bg-slate-700 h-full rounded-l-md p-3">
+          <div class="bg-gray-100 dark:bg-gray-700 h-full rounded-l-md p-3">
             /
           </div>
         </template>

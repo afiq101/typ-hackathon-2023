@@ -3,10 +3,10 @@ definePageMeta({
   title: "Home",
   description: "Home page",
   keywords: "home, page",
-  middleware: ["dashboard"],
+  middleware: ["home"],
 });
 </script>
 
 <template>
-  <div class="text-orange-400">Redirect Dashboard</div>
+  <div class="text-orange-400">Redirect Home</div>
 </template>

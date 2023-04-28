@@ -1,3 +1,3 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  return navigateTo("/dashboard");
+  return navigateTo("/home");
 });

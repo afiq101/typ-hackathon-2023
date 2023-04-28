@@ -8,6 +8,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  padding: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const selectedTitle = inject("selectedTitle");
@@ -15,7 +19,10 @@ const selectedTitle = inject("selectedTitle");
 
 <template>
   <div
-    class="tab-pane py-4 px-4"
+    class="tab-pane"
+    :class="{
+      'p-4': padding,
+    }"
     v-show="selectedTitle === title"
   >
     <slot></slot>

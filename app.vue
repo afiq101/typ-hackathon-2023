@@ -1,9 +1,9 @@
 <script setup>
 useHead({
-  title: "Mawar | Innovative solutions for captivating content",
+  title: "MawarWatch",
   description: "Home page",
   bodyAttrs: {
-    class: "bg-gray-100 dark:bg-slate-900 text-gray-600 dark:text-gray-300",
+    class: "bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300",
   },
 });
 </script>

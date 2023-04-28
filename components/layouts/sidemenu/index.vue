@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="vertical-menu bg-white dark:bg-slate-800 text-base h-screen fixed w-64 top-0 z-50 duration-300 border-l-0 shadow-md shadow-slate-200 dark:shadow-slate-900"
+    class="vertical-menu bg-white dark:bg-gray-800 text-base h-screen fixed w-64 top-0 z-50 duration-300 border-l-0 shadow-md shadow-gray-200 dark:shadow-gray-900"
   >
     <div class="py-2 px-4">
       <nuxt-link to="/">

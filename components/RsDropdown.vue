@@ -102,7 +102,7 @@ const closeMenu = (event) => {
       <Icon v-else-if="position === 'right'" name="ic:outline-chevron-right" />
     </button>
     <section
-      class="absolute z-10 bg-white dark:bg-slate-800 border dark:border-slate-700 shadow-md rounded-lg py-1 whitespace-nowrap"
+      class="absolute z-10 bg-white dark:bg-gray-800 border dark:border-gray-700 shadow-md rounded-lg py-1 whitespace-nowrap"
       :class="{
         'top-10': position == 'bottom' && size == 'sm',
         'top-12': position == 'bottom' && size == 'md',

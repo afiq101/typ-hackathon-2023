@@ -25,14 +25,14 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
   },
   head: {
-    title: "Mawar",
+    title: "MawarWatch",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         hid: "description",
         name: "description",
-        content: "Mawar",
+        content: "MawarWatch",
       },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
@@ -46,8 +46,8 @@ export default defineNuxtConfig({
     viewer: true,
   },
   colorMode: {
-    preference: "light", // default value of $colorMode.preference
-    fallback: "light", // fallback value if not system preference found
+    preference: "dark", // default value of $colorMode.preference
+    fallback: "dark", // fallback value if not system preference found
     hid: "nuxt-color-mode-script",
     globalName: "__NUXT_COLOR_MODE__",
     componentName: "ColorScheme",
@@ -62,8 +62,8 @@ export default defineNuxtConfig({
   pwa: {
     registerType: "autoUpdate",
     manifest: {
-      name: "Mawar",
-      short_name: "Mawar",
+      name: "MawarWatch",
+      short_name: "MawarWatch",
       theme_color: "#FB7185",
       background_color: "#fafafa",
       display: "standalone",
@@ -531,6 +531,9 @@ export default defineNuxtConfig({
       interval: "minute",
       fireImmediately: false,
       throwError: false, // optional
+    },
+    headers: {
+      crossOriginEmbedderPolicy: "unsafe-none",
     },
   },
   routeRules: {

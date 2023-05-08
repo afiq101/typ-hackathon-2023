@@ -14,10 +14,9 @@ We encourage participants to think outside the box and come up with unique solut
 
 We have exciting prizes waiting for the winners of the hackathon, including:
 
-- **First Prize**: Hamper worth RM300 🥇
-- **Second Prize**: Hamper worth RM200 🥈
-- **Third Prize**: Hamper worth RM100 🥉
-- **Consolation Prize**: Hamper worth RM50 💔
+- **First Prize**: Hamper worth RM150 🥇
+- **Second Prize**: Hamper worth RM100 🥈
+- **Third Prize**: Hamper worth RM50 🥉
 
 ## How to Participate 📝
 
@@ -74,5 +73,4 @@ The prizes for the winners are mentioned above.
 ## Conclusion 🎉
 
 We hope to see you at our hackathon, where you can learn, code, and have fun with fellow developers. If you have any questions or concerns, please feel free to contact us at mdafiqiskandar@toyyibpay.com or aminfaudzi@toyyibpay.com. Good luck, and happy coding! 😊
-
 

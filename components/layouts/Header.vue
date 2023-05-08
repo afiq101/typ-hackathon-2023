@@ -79,7 +79,7 @@ onMounted(() => {
             />
             <!-- <span
             v-if="isDesktop"
-            class="text-xl font-semibold text-primary-500 dark:text-white"
+            class="text-xl font-semibold text-primary dark:text-white"
             >Mawar</span
           > -->
           </div>
@@ -120,7 +120,7 @@ onMounted(() => {
         <VDropdown placement="bottom-end" distance="13" name="notification">
           <button class="relative icon-btn h-10 w-10 rounded-full">
             <span
-              class="w-3 h-3 absolute top-1 right-2 rounded-full bg-primary-400"
+              class="w-3 h-3 absolute top-1 right-2 rounded-full bg-primary"
             ></span>
             <Icon name="ic:round-notifications-none" class="" />
           </button>
@@ -129,7 +129,7 @@ onMounted(() => {
               <li class="d-head flex items-center justify-between py-2 px-4">
                 <span class="font-semibold">Notification</span>
                 <div
-                  class="flex items-center text-primary-400 cursor-pointer hover:underline"
+                  class="flex items-center text-primary cursor-pointer hover:underline"
                 >
                   <a class="ml-2">View All</a>
                 </div>
@@ -143,7 +143,7 @@ onMounted(() => {
                     <div class="flex items-center">
                       <Icon
                         name="ic:outline-circle"
-                        class="text-primary-400 flex-none"
+                        class="text-primary flex-none"
                       />
                       <span class="mx-2"
                         >Terdapat Satu Pembayaran yang berlaku menggunakan bil
@@ -161,7 +161,7 @@ onMounted(() => {
                     <div class="flex items-center">
                       <Icon
                         name="ic:outline-circle"
-                        class="text-primary-400 flex-none"
+                        class="text-primary flex-none"
                       />
                       <span class="mx-2"
                         >Terdapat Satu Pembayaran yang berlaku menggunakan bil
@@ -211,7 +211,7 @@ onMounted(() => {
                   {{ isVertical ? "Horizontal Layout" : "Vertical Layout" }}
                 </a>
               </li> -->
-              <li>
+              <!-- <li>
                 <a
                   class="flex items-center cursor-pointer py-2 px-4 hover:bg-slate-200 hover:dark:bg-slate-700"
                 >
@@ -226,7 +226,7 @@ onMounted(() => {
                   <Icon name="ic:outline-settings" class="mr-2" />
                   Setting
                 </a>
-              </li>
+              </li> -->
               <li>
                 <NuxtLink
                   to="/logout"

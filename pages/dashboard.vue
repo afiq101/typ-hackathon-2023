@@ -5,9 +5,7 @@ definePageMeta({
   requiresAuth: true, // This is use for Login Auth for page
 });
 
-
 </script>
-
 <template>
   <div>
     <LayoutsBreadcrumb />

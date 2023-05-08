@@ -13,7 +13,7 @@ definePageMeta({
 
 const baseAnimeAPI = "https://kitsu.io/api/edge";
 const modules = [Pagination, Scrollbar, A11y, Autoplay];
-const modules2 = [Pagination, Scrollbar, A11y, FreeMode];
+const modules2 = [Scrollbar, A11y, FreeMode];
 
 const trendingAnimeList = ref([]);
 const animeList = ref([]);
@@ -21,7 +21,7 @@ const animeList = ref([]);
 // const mangaList = ref([]);
 
 // Get Trending Anime List
-const getTrendingAnimeList = await useFetch(`${baseAnimeAPI}/trending/anime`, {
+const { data: TAList } = await useFetch(`${baseAnimeAPI}/trending/anime`, {
   method: "GET",
   headers: {
     "Content-Type": "application/vnd.api+json",
@@ -29,11 +29,10 @@ const getTrendingAnimeList = await useFetch(`${baseAnimeAPI}/trending/anime`, {
   },
 });
 
-const respGetTrendingAnimeList = getTrendingAnimeList.data?.value;
-trendingAnimeList.value = respGetTrendingAnimeList.data;
+trendingAnimeList.value = TAList.value?.data;
 
 // Get Anime List
-const getAnimeList = await useFetch(`${baseAnimeAPI}/anime`, {
+const { data: AList } = await useFetch(`${baseAnimeAPI}/anime`, {
   method: "GET",
   headers: {
     "Content-Type": "application/vnd.api+json",
@@ -41,8 +40,7 @@ const getAnimeList = await useFetch(`${baseAnimeAPI}/anime`, {
   },
 });
 
-const respGetAnimeList = getAnimeList.data?.value;
-animeList.value = respGetAnimeList.data;
+animeList.value = AList.value?.data;
 
 console.log("trendingAnimeList.value", trendingAnimeList.value);
 console.log("animeList.value", animeList.value);
@@ -119,11 +117,13 @@ console.log("animeList.value", animeList.value);
                 </p>
               </div>
               <div>
-                <rs-button
-                  variant="danger-outline"
-                  class="hover:!bg-red-400/10 !px-8 !py-3"
-                  >Details</rs-button
-                >
+                <nuxt-link :to="`/anime/${val.id}`">
+                  <rs-button
+                    variant="danger-outline"
+                    class="hover:!bg-red-400/10 !px-8 !py-3"
+                    >Details</rs-button
+                  >
+                </nuxt-link>
               </div>
             </div>
           </div>
@@ -142,15 +142,11 @@ console.log("animeList.value", animeList.value);
       :breakpoints="{
         '640': {
           slidesPerView: 2,
-          spaceBetween: 20,
+          spaceBetween: 10,
         },
-        '768': {
+        '1080': {
           slidesPerView: 4,
           spaceBetween: 30,
-        },
-        '1024': {
-          slidesPerView: 5,
-          spaceBetween: 40,
         },
       }"
       :pagination="{
@@ -158,18 +154,44 @@ console.log("animeList.value", animeList.value);
       }"
       :freeMode="true"
     >
-      <swiper-slide v-for="(val, index) in animeList">
-        <rs-card class="relative !mb-0">
-          <div
-            class="rounded-lg h-[300px] bg-no-repeat bg-cover bg-center"
-            :style="{
-              'background-image':
-                'url(' + val.attributes.posterImage?.small + ')',
-            }"
-          >
-            {{ val.attributes.canonicalTitle }}
-          </div>
-        </rs-card>
+      <swiper-slide class="my-5" v-for="(val, index) in animeList">
+        <nuxt-link :to="`/anime/${val.id}`">
+          <rs-card class="relative !mb-0 duration-300 hover:scale-105">
+            <div
+              class="rounded-lg h-[400px] bg-no-repeat bg-cover bg-top cursor-pointer"
+              :style="{
+                'background-image':
+                  'url(' + val.attributes.posterImage?.small + ')',
+              }"
+            ></div>
+
+            <div class="p-3">
+              <p class="overflow-hidden truncate w-full">
+                {{ val.attributes.canonicalTitle }}
+                <br />
+                <client-only>
+                  <div>
+                    <Icon
+                      v-for="(val, index) in Math.round(
+                        val.attributes.averageRating / 20
+                      )"
+                      name="ic:round-star-rate"
+                      size="16px"
+                      class="text-yellow-400"
+                    ></Icon>
+                    <Icon
+                      v-for="(val, index) in 5 -
+                      Math.round(val.attributes.averageRating / 20)"
+                      name="ic:round-star-rate"
+                      size="16px"
+                      class="text-gray-400"
+                    ></Icon>
+                  </div>
+                </client-only>
+              </p>
+            </div>
+          </rs-card>
+        </nuxt-link>
       </swiper-slide>
     </swiper>
 

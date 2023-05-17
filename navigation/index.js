@@ -9,6 +9,30 @@ export default [
         "icon": "ic:outline-dashboard",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "Collection",
+        "path": "/collection",
+        "icon": "",
+        "child": []
+      },
+      {
+        "title": "Add",
+        "path": "/collection/add",
+        "icon": "",
+        "child": []
+      },
+      {
+        "title": "Edit",
+        "path": "/collection/edit:id()",
+        "icon": "",
+        "child": []
+      },
+      {
+        "title": "Wardrobe",
+        "path": "/wardrobe",
+        "icon": "",
+        "child": []
       }
     ]
   },

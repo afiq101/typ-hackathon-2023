@@ -113,5 +113,4 @@ model owner {
   ownerStatus       String?   @db.VarChar(255)
   ownerCreatedDate  DateTime? @db.DateTime(0)
   ownerModifiedDate DateTime? @db.DateTime(0)
-  
 }

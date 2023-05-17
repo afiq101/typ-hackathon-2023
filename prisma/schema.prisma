@@ -86,3 +86,19 @@ model pagecontent {
 
   @@index([pageContentPageID], map: "FK__page")
 }
+
+model pet {
+  petID             Int     @id @default(autoincrement())
+  petName           String? @db.VarChar(255)
+  petType           String? @db.VarChar(255)
+  petBreed          String? @db.VarChar(255)
+  petDescription    String? @db.VarChar(255)
+  vaccinationStatus String? @db.VarChar(255)
+  dewormStatus      String? @db.VarChar(255)
+  petGender         String? @db.VarChar(255)
+  petLocation       String? @db.VarChar(255)
+  petHealth         String? @db.VarChar(255)
+  petStatus         String? @db.VarChar(255)
+  petFee            String? @db.VarChar(255)
+  petColor          String? @db.VarChar(255)
+}

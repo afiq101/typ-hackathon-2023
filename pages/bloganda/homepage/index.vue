@@ -21,7 +21,7 @@ const blogData = ref([
             blogAuthor: "JK Rowling",
             bookFeatured: true,
           },{
-            blogID: 1,
+            blogID: 2,
             blogName: "123",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
@@ -73,7 +73,7 @@ const blogData = ref([
 <template>
   <h2 class="p-5 flex justify-between items-start md:items-center flex-col md:flex-row">
     <h2>Homepage</h2>
-    <nuxt-link to="/bookstore/add">
+    <nuxt-link to="/bloganda/create">
       <rs-button>
         <Icon name="material-symbols:add"></Icon>
         Create Blog
@@ -84,22 +84,21 @@ const blogData = ref([
   <div>
     <rs-card class="p-5">
       <span class="text-xl font-bold mb-10">List of blogs</span>
-      <div class="flex justify-between items-start md:items-center p-4 flex-col md:flex-row">
+      <div class="flex justify-center">
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6">
-          <rs-card
-            v-for="blog in blogData"
-            :key="blog.blogID"
-            class="border border-gray-300 p-5 shadow-lg relative" 
-          >
-            <h5 class = "text-md">{{ blog.blogName }}</h5>
-             <p class = "py-5">{{ truncateContent(blog.blogContent) }}</p>
-            <h6 class="absolute bottom-0 right-0 pr-1 pb-1 text-sm">{{ blog.blogAuthor }}</h6>
-            <!-- Additional book details can be displayed here -->
-          </rs-card>
+          <nuxt-link v-for="blog in blogData" :key="blog.blogID" :to="'/blog/' + blog.blogID">
+            <rs-card class="border border-gray-300 p-5 shadow-lg mb-4 mt-10 w-full">
+              <h5 class="text-md">{{ blog.blogName }}</h5>
+              <p class="py-5">{{ truncateContent(blog.blogContent) }}</p>
+              <h6 class="text-sm">{{ blog.blogAuthor }}</h6>
+            </rs-card>
+          </nuxt-link>
         </div>
       </div>
     </rs-card>
   </div>
 </template>
+
+
 
 

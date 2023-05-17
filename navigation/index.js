@@ -18,14 +18,14 @@ export default [
     "child": [
       {
         "title": "Homepage",
-        "path": "/homepage",
+        "path": "/bloganda/homepage",
         "icon": "material-symbols:home",
         "child": [],
         "meta": {}
       },
       {
         "title": "Create Blog",
-        "path": "/create-blog",
+        "path": "/bloganda/create",
         "icon": "material-symbols:library-add-sharp",
         "child": [],
         "meta": {}

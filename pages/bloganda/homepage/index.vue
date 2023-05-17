@@ -1,4 +1,10 @@
 <script setup>
+
+import { ref } from 'vue';
+import { computed } from 'vue';
+
+
+
 definePageMeta({
   title: "Homepage",
 });
@@ -11,6 +17,16 @@ function truncateContent(content) {
   } else {
     return truncated;
   }
+}
+
+let filteredTag = ref(null);
+
+function filterByTag(tagName) {
+  filteredTag.value = tagName;
+}
+
+function resetTags() {
+  filteredTag.value = null;
 }
 
 const blogData = ref([
@@ -84,6 +100,15 @@ const blogData = ref([
             tagName: "numbers",
           },
         ]);
+
+        const filterBlogs = computed(() => {
+  if (filteredTag.value) {
+    return blogData.value.filter((blog) => blog.blogTag === filteredTag.value);
+  } else {
+    return blogData.value;
+  }
+});
+
 </script> 
 
 
@@ -102,31 +127,42 @@ const blogData = ref([
     <div>
       <rs-card class="p-5">
         <span class="text-xl font-bold mb-10">List of blogs</span>
-        <div class="flex justify-center">
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6">
-            <nuxt-link v-for="blog in blogData" :key="blog.blogID" :to="'/bloganda/' + blog.blogID">
-              <rs-card class="border border-gray-300 p-5 shadow-lg mb-4 mt-10 w-full">
-                <h5 class="text-md">{{ blog.blogName }}</h5>
-                <p class="py-5">{{ truncateContent(blog.blogContent) }}</p>
-                <h6 class="text-sm">{{ blog.blogAuthor }}</h6>
-              </rs-card>
-            </nuxt-link>
+        <transition name="fade">
+          <div class="flex justify-center" v-if="filterBlogs.length > 0">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6">
+              <nuxt-link v-for="blog in filterBlogs" :key="blog.blogID" :to="'/bloganda/' + blog.blogID">
+                <rs-card class="border border-gray-300 p-5 shadow-lg mb-4 mt-10 w-full">
+                  <h5 class="text-md">{{ blog.blogName }}</h5>
+                  <p class="py-5">{{ truncateContent(blog.blogContent) }}</p>
+                  <h6 class="text-sm">{{ blog.blogAuthor }}</h6>
+                </rs-card>
+              </nuxt-link>
+            </div>
           </div>
-        </div>
+          <div class="flex justify-center" v-else>
+            <rs-card class="border border-gray-300 p-5 shadow-lg mb-4 mt-10 w-full">
+              No blogs found.
+            </rs-card>
+          </div>
+        </transition>
       </rs-card>
     </div>
     <div>
       <rs-card class="px-15 py-5 ml-10 mr-5">
-        <div class="flex justify-center">
-          <span class="text-xl font-bold">Tags</span>
+        <div class="flex justify-between items-center">
+          <span class="text-xl font-bold mx-auto mb-5">Tags</span>
+          <Icon
+            name="fluent:arrow-reset-24-filled"
+            class="ml-2 cursor-pointer mb-5"
+            @click="resetTags"
+          ></Icon>
         </div>
+
         <div class="flex justify-center">
           <div class="flex-row">
-            <nuxt-link v-for="tag in tagData" :key="tag.tagName" :to="'/blog/' + tag.tagName">
-              <rs-card class="border border-gray-300 p-2 shadow-lg mb-2 mt-5 w-full">
-                <h5 class="text-md">{{ tag.tagName }}</h5>
-              </rs-card>
-            </nuxt-link>
+            <div v-for="tag in tagData" :key="tag.tagID" class="mr-2 mb-2">
+              <rs-button class = "w-full" @click="filterByTag(tag.tagName)">{{ tag.tagName }} </rs-button>
+            </div>
           </div>
         </div>
       </rs-card>
@@ -134,6 +170,16 @@ const blogData = ref([
   </div>
 </template>
 
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
 
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 

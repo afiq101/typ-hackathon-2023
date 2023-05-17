@@ -9,6 +9,20 @@ export default [
         "icon": "ic:outline-dashboard",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "Wardrobe",
+        "path": "/wardrobe",
+        "icon": "mdi:wardrobe-outline",
+        "child": [],
+        "meta": {}
+      },
+      {
+        "title": "Collection",
+        "path": "/collection",
+        "icon": "material-symbols:shelves-outline-rounded",
+        "child": [],
+        "meta": {}
       }
     ]
   },

@@ -81,7 +81,7 @@ const showModalCenter = ref(false);
             class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
           >
             <p
-              class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
+              class="uppercase no-underline hover:no-underline font-bold text-gray-800 text-xl"
             >
               lists of recipe
             </p>
@@ -104,23 +104,26 @@ const showModalCenter = ref(false);
               />
             <label class="bold" for="">{{ val.recipeName }}</label>
               <div class="pt-3 flex items-center justify-between">
-                <label class="Bold"> Ingredient</label>
+                <label class=""> Ingredient</label>
                 <p class="limited-lines">{{ val.ingredient }}</p>
                 <Icon
                   class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                   name="material-symbols:download"
                 ></Icon>
-                <Icon
-                  class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                  name="material-symbols:favorite-outline"
-                ></Icon>
+                <input type="checkbox" id="heart-toggle">
+<label for="heart-toggle">
+  <svg class="h-6 w-6 fill-current text-gray-500 hover:text-pink-500" viewBox="0 0 24 24">
+    <path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 8.4 10 9 10s9-4.75 9-10c0-4.97-4.03-9-9-9zm0 16.4l-1.4-1.4c-2.3-2.29-3.6-3.6-3.6-6s1.7-4.7 4-4.7 4 2.1 4 4.7c0 2.4-1.3 3.7-3.6 6z"/>
+  </svg>
+</label>
+
               </div>
             </a>
             <rs-button @click="showModalCenter = true">Show More</rs-button>
             <rs-modal v-model="showModalCenter">
-              <template #header> {{ val.recipeName }} </template>
+              <template #header><h4 class="font-bold">{{ val.recipeName }}</h4> </template>
               <template #body>
-                <label class="Bold"> Ingredient</label>
+                <label class="font-bold"> Ingredient</label>
                 <p class="">{{ val.ingredient }}</p>
               </template>
               <template #footer> 
@@ -224,5 +227,13 @@ const showModalCenter = ref(false);
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + label svg {
+  fill: pink;
+}
+
 </style>
       

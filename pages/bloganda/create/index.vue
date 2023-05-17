@@ -10,6 +10,12 @@ const form = ref({
   blogTags: false,
 });
 
+const submit = () => {
+  if (form.value.bookName == "" || form.value.bookAuthor == "") {
+    return;
+  }
+  console.log(form.value);
+};
 </script>
 <template>
   <div>

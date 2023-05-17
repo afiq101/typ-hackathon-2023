@@ -13,8 +13,6 @@ export default defineEventHandler(async (event) => {
       lookupID: 1,
     },
   });
-
-  console.log(key)
   
   if (!key)
     return {

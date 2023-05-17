@@ -2,11 +2,13 @@
 definePageMeta({
   title: "Chat",
 });
-
+let API = ref();
 const { data: apikey } = await useFetch("/api/chat/getApi", {
-  method: "GET",
+  method: "POST",
   
 });
+API = apikey.value.data.lookupValue
+
 </script>
 <template>
   <div>
@@ -21,7 +23,7 @@ const { data: apikey } = await useFetch("/api/chat/getApi", {
       v-model="inputText"
       help="It may take some time to load the answer"
     />
-    <rs-button @click="sendMessage">Enter</rs-button>
+    <rs-button @click="getAPI">Enter</rs-button>
   </div>
 </template>
       
@@ -36,9 +38,17 @@ export default {
     };
   },
   methods: {
-    async sendMessage() {
-      if (!this.inputText) return;
+    async getAPI(){
+      const response = await axios.post(
+        "http://localhost:3000/api/chat/getApi"
+      )
+      const API = response.data.data.lookupValue;
 
+      this.sendMessage(API)
+    },
+    
+    async sendMessage(API) {
+      if (!this.inputText) return;
       // Send request to ChatGPT API
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
@@ -57,7 +67,7 @@ export default {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer $p{APIKEY}",
+            Authorization: "Bearer "+ API,
           },
         }
       );

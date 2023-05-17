@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     const ID = getID[0].userID;
 
     const category =
-      await prisma.$queryRaw`SELECT catId, catName FROM category where userID = ${ID}`;
+      await prisma.$queryRaw`SELECT catId, catName FROM category where userID = ${ID} and catStatus = 'ACTIVE'`;
 
     if (!category) {
       return {

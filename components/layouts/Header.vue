@@ -76,12 +76,12 @@ onMounted(() => {
           <div class="flex flex-auto gap-3 justify-center items-center">
             <img
               class="h-24 block dark:hidden"
-              src="@/assets/img/logo/logo-full-transparent.webp"
+              src="@/assets/img/logo/duitPantau.png"
               alt=""
             />
             <img
               class="h-24 hidden dark:block"
-              src="@/assets/img/logo/logo-full-transparent-white.webp"
+              src="@/assets/img/logo/duitPantau.png"
               alt=""
             />
             <!-- <span

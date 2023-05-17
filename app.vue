@@ -2,7 +2,7 @@
 import { useThemeStore } from "~/stores/theme";
 
 useHead({
-  title: "Mawar | Innovative solutions for captivating content",
+  title: "Duit Pantau | Expense & Budget Tracker",
   description: "Home page",
   bodyAttrs: {
     class: "bg-gray-100 dark:bg-slate-900 text-gray-600 dark:text-gray-300",

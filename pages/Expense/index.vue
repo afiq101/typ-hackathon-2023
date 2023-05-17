@@ -5,6 +5,7 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
+const { $swal } = useNuxtApp();
 const field = ["Description", "Amount (RM)"];
 const options = ref([]);
 const expenses = ref([]);
@@ -39,13 +40,24 @@ const submit = async () => {
   console.log(data)
 
   if (data.value.statusCode == 200) {
-    alert("Berjaya")
+    $swal.fire({
+      position: "center",
+      title: "Success",
+      text: data.value.message,
+      icon: "success",
+      timer: 2000,
+      showConfirmButton: false,
+    });
     expenses.value.push({ description: description.value, amount: "RM" + Number(amount.value) })
     amount.value = "";
     description.value = "";
   }
   else {
-    alert("Failed")
+    $swal.fire({
+      title: "Error!",
+      text: data.value.message,
+      icon: "error",
+    });
   }
 }
 

@@ -9,6 +9,13 @@ export default [
         "icon": "ic:outline-dashboard",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "Task Timeline",
+        "path": "/tasktimeline",
+        "icon": "mdi:chart-bar",
+        "child": [],
+        "meta": {}
       }
     ]
   },

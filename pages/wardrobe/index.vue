@@ -22,53 +22,53 @@
   const countNew = ref(0);
 
 
-  const data = [
-    {
-      id: 1,
-      name: "Pink Dress",
-      image: img,
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "In Stock",
-    },
-    {
-      id: 2,
-      name: "Shirt 2",
-      image: img1,
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "In Stock",
-    },
-    {
-      id: 3,
-      name: "Shirt 3",
-      image: img1,
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "Ordered",
-    },
-    {
-      id: 4,
-      name: "Shirt 4",
-      image: img1,
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "Out of Stock",
-    },
-    {
-      id: 5,
-      name: "Shirt 5",
-      image: img1,
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "New Arrival",
-    },
-  ];
+  // const data = [
+  //   {
+  //     id: 1,
+  //     name: "Pink Dress",
+  //     image: img,
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "In Stock",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Shirt 2",
+  //     image: img1,
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "In Stock",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Shirt 3",
+  //     image: img1,
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "Ordered",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Shirt 4",
+  //     image: img1,
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "Out of Stock",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Shirt 5",
+  //     image: img1,
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "New Arrival",
+  //   },
+  // ];
 
   // click card In Stock summary to open the list In Stock
   function showInStock(){
@@ -137,6 +137,10 @@
     return countNew.value;
   };
 
+  const {data: stockData} = await useFetch("/api/collection/list", {
+    method: "GET",
+  });
+
 </script>
 <template>
   <div>
@@ -194,23 +198,25 @@
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card>
         <template #header>
-          <h5 class="text-3xl mx-8">In Stock</h5>
+          <div class="bg-success">
+            <h5 class="text-3xl mx-8 text-white">In Stock</h5>
+          </div>
         </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data" :key="index">
-              <rs-card class="p-5 relative" v-if="val.status == 'In Stock'">
-                <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
+            <div v-for="(val, index) in stockData.data" :key="index">
+              <rs-card class="p-5 relative" v-if="val.stockStatus == 'inStock'">
+                <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
                 <br><br>
-                <h6 class="text-2xl">{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.image" class="h-64 "/>
+                  <img :src="val.stockImage" class="h-64 "/>
                 </div>
                 <br>
-                <p class="text-xl">Type: {{ val.type }}</p>
-                <p class="text-xl">Size: {{val.size}} </p>
-                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+                <p class="text-xl">Type: {{ val.stockType }}</p>
+                <p class="text-xl">Size: {{val.stockSize}} </p>
+                <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
                 <br>
               </rs-card>
             </div>
@@ -224,23 +230,25 @@
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card>
         <template #header>
-          <h5 class="text-3xl mx-8">Out Stock</h5>
+          <div class="bg-danger">
+            <h5 class="text-3xl mx-8 text-white">Out Stock</h5>
+          </div>
         </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data" :key="index">
-              <rs-card class="p-5 relative" v-if="val.status == 'Out of Stock'">
-                <rs-badge class="float-right" variant="danger" v-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
+            <div v-for="(val, index) in stockData.data" :key="index">
+              <rs-card class="p-5 relative" v-if="val.stockStatus == 'outStock'">
+                <rs-badge class="float-right" variant="danger" v-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
                 <br><br>
-                <h6 class="text-2xl">{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.image" class="h-64 "/>
+                  <img :src="val.stockImage" class="h-64 "/>
                 </div>
                 <br>
-                <p class="text-xl">Type: {{ val.type }}</p>
-                <p class="text-xl">Size: {{val.size}} </p>
-                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+                <p class="text-xl">Type: {{ val.stockType }}</p>
+                <p class="text-xl">Size: {{val.stockSize}} </p>
+                <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
                 <br>
               </rs-card>
             </div>
@@ -254,23 +262,25 @@
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card >
         <template #header>
-          <h5 class="text-3xl mx-8">Order Stock</h5>
+          <div class="bg-warning">
+            <h5 class="text-3xl mx-8 text-white">Otder Stock</h5>
+          </div>
         </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data" :key="index">
-              <rs-card class="p-5 relative" v-if="val.status == 'Ordered'">
-                <rs-badge class="float-right" variant="warning" v-if="val.status == 'Ordered'">Ordered</rs-badge>
+            <div v-for="(val, index) in stockData.data" :key="index">
+              <rs-card class="p-5 relative" v-if="val.stockStatus == 'orderStock'">
+                <rs-badge class="float-right" variant="warning" v-if="val.stockStatus == 'orderStock'">Ordered</rs-badge>
                 <br><br>
-                <h6 class="text-2xl">{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.image" class="h-64 "/>
+                  <img :src="val.stockImage" class="h-64 "/>
                 </div>
                 <br>
-                <p class="text-xl">Type: {{ val.type }}</p>
-                <p class="text-xl">Size: {{val.size}} </p>
-                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+                <p class="text-xl">Type: {{ val.stockType }}</p>
+                <p class="text-xl">Size: {{val.stockSize}} </p>
+                <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
                 <br>
               </rs-card>
             </div>
@@ -284,23 +294,25 @@
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card >
         <template #header>
-          <h5 class="text-3xl mx-8">New Stock</h5>
+          <div class="bg-info">
+            <h5 class="text-3xl mx-8 text-white">New Stock</h5>
+          </div>
         </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data" :key="index">
-              <rs-card class="p-5 relative" v-if="val.status == 'New Arrival'">
-                <rs-badge class="float-right" variant="info" v-if="val.status == 'New Arrival'">New Arrival</rs-badge>
+            <div v-for="(val, index) in stockData.data" :key="index">
+              <rs-card class="p-5 relative" v-if="val.stockStatus == 'newStock'">
+                <rs-badge class="float-right" variant="info" v-if="val.stockStatus == 'newStock'">New Arrival</rs-badge>
                 <br><br>
-                <h6 class="text-2xl">{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.image" class="h-64 "/>
+                  <img :src="val.stockImage" class="h-64 "/>
                 </div>
                 <br>
-                <p class="text-xl">Type: {{ val.type }}</p>
-                <p class="text-xl">Size: {{val.size}} </p>
-                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+                <p class="text-xl">Type: {{ val.stockType }}</p>
+                <p class="text-xl">Size: {{val.stockSize}} </p>
+                <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
                 <br>
               </rs-card>
             </div>

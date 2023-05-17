@@ -36,7 +36,7 @@
 	stockQuantity: "",
 	stockTotal: "",
 	stockStatus: "",
-	//stockImage: "",
+	stockImage: "",
 	});
 
 
@@ -54,7 +54,7 @@ if (data.value.statusCode == 200) {
 	form.value.stockQuantity = data.value.data.stockQuantity;
 	form.value.stockTotal = data.value.data.stockTotal;
 	form.value.stockStatus = data.value.data.stockStatus;
-	//form.value.stockImage = data.value.data.stockImage;
+	form.value.stockImage = data.value.data.stockImage;
 	} else {
 		alert("Tiada Stock dengan ID ini");
 	}
@@ -75,7 +75,7 @@ const submit = async () => {
 			stockQuantity: form.value.stockQuantity,
 			stockTotal: form.value.stockTotal,
 			stockStatus: form.value.stockStatus,
-			//stockImage: form.value.stockImage,
+			stockImage: form.value.stockImage,
 		},
 	});
 

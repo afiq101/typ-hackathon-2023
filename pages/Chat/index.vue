@@ -43,7 +43,7 @@
               {
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': 'Bearer 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'
+                  'Authorization': 'Bearer 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'
                 }
               }
             );

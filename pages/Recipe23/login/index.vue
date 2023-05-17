@@ -38,6 +38,24 @@ const submit = async () => {
   }
 };
 
+const listing = async () => {
+
+  if (form.value.username == "" || form.value.password == "") {
+    alert("Username and Password required");
+  }
+  try {
+    const data = await useFetch("/api/recipe23/list", {
+      method: "POST",
+      body: {
+      },
+    });
+
+  } catch (error) {
+    console.log("Error display: " , error);
+
+  }
+};
+
 </script>
 
 <template>

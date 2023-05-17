@@ -42,6 +42,13 @@ const modules = [Navigation, Pagination, Scrollbar, A11y, Autoplay];
                 >About</a
               >
             </li>
+            <li>
+              <nuxt-link
+                to="/Recipe23/profile"
+                class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                >Profile</nuxt-link
+              >
+            </li>
           </ul>
         </nav>
 

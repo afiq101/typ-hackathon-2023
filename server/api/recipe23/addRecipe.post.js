@@ -16,13 +16,13 @@ export default defineEventHandler(async (event) => {
     const { 
         recipename : recipeName,
         recipeingredient : recipeIngredient,
-        recipeduration : recipeDuration,
-        recipespicy : recipeSpicy,
-        recipecountry : recipeCountry,
-        userid : userId,
+        // recipeduration : recipeDuration,
+        // recipespicy : recipeSpicy,
+        // recipecountry : recipeCountry,
+        // userid : userId,
     } = await  readBody(event);
 
-    if(!recipeName || !recipeIngredient || !recipeDuration || !recipeSpicy || !recipeCountry || !userId){
+    if(!recipeName || !recipeIngredient){
         return{
             statusCode: 500,
             message:"Recipe Name, Ingredient, Duration, Spicy, Country and User Id" ,
@@ -33,10 +33,10 @@ export default defineEventHandler(async (event) => {
         data : {
             recipeName : recipeName,
             ingredient : recipeIngredient,
-            duration : recipeDuration,
-            spicy : recipeSpicy,
-            country : recipeCountry,
-            userId : userId,
+            // duration : recipeDuration,
+            // spicy : recipeSpicy,
+            // country : recipeCountry,
+            // userId : userId,
         }
     });
 

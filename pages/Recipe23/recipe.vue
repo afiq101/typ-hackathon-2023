@@ -2,6 +2,10 @@
 definePageMeta({
   title: "Recipe",
 });
+
+const { data: recipeData } = await useFetch("/api/recipe23/recipeList", {
+  method: "GET",
+});
 </script>
 
 <template>
@@ -13,22 +17,36 @@ definePageMeta({
       <div
         class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3"
       >
-        <nav>
+      <nav>
           <ul
             class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0"
           >
             <li>
+              <nuxt-link
+                to="/Recipe23/recipe"
+                class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                >Recipe</nuxt-link
+              >
+            </li>
+            <!-- <li>
               <a
                 class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
                 href="#"
-                >Recipe</a
+                >Ranking</a
               >
-            </li>
+            </li> -->
             <li>
               <a
                 class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
                 href="#"
                 >About</a
+              >
+            </li>
+            <li>
+              <nuxt-link
+                to="/Recipe23/profile"
+                class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                >Profile</nuxt-link
               >
             </li>
           </ul>
@@ -73,164 +91,30 @@ definePageMeta({
           </div>
         </nav>
 
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
+        <div></div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
+          <div v-for="(val, index) in recipeData.data" :key="index">
 
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1467949576168-6ce8e2df4e13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img
-              class="hover:grow hover:shadow-lg"
-              src="https://images.unsplash.com/photo-1551431009-a802eeec77b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80"
-            />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Food Name</p>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:download"
-              ></Icon>
-              <Icon
-                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
-                name="material-symbols:favorite-outline"
-              ></Icon>
-            </div>
-          </a>
+            <a href="#">
+              <img
+                class="hover:grow hover:shadow-lg"
+                src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+              />
+            <label class="bold" for="">Ingredient</label>
+              <p class="limited-lines">{{ val.ingredient }}</p>
+              <div class="pt-3 flex items-center justify-between">
+                <p class="">{{ val.recipeName }}</p>
+                <Icon
+                  class="h-6 w-6 fill-current text-gray-500 hover:text-black"
+                  name="material-symbols:download"
+                ></Icon>
+                <Icon
+                  class="h-6 w-6 fill-current text-gray-500 hover:text-black"
+                  name="material-symbols:favorite-outline"
+                ></Icon>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -317,4 +201,12 @@ definePageMeta({
     </footer>
   </body>
 </template>
+
+<style>
+.limited-lines {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limit the number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}</style>
       

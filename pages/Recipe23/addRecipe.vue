@@ -2,6 +2,39 @@
 definePageMeta({
   title: "Add Recipe",
 });
+
+const form = ref({
+  recipename: "",
+  recipeingredient: "",
+});
+
+const submit = async () => {
+
+    try {
+    const data = await useFetch("/api/recipe23/addRecipe", {
+      method: "POST",
+      body: {
+        recipename: form.value.recipename,
+        recipeingredient: form.value.recipeingredient,
+      },
+    });
+
+
+    if (!data) {
+      console.log("Data display: " , data);
+      alert("Failed");
+    } else {
+      alert("Success");
+      window.location.href = `/recipe23`;
+    }
+  } catch (error) {
+    console.log("Error display: " , error);
+
+  }
+
+  
+};
+
 </script>
 
 <template>
@@ -24,6 +57,7 @@ definePageMeta({
           >Food Name*</label
         >
         <input
+        v-model="form.recipename"
           type="text"
           class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />
@@ -34,6 +68,7 @@ definePageMeta({
           >Food Details*</label
         >
         <textarea
+        v-model="form.recipeingredient"
           type="text"
           class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />
@@ -48,7 +83,7 @@ definePageMeta({
           class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
         />
       </div> -->
-      <div class="col-md-6 mt-20">
+      <!-- <div class="col-md-6 mt-20">
         <label class="mb-0"><strong>Upload Food Images</strong></label>
         <input
           id="foodimage"
@@ -57,7 +92,7 @@ definePageMeta({
           name="foodimage"
         />
         <input id="file" type="file" name="general[file]" />
-      </div>
+      </div> -->
 
       <div class="mt-6">
         <button
@@ -70,4 +105,3 @@ definePageMeta({
     </form>
   </body>
 </template>
-      

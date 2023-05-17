@@ -14,20 +14,23 @@ export default defineEventHandler(async (event) => {
     
     // New Way
     const { 
+        userIdR : id,
         usernameR : username,
         emailR : email, 
         passwordR : password ,
+    } = await  readBody(event);
 
-    } = await readBody(event);
-
-    if(!username || !email || !password){
+    if(!id || !username || !email || !password){
         return{
             statusCode: 500,
             message:"username, email dan password perlu diisi",
         }
     }
 
-    const registerUser = await prisma.recipe23user.create({
+    const updateUser = await prisma.recipe23recipe.update({
+        where: {
+            userId: parseInt(id),
+        },
         data : {
             userName: username,
             userEmail: email,
@@ -35,7 +38,7 @@ export default defineEventHandler(async (event) => {
         }
     });
 
-    if(!registerUser){
+    if(!updateRecipe){
         return{
         statusCode: 500,
         message: "Gagal menimpan data",

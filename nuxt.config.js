@@ -10,6 +10,18 @@ export default defineNuxtConfig({
   //     },
   //   },
   // },
+
+  build: {
+    transpile: ['vue-google-maps-community-fork', '@googlemaps/markercluster'],
+  },
+
+  optimizeDeps: {
+    include: [
+        "vue-google-maps-community-fork",
+        "fast-deep-equal",
+    ],
+},
+
   modules: [
     "@formkit/nuxt",
     "@nuxtjs/color-mode",
@@ -532,6 +544,7 @@ export default defineNuxtConfig({
       fireImmediately: false,
       throwError: false, // optional
     },
+    headers: false
   },
   routeRules: {
     "/api/devtool/content/code/save": {

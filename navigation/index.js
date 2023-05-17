@@ -18,11 +18,26 @@ export default [
         "meta": {}
       },
       {
+<<<<<<< HEAD
         "title": "Expense",
         "path": "/Expense",
         "icon": "arcticons:expense-register",
         "child": [],
         "meta": {}
+=======
+        title: "Category",
+        path: "/category",
+        icon: "material-symbols:category-outline",
+        child: [],
+        meta: {},
+      },
+      {
+        title: "Expense",
+        path: "/Expense",
+        icon: "arcticons:expense-register",
+        child: [],
+        meta: {},
+>>>>>>> c520da411fe128421cc7701f36ad5ae6272dbd11
       },
       {
         "title": "Budget",

@@ -191,10 +191,37 @@ onMounted(() => {
     <h4>Categories with Biggest Expenses</h4>
 
     <div class="grid grid-cols-12 gap-3 mt-3">
-      <rs-card class="p-4" v-for="(data, index) in categories" :key="index"
-        >asdasd</rs-card
+      <rs-card
+        class="col-span-6 sm:col-span-2 p-3 text-center hover-card"
+        v-for="(data, index) in categories"
+        :key="index"
       >
+        <span class="text-primary">
+          <Icon
+            name="material-symbols:fastfood"
+            size="50"
+            color="primary"
+          ></Icon>
+        </span>
+
+        <br />
+
+        <div class="mt-3">
+          <span> {{ data.name }}</span>
+          <h5 class="text-primary font-semibold">$ {{ data.amount }}</h5>
+        </div>
+      </rs-card>
     </div>
     <!-- </rs-card> -->
   </div>
 </template>
+
+<style scoped>
+.rs-card {
+  transition: transform 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: scale(1.1);
+}
+</style>

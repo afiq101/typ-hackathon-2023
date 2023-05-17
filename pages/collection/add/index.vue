@@ -171,10 +171,9 @@
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Image -->
-              <!-- <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit> -->
+               <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit> 
             </div>
           </div>
-		  <!--<rs-button> Submit </rs-button>-->
         </FormKit>
       </template>
     </rs-card>

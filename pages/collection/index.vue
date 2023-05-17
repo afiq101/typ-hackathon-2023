@@ -79,7 +79,9 @@
     <!-- Tab Collection by Type Stock -->
     <rs-tab variant="primary" type="card" justify="left">
       <rs-tab-item title="All">
-        <p class="text-4xl mx-8"> All</p>
+        <div class="bg-slate-100 rounded-lg">
+          <p class="text-4xl mx-8"> All</p>
+        </div>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
           <rs-card class="p-5 relative" v-for="(val, index) in stockData.data" :key="index">
@@ -107,10 +109,12 @@
         </div>
       </rs-tab-item>
       <rs-tab-item title="Shirt">
-        <p class="text-4xl mx-8"> Shirt</p>
+        <div class="bg-slate-100 rounded-lg">
+          <p class="text-4xl mx-8"> Shirt</p>
+        </div>
         <br>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <div  v-for="(val, index) in stockData.data" :key="index">
+        <div v-for="(val, index) in stockData.data" :key="index">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
             <rs-card class="p-5 relative" v-if="val.stockType == 'Shirt'">
               <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
               <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
@@ -137,10 +141,12 @@
         </div>
       </rs-tab-item>
       <rs-tab-item title="Pants">
-        <p class="text-4xl mx-8"> Pants</p>
+        <div class="bg-slate-100 rounded-lg">
+          <p class="text-4xl mx-8"> Pants</p>
+        </div>
         <br>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <div  v-for="(val, index) in stockData.data" :key="index">
+        <div v-for="(val, index) in stockData.data" :key="index">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
             <rs-card class="p-5 relative" v-if="val.stockType == 'Pants'">
               <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
               <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
@@ -167,7 +173,9 @@
         </div>
       </rs-tab-item>
       <rs-tab-item title="Jacket">
-        <p class="text-4xl mx-8"> Jacket</p>
+        <div class="bg-slate-100 rounded-lg">
+          <p class="text-4xl mx-8"> Jacket</p>
+        </div>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
           <div  v-for="(val, index) in stockData.data" :key="index">
@@ -197,7 +205,9 @@
         </div>
       </rs-tab-item>
       <rs-tab-item title="Hood">
-        <p class="text-4xl mx-8"> Hood</p>
+        <div class="bg-slate-100 rounded-lg">
+          <p class="text-4xl mx-8"> Hood</p>
+        </div>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
           <div  v-for="(val, index) in stockData.data" :key="index">

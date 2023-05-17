@@ -38,12 +38,12 @@ onMounted(() => {
         <div class="flex flex-auto gap-3 justify-center items-center h-[48px]">
           <img
             class="h-24 block dark:hidden"
-            src="@/assets/img/logo/mewonity_logo_1.png"
+            src="@/assets/img/logo/eownity.png"
             alt=""
           />
           <img
             class="h-24 hidden dark:block"
-            src="@/assets/img/logo/mewonity_logo_1.png"
+            src="@/assets/img/logo/eownity.png"
             alt=""
           />
           <!-- <span class="text-xl font-semibold text-primary dark:text-white"

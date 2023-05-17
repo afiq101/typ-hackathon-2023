@@ -11,29 +11,18 @@ export default [
         "meta": {}
       },
       {
-        "title": "Place",
-        "path": "/place",
-        "icon": "",
-        "child": [],
-        "meta": {}
-      },
-      {
-        "title": "Pet Configuration",
-        "path": "/pet-configuration",
-        "icon": "",
-        "child": []
-      },
-      {
-        "title": "Manage Pet",
-        "path": "/admin-pet",
-        "icon": "",
-        "child": []
-      },
-      {
         "title": "Manage Pet Owner",
         "path": "/owner-pet",
         "icon": "",
-        "child": []
+        "child": [],
+        "meta": {
+          "auth": {
+            "role": [
+              "Developer",
+              "Keeper"
+            ]
+          }
+        }
       },
       {
         "title": "Pet Keeper",
@@ -45,7 +34,15 @@ export default [
         "title": "Manage Request",
         "path": "/keeper-request",
         "icon": "",
-        "child": []
+        "child": [],
+        "meta": {
+          "auth": {
+            "role": [
+              "Keeper",
+              "Developer"
+            ]
+          }
+        }
       }
     ]
   },

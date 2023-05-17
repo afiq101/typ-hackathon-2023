@@ -2,6 +2,10 @@
 definePageMeta({
   title: "Recipe23",
 });
+
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+
+const modules = [Navigation, Pagination, Scrollbar, A11y];
 </script>
 
 <template>
@@ -13,53 +17,38 @@ definePageMeta({
       <div
         class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3"
       >
-        <label for="menu-toggle" class="cursor-pointer md:hidden block">
-          <svg
-            class="fill-current text-gray-900"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
+        <nav>
+          <ul
+            class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0"
           >
-            <title>menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-          </svg>
-        </label>
-        <input class="hidden" type="checkbox" id="menu-toggle" />
+            <li>
+              <a
+                class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                href="#"
+                >Recipe</a
+              >
+            </li>
+            <li>
+              <a
+                class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                href="#"
+                >Ranking</a
+              >
+            </li>
+            <li>
+              <a
+                class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                href="#"
+                >About</a
+              >
+            </li>
+          </ul>
+        </nav>
 
         <div
-          class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1"
-          id="menu"
+          class="flex text-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
         >
-          <nav>
-            <ul
-              class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0"
-            >
-              <li>
-                <a
-                  class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
-                  >Shop</a
-                >
-              </li>
-              <li>
-                <a
-                  class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                  href="#"
-                  >About</a
-                >
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <div class="order-1 md:order-2">
-          <a
-            class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
-            href="/Recipe23"
-          >
-            RECIPE23
-          </a>
+          <a href="/Recipe23"> RECIPE23 </a>
         </div>
 
         <div class="order-2 md:order-3 flex items-center" id="nav-content">
@@ -75,191 +64,52 @@ definePageMeta({
       </div>
     </nav>
 
-    <div class="carousel relative container mx-auto" style="max-width: 1600px">
-      <div class="carousel-inner relative overflow-hidden w-full">
-        <!--Slide 1-->
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-1"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-          checked="checked"
-        />
-        <div class="carousel-item absolute opacity-0" style="height: 50vh">
-          <div
-            class="flex h-full w-full mx-auto pt-6 md:pt-0 md:items-center bg-cover bg-right"
-            style="
-              background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');
-            "
-          >
-            <div class="container mx-auto">
-              <div
-                class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide"
-              >
-                <p class="text-black text-2xl my-4">
-                  Stripy Zig Zag Jigsaw Pillow and Duvet Set
-                </p>
-                <a
-                  class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-                  href="#"
-                  >view product</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <label
-          for="carousel-3"
-          class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-          >‹</label
-        >
-        <label
-          for="carousel-2"
-          class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-          >›</label
-        >
-
-        <!--Slide 2-->
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-2"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-        />
-        <div
-          class="carousel-item absolute opacity-0 bg-cover bg-right"
-          style="height: 50vh"
-        >
-          <div
-            class="flex h-full w-full mx-auto pt-6 md:pt-0 md:items-center bg-cover bg-right"
-            style="
-              background-image: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80');
-            "
-          >
-            <div class="container mx-auto">
-              <div
-                class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide"
-              >
-                <p class="text-black text-2xl my-4">Real Bamboo Wall Clock</p>
-                <a
-                  class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-                  href="#"
-                  >view product</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <label
-          for="carousel-1"
-          class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-          >‹</label
-        >
-        <label
-          for="carousel-3"
-          class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-          >›</label
-        >
-
-        <!--Slide 3-->
-        <input
-          class="carousel-open"
-          type="radio"
-          id="carousel-3"
-          name="carousel"
-          aria-hidden="true"
-          hidden=""
-        />
-        <div class="carousel-item absolute opacity-0" style="height: 50vh">
-          <div
-            class="flex h-full w-full mx-auto pt-6 md:pt-0 md:items-center bg-cover bg-bottom"
-            style="
-              background-image: url('https://images.unsplash.com/photo-1519327232521-1ea2c736d34d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');
-            "
-          >
-            <div class="container mx-auto">
-              <div
-                class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide"
-              >
-                <p class="text-black text-2xl my-4">
-                  Brown and blue hardbound book
-                </p>
-                <a
-                  class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-                  href="#"
-                  >view product</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <label
-          for="carousel-2"
-          class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-          >‹</label
-        >
-        <label
-          for="carousel-1"
-          class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-gray-900 leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-          >›</label
-        >
-
-        <!-- Add additional indicators for each slide-->
-        <ol class="carousel-indicators">
-          <li class="inline-block mr-3">
-            <label
-              for="carousel-1"
-              class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
-              >•</label
-            >
-          </li>
-          <li class="inline-block mr-3">
-            <label
-              for="carousel-2"
-              class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
-              >•</label
-            >
-          </li>
-          <li class="inline-block mr-3">
-            <label
-              for="carousel-3"
-              class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900"
-              >•</label
-            >
-          </li>
-        </ol>
-      </div>
-    </div>
-
-    <!-- Alternatively if you want to just have a single hero -->
-
-    <section
-      class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right"
-      style="
-        max-width: 1600px;
-        height: 32rem;
-        background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');
-      "
+    <swiper
+      :modules="modules"
+      :slides-per-view="1"
+      :centeredSlides="true"
+      :pagination="{ clickable: true }"
+      @swiper="onSwiper"
+      @slideChange="onSlideChange"
+      navigation
     >
-      <div class="container mx-auto">
-        <div
-          class="flex flex-col w-full lg:w-1/2 justify-center items-start px-6 tracking-wide"
-        >
-          <h1 class="text-black text-2xl my-4">
-            Stripy Zig Zag Jigsaw Pillow and Duvet Set
-          </h1>
-          <a
-            class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black"
-            href="#"
-            >products</a
-          >
-        </div>
-      </div>
-    </section>
+      <swiper-slide>
+        <img
+          style="width: 1450px; height: 800px"
+          src="@@/assets/img/Recipe23/carousel/cookbook1.jpg"
+        />
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          style="width: 1450px; height: 800px"
+          src="@@/assets/img/Recipe23/carousel/cookbook2.jpeg"
+        />
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          style="width: 1450px; height: 800px"
+          src="@@/assets/img/Recipe23/carousel/cookbook3.jpg"
+        />
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          style="width: 1450px; height: 800px"
+          src="@@/assets/img/Recipe23/carousel/food1.jpg"
+        />
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          style="width: 1450px; height: 800px"
+          src="@@/assets/img/Recipe23/carousel/food2.jpg"
+        />
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          style="width: 1450px; height: 800px"
+          src="@@/assets/img/Recipe23/carousel/food3.jpg"
+        />
+      </swiper-slide>
+    </swiper>
 
     <section class="bg-white py-8">
       <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
@@ -267,44 +117,22 @@ definePageMeta({
           <div
             class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
           >
-            <a
+            <p
               class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
-              href="#"
             >
-              Store
-            </a>
+              recipe
+            </p>
 
             <div class="flex items-center" id="store-nav-content">
               <a
                 class="pl-3 inline-block no-underline hover:text-black"
                 href="#"
               >
-                <svg
+                more
+                <Icon
                   class="fill-current hover:text-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
-                </svg>
-              </a>
-
-              <a
-                class="pl-3 inline-block no-underline hover:text-black"
-                href="#"
-              >
-                <svg
-                  class="fill-current hover:text-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
-                  />
-                </svg>
+                  name="material-symbols:east-rounded"
+                ></Icon>
               </a>
             </div>
           </div>
@@ -317,7 +145,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -328,7 +156,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -339,7 +166,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1508423134147-addf71308178?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +177,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -361,7 +187,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -372,7 +198,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -383,7 +208,7 @@ definePageMeta({
               src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -394,7 +219,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -405,7 +229,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1467949576168-6ce8e2df4e13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -416,7 +240,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -427,7 +250,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -438,7 +261,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -449,7 +271,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1550837368-6594235de85c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -460,7 +282,6 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
 
@@ -471,7 +292,7 @@ definePageMeta({
               src="https://images.unsplash.com/photo-1551431009-a802eeec77b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80"
             />
             <div class="pt-3 flex items-center justify-between">
-              <p class="">Product Name</p>
+              <p class="">Food Name</p>
               <svg
                 class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -482,13 +303,12 @@ definePageMeta({
                 />
               </svg>
             </div>
-            <p class="pt-1 text-gray-900">£9.99</p>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="bg-white py-8">
+    <section class="container mx-auto bg-white py-8 border-t border-gray-400">
       <div class="container py-8 px-6 mx-auto">
         <a
           class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8"
@@ -545,14 +365,24 @@ definePageMeta({
         <div class="w-full mx-auto flex flex-wrap">
           <div class="flex w-full lg:w-1/2">
             <div class="px-3 md:px-0">
-              <h3 class="font-bold text-gray-900">About</h3>
+              <h3 class="font-bold text-gray-900">Links</h3>
               <p class="py-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse
-                consectetur dapibus velit ut lacinia.
+                <a
+                    class="inline-block no-underline hover:text-black hover:underline py-1"
+                    href="#"
+                  >Home</a><br>
+                  <a
+                    class="inline-block no-underline hover:text-black hover:underline py-1"
+                    href="#"
+                  >Recipe</a><br>
+                  <a
+                    class="inline-block no-underline hover:text-black hover:underline py-1"
+                    href="#"
+                  >About</a>
               </p>
             </div>
           </div>
+          
           <div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
             <div class="px-3 md:px-0">
               <h3 class="font-bold text-gray-900">Social</h3>
@@ -561,8 +391,45 @@ definePageMeta({
                   <a
                     class="inline-block no-underline hover:text-black hover:underline py-1"
                     href="#"
-                    >Add social links</a
                   >
+                    <Icon
+                      class="fill-current hover:text-black"
+                      name="devicon:facebook"
+                    ></Icon
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="inline-block no-underline hover:text-black hover:underline py-1"
+                    href="#"
+                  >
+                    <Icon
+                      class="fill-current hover:text-black"
+                      name="devicon:twitter"
+                    ></Icon
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="inline-block no-underline hover:text-black hover:underline py-1"
+                    href="#"
+                  >
+                    <Icon
+                      class="fill-current hover:text-black"
+                      name="skill-icons:instagram"
+                    ></Icon
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="inline-block no-underline hover:text-black hover:underline py-1"
+                    href="#"
+                  >
+                    <Icon
+                      class="fill-current hover:text-black"
+                      name="logos:youtube-icon"
+                    ></Icon
+                  ></a>
                 </li>
               </ul>
             </div>

@@ -102,3 +102,16 @@ model pet {
   petFee            String? @db.VarChar(255)
   petColor          String? @db.VarChar(255)
 }
+
+model owner {
+  ownerID           Int       @id @default(autoincrement())
+  ownerName         String?   @db.VarChar(255)
+  ownerUsername     String?   @db.VarChar(255)
+  ownerPassword     String?   @db.VarChar(255)
+  ownerAddress      String?   @db.VarChar(255)
+  ownerPhone        String?   @db.VarChar(255)
+  ownerEmail        String?   @db.VarChar(255)
+  ownerStatus       String?   @db.VarChar(255)
+  ownerCreatedDate  DateTime? @db.DateTime(0)
+  ownerModifiedDate DateTime? @db.DateTime(0)
+}

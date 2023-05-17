@@ -9,6 +9,12 @@ export default [
         "icon": "ic:outline-dashboard",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "Recipe23",
+        "path": "/Recipe23",
+        "icon": "",
+        "child": []
       }
     ]
   },

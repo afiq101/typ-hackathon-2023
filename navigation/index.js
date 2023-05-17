@@ -18,6 +18,13 @@ export default [
         meta: {},
       },
       {
+        title: "Category",
+        path: "/category",
+        icon: "material-symbols:category-outline",
+        child: [],
+        meta: {},
+      },
+      {
         title: "Expense",
         path: "/Expense",
         icon: "arcticons:expense-register",

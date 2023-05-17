@@ -50,7 +50,7 @@ const props = defineProps({
   },
   pageSize: {
     type: Number,
-    default: 5,
+    default: 30,
   },
   sort: {
     type: Object,

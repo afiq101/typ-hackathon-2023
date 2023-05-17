@@ -35,6 +35,7 @@
 	stockQuantity: "",
 	stockTotal: "",
 	stockStatus: "",
+	stockImage: "",
 	});
 
 const submit = async () => {
@@ -52,6 +53,7 @@ const submit = async () => {
 			stockQuantity: form.value.stockQuantity,
 			stockTotal: form.value.stockTotal,
 			stockStatus: form.value.stockStatus,
+			stockImage: form.value.stockImage,
 		},
 	});
 
@@ -106,7 +108,7 @@ const submit = async () => {
           </div>
 
           <!-- Input Size -->
-          <FormKit v-model="stockQuantity" type="radio" label="Size" validation="required" validation-visibility="dirty" :options="sizes" class="inline"/>
+          <FormKit v-model="form.stockQuantity" type="radio" label="Size" validation="required" validation-visibility="dirty" :options="sizes" class="inline"/>
 
           <!-- Input Quantity -->
           <div class="flex flex-row items-center">
@@ -123,7 +125,7 @@ const submit = async () => {
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Total -->
-              <FormKit v-model="stockTotal" type="number" label="Ordered" validation="required" validation-visibility="dirty">
+              <FormKit v-model="form.stockTotal" type="number" label="Ordered" validation="required" validation-visibility="dirty">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -138,7 +140,7 @@ const submit = async () => {
           <!-- Input Status -->
           <div class="flex flex-row items-center">
             <div class="w-1/2 pr-2">
-              <FormKit v-model="stockStatus" type="select" label="Status" validation="required" validation-visibility="dirty" :options="status">
+              <FormKit v-model="form.stockStatus" type="select" label="Status" validation="required" validation-visibility="dirty" :options="status">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -150,10 +152,10 @@ const submit = async () => {
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Image -->
-              <FormKit type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>
+              <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>
             </div>
           </div>
-
+		  <!--<rs-button> Submit </rs-button>-->
         </FormKit>
       </template>
     </rs-card>

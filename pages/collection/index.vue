@@ -51,6 +51,11 @@
     },
   ];
 
+const {data: stockData} = await useFetch("/api/collection/list", {
+	method: "GET",
+});
+
+console.log(stockData);
 </script>
 <template>
   <div>

@@ -37,6 +37,7 @@
 	stockQuantity: "",
 	stockTotal: "",
 	stockStatus: "",
+	stockImage: "",
 	});
 
 
@@ -54,6 +55,7 @@ if (data.value.statusCode == 200) {
 	form.value.stockQuantity = data.value.data.stockQuantity;
 	form.value.stockTotal = data.value.data.stockTotal;
 	form.value.stockStatus = data.value.data.stockStatus;
+	form.value.stockImage = data.value.data.stockImage;
 	} else {
 		alert("Tiada Stock dengan ID ini");
 	}
@@ -74,6 +76,7 @@ const submit = async () => {
 			stockQuantity: form.value.stockQuantity,
 			stockTotal: form.value.stockTotal,
 			stockStatus: form.value.stockStatus,
+			stockImage: form.value.stockImage,
 		},
 	});
 
@@ -100,11 +103,11 @@ const submit = async () => {
       </template>
       <template #body>
         <!-- Edit Form  -->
-        <FormKit type="form"  :action="false" @submit="submit" :incomplete-message="false">
+        <FormKit type="form" :action="false" @submit="submit" :incomplete-message="false">
           <!-- Input Name -->
           <div class="flex flex-row items-center">
             <div class="w-1/2 pr-2">
-              <FormKit type="text" label="Name" validation="required" validation-visibility="dirty" class="w-48">
+              <FormKit v-model="form.stockName" type="text" label="Name" validation="required" validation-visibility="dirty" class="w-48">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -115,7 +118,7 @@ const submit = async () => {
               </FormKit>
             </div>
             <div class="w-1/2 pl-2"> <!-- Input Type -->
-              <FormKit type="select" label="Type" validation="required" validation-visibility="dirty" :options="type">
+              <FormKit v-model="form.stockType" type="select" label="Type" validation="required" validation-visibility="dirty" :options="type">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -133,7 +136,7 @@ const submit = async () => {
           <!-- Input Quantity -->
           <div class="flex flex-row items-center">
             <div class="w-1/2 pr-2">
-              <FormKit type="number" label="Quantity" validation="required" validation-visibility="dirty">
+              <FormKit v-model="form.stockQuantity" type="number" label="Quantity" validation="required" validation-visibility="dirty">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -145,7 +148,7 @@ const submit = async () => {
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Total -->
-              <FormKit type="number" label="Ordered" validation="required" validation-visibility="dirty">
+              <FormKit v-model="form.stockTotal" type="number" label="Ordered" validation="required" validation-visibility="dirty">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -160,7 +163,7 @@ const submit = async () => {
           <!-- Input Status -->
           <div class="flex flex-row items-center">
             <div class="w-1/2 pr-2">
-              <FormKit type="select" label="Status" validation="required" validation-visibility="dirty" :options="status">
+              <FormKit v-model="form.stockStatus" type="select" label="Status" validation="required" validation-visibility="dirty" :options="status">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"
@@ -172,7 +175,7 @@ const submit = async () => {
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Image -->
-              <FormKit type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>
+              <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>
             </div>
           </div>
 

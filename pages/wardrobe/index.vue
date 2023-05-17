@@ -210,6 +210,9 @@
                 <p class="text-xl">Size: {{val.size}} </p>
                 <p class="float-right text-7xl"> {{val.quantity}} <span class="text-2xl">Qty</span></p>
               </rs-card>
+			  </div>
+			  </div>
+			  </template>
       </rs-card>
     </div>
 

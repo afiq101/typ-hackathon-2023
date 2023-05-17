@@ -9,6 +9,20 @@ export default [
         "icon": "ic:outline-dashboard",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "Expense",
+        "path": "/Expense",
+        "icon": "arcticons:expense-register",
+        "child": [],
+        "meta": {}
+      },
+      {
+        "title": "Budget",
+        "path": "/Budget",
+        "icon": "arcticons:budgetmylife",
+        "child": [],
+        "meta": {}
       }
     ]
   },

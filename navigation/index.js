@@ -9,6 +9,13 @@ export default [
         "icon": "ic:outline-dashboard",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "New Task",
+        "path": "/task-add",
+        "icon": "material-symbols:add",
+        "child": [],
+        "meta": {}
       }
     ]
   },

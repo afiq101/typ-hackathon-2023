@@ -60,7 +60,7 @@
     <nuxt-link :to="'/collection/add' ">
       <rs-button class="float-right">
         <Icon name="mdi:plus"></Icon>
-        Add
+         Add
       </rs-button>
     </nuxt-link>
     <br><br><br>
@@ -90,7 +90,7 @@
           <p>{{val.quantity}}</p>
           <br><br>
           <nuxt-link :to="'/collection/edit/:[id]' ">
-            <rs-button size="sm" class="mt-2">
+            <rs-button size="md" class="mt-2">
               Edit
             </rs-button>
           </nuxt-link>
@@ -108,15 +108,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>
@@ -135,15 +138,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>
@@ -162,15 +168,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>
@@ -189,15 +198,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>

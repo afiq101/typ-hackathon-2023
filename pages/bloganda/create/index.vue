@@ -10,14 +10,6 @@ const form = ref({
   blogTag: "",
 });
 
-<<<<<<< HEAD
-const submit = () => {
-  if (form.value.bookName == "" || form.value.bookAuthor == "") {
-    return;
-  }
-  console.log(form.value);
-};
-=======
 const submit = async () => {
   if (form.value.blogName == "" || form.value.blogAuthor == "" || form.value.blogContent == "" || form.value.blogTag == "") {
     return;
@@ -47,7 +39,6 @@ const submit = async () => {
 // function submit() {
 //   console.log(form.value);
 // }
->>>>>>> 659a1e3692870083b84b235e54ea0199e3e7b3e2
 </script>
 <template>
   <div>

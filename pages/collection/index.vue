@@ -3,53 +3,53 @@
     title: "Collection",
   });
 
-  const data = [
-    {
-      id: 1,
-      name: "Shirt 1",
-      image: "img",
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "In Stock",
-    },
-    {
-      id: 2,
-      name: "Shirt 2",
-      image: "img",
-      type: "Shirt",
-      size: "M",
-      quantity: 25,
-      status: "In Stock",
-    },
-    {
-      id: 3,
-      name: "Shirt 3",
-      image: "img",
-      type: "Pants",
-      size: "M",
-      quantity: 25,
-      status: "Ordered",
-    },
-    {
-      id: 4,
-      name: "Shirt 4",
-      image: "img",
-      type: "Jacket",
-      size: "M",
-      quantity: 25,
-      status: "Out of Stock",
-    },
-    {
-      id: 5,
-      name: "Shirt 5",
-      image: "img",
-      type: "Hood",
-      size: "M",
-      quantity: 25,
-      status: "New Arrival",
-    },
-  ];
+  // const data = [
+  //   {
+  //     id: 1,
+  //     name: "Shirt 1",
+  //     image: "img",
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "In Stock",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Shirt 2",
+  //     image: "img",
+  //     type: "Shirt",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "In Stock",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Shirt 3",
+  //     image: "img",
+  //     type: "Pants",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "Ordered",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Shirt 4",
+  //     image: "img",
+  //     type: "Jacket",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "Out of Stock",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Shirt 5",
+  //     image: "img",
+  //     type: "Hood",
+  //     size: "M",
+  //     quantity: 25,
+  //     status: "New Arrival",
+  //   },
+  // ];
 
 const {data: stockData} = await useFetch("/api/collection/list", {
 	method: "GET",
@@ -82,23 +82,23 @@ console.log(stockData);
         <p class="text-4xl mx-8"> All</p>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <rs-card class="p-5 relative" v-for="(val, index) in data" :key="index">
-            <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
-            <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
-            <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-            <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
+          <rs-card class="p-5 relative" v-for="(val, index) in stockData.data" :key="index">
+            <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
+            <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
+            <rs-badge class="float-right"  variant="warning" v-else-if="val.stockStatus == 'orderStock'">Ordered</rs-badge>
+            <rs-badge class="float-right" variant="info" v-else-if="val.stockStatus == 'newStock'">New Arrival</rs-badge>
             <br><br>
-              <h6 class="text-2xl">{{ val.name }}</h6>
+              <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.image" class="h-64 "/>
+                <img :src="val.stockImage" class="h-64 "/>
               </div>
               <br>
-              <p class="text-xl">Type: {{ val.type }}</p>
-              <p class="text-xl">Size: {{val.size}} </p>
-              <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+              <p class="text-xl">Type: {{ val.stockType }}</p>
+              <p class="text-xl">Size: {{val.stockSize}} </p>
+              <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
               <br>
-              <nuxt-link :to="'/collection/edit/:[id]' ">
+              <nuxt-link :to="`/collection/edit/${val.stockID}`">
                 <rs-button size="md" class="mt-2">
                   Edit
                 </rs-button>
@@ -110,24 +110,24 @@ console.log(stockData);
         <p class="text-4xl mx-8"> Shirt</p>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <div  v-for="(val, index) in data" :key="index">
-            <rs-card class="p-5 relative" v-if="val.type == 'Shirt'">
-              <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
-              <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
-              <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-              <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
+          <div  v-for="(val, index) in stockData.data" :key="index">
+            <rs-card class="p-5 relative" v-if="val.stockType == 'Shirt'">
+              <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
+              <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
+              <rs-badge class="float-right"  variant="warning" v-else-if="val.stockStatus == 'orderStock'">Ordered</rs-badge>
+              <rs-badge class="float-right" variant="info" v-else-if="val.stockStatus == 'newStock'">New Arrival</rs-badge>
               <br><br>
-              <h6 class="text-2xl">{{ val.name }}</h6>
+              <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.image" class="h-64 "/>
+                <img :src="val.stockImage" class="h-64 "/>
               </div>
               <br>
-              <p class="text-xl">Type: {{ val.type }}</p>
-              <p class="text-xl">Size: {{val.size}} </p>
-              <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+              <p class="text-xl">Type: {{ val.stockType }}</p>
+              <p class="text-xl">Size: {{val.stockSize}} </p>
+              <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
               <br>
-              <nuxt-link :to="'/collection/edit/:[id]' ">
+              <nuxt-link :to="`/collection/edit/${val.stockID}`">
                 <rs-button size="md" class="mt-2">
                   Edit
                 </rs-button>
@@ -140,24 +140,24 @@ console.log(stockData);
         <p class="text-4xl mx-8"> Pants</p>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <div  v-for="(val, index) in data" :key="index">
-            <rs-card class="p-5 relative" v-if="val.type == 'Pants'">
-              <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
-              <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
-              <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-              <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
+          <div  v-for="(val, index) in stockData.data" :key="index">
+            <rs-card class="p-5 relative" v-if="val.stockType == 'Pants'">
+              <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
+              <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
+              <rs-badge class="float-right"  variant="warning" v-else-if="val.stockStatus == 'orderStock'">Ordered</rs-badge>
+              <rs-badge class="float-right" variant="info" v-else-if="val.stockStatus == 'newStock'">New Arrival</rs-badge>
               <br><br>
-              <h6 class="text-2xl">{{ val.name }}</h6>
+              <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.image" class="h-64 "/>
+                <img :src="val.stockImage" class="h-64 "/>
               </div>
               <br>
-              <p class="text-xl">Type: {{ val.type }}</p>
-              <p class="text-xl">Size: {{val.size}} </p>
-              <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+              <p class="text-xl">Type: {{ val.stockType }}</p>
+              <p class="text-xl">Size: {{val.stockSize}} </p>
+              <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
               <br>
-              <nuxt-link :to="'/collection/edit/:[id]' ">
+              <nuxt-link :to="`/collection/edit/${val.stockID}`">
                 <rs-button size="md" class="mt-2">
                   Edit
                 </rs-button>
@@ -170,24 +170,24 @@ console.log(stockData);
         <p class="text-4xl mx-8"> Jacket</p>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <div  v-for="(val, index) in data" :key="index">
-            <rs-card class="p-5 relative" v-if="val.type == 'Jacket'">
-              <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
-              <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
-              <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-              <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
+          <div  v-for="(val, index) in stockData.data" :key="index">
+            <rs-card class="p-5 relative" v-if="val.stockType == 'Jacket'">
+              <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
+              <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
+              <rs-badge class="float-right"  variant="warning" v-else-if="val.stockStatus == 'orderStock'">Ordered</rs-badge>
+              <rs-badge class="float-right" variant="info" v-else-if="val.stockStatus == 'newStock'">New Arrival</rs-badge>
               <br><br>
-              <h6 class="text-2xl">{{ val.name }}</h6>
+              <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.image" class="h-64 "/>
+                <img :src="val.stockImage" class="h-64 "/>
               </div>
               <br>
-              <p class="text-xl">Type: {{ val.type }}</p>
-              <p class="text-xl">Size: {{val.size}} </p>
-              <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+              <p class="text-xl">Type: {{ val.stockType }}</p>
+              <p class="text-xl">Size: {{val.stockSize}} </p>
+              <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
               <br>
-              <nuxt-link :to="'/collection/edit/:[id]' ">
+              <nuxt-link :to="`/collection/edit/${val.stockID}`">
                 <rs-button size="md" class="mt-2">
                   Edit
                 </rs-button>
@@ -200,24 +200,24 @@ console.log(stockData);
         <p class="text-4xl mx-8"> Hood</p>
         <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-          <div  v-for="(val, index) in data" :key="index">
-            <rs-card class="p-5 relative" v-if="val.type == 'Hood'">
-              <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
-              <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
-              <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-              <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
+          <div  v-for="(val, index) in stockData.data" :key="index">
+            <rs-card class="p-5 relative" v-if="val.stockType == 'Hood'">
+              <rs-badge class="float-right" variant="success" v-if="val.stockStatus == 'inStock'">In Stock</rs-badge>
+              <rs-badge class="float-right" variant="danger" v-else-if="val.stockStatus == 'outStock'">Out of Stock</rs-badge>
+              <rs-badge class="float-right"  variant="warning" v-else-if="val.stockStatus == 'orderStock'">Ordered</rs-badge>
+              <rs-badge class="float-right" variant="info" v-else-if="val.stockStatus == 'newStock'">New Arrival</rs-badge>
               <br><br>
-              <h6 class="text-2xl">{{ val.name }}</h6>
+              <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.image" class="h-64 "/>
+                <img :src="val.stockImage" class="h-64 "/>
               </div>
               <br>
-              <p class="text-xl">Type: {{ val.type }}</p>
-              <p class="text-xl">Size: {{val.size}} </p>
-              <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+              <p class="text-xl">Type: {{ val.stockType }}</p>
+              <p class="text-xl">Size: {{val.stockSize}} </p>
+              <p class="text-right text-7xl"> {{val.stockQuantity}} <span class="text-xl">Qty</span></p>
               <br>
-              <nuxt-link :to="'/collection/edit/:[id]' ">
+              <nuxt-link :to="`/collection/edit/${val.stockID}`">
                 <rs-button size="md" class="mt-2">
                   Edit
                 </rs-button>

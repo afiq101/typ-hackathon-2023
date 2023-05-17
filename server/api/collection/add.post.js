@@ -28,8 +28,8 @@ export default defineEventHandler(async (event) => {
 				stockName: name,
 				stockType: type,
 				stockSize: size,
-				stockQuantity: quantity,
-				stockTotal: total,
+				stockQuantity: parseInt(quantity),
+				stockTotal: parseInt(total),
 				stockStatus: status,
 				stockImage: image
 			},

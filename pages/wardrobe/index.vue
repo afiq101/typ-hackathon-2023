@@ -8,6 +8,9 @@
   import slide4 from "../../assets/img/clothes/banner4.png";
   import slide5 from "../../assets/img/clothes/banner1.png";
 
+  import img from "../../assets/img/clothes/rapunzel.jpg";
+  import img1 from "../../assets/img/clothes/shirt2.jpeg";
+
   definePageMeta({
     title: "Wardrobe",
   });
@@ -21,8 +24,8 @@
   const data = [
     {
       id: 1,
-      name: "Shirt 1",
-      image: "",
+      name: "Pink Dress",
+      image: img,
       type: "Shirt",
       size: "M",
       quantity: 25,
@@ -31,7 +34,7 @@
     {
       id: 2,
       name: "Shirt 2",
-      image: "img2",
+      image: img1,
       type: "Shirt",
       size: "M",
       quantity: 25,
@@ -40,7 +43,7 @@
     {
       id: 3,
       name: "Shirt 3",
-      image: "img1",
+      image: img1,
       type: "Shirt",
       size: "M",
       quantity: 25,
@@ -49,7 +52,7 @@
     {
       id: 4,
       name: "Shirt 4",
-      image: "img1",
+      image: img1,
       type: "Shirt",
       size: "M",
       quantity: 25,
@@ -58,7 +61,7 @@
     {
       id: 5,
       name: "Shirt 5",
-      image: "img1",
+      image: img1,
       type: "Shirt",
       size: "M",
       quantity: 25,
@@ -138,7 +141,7 @@
   <div>
     <LayoutsBreadcrumb />
 
-    <br><br><br>
+    <br>
   
     <!-- Slideshow -->
     <swiper
@@ -196,14 +199,16 @@
               <rs-card class="p-5 relative" v-if="val.status == 'In Stock'">
                 <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
                 <br><br>
-                <img :src="val.image" class="h-64"/>
-                <br>
                 <h6 class="text-2xl">{{ val.name }}</h6>
+                <br>
+                <div class="mx-8">
+                  <img :src="val.image" class="h-64 "/>
+                </div>
+                <br>
                 <p class="text-xl">Type: {{ val.type }}</p>
                 <p class="text-xl">Size: {{val.size}} </p>
-                <p class="float-right text-7xl"> {{val.quantity}} <span class="text-2xl">Qty</span></p> 
+                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
                 <br>
-                <rs-button size="sm" class="mt-2">Edit</rs-button>
               </rs-card>
             </div>
           </div>
@@ -222,14 +227,16 @@
               <rs-card class="p-5 relative" v-if="val.status == 'Out of Stock'">
                 <rs-badge class="float-right" variant="danger" v-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
                 <br><br>
-                <img :src="val.image" class="h-auto w-auto"/>
-                <h6>{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.name }}</h6>
                 <br>
-                <p>{{ val.type }}</p>
-                <p>{{val.size}}</p>
-                <p>{{val.quantity}}</p>
-                <br><br>
-                <rs-button size="sm" class="mt-2">Edit</rs-button>
+                <div class="mx-8">
+                  <img :src="val.image" class="h-64 "/>
+                </div>
+                <br>
+                <p class="text-xl">Type: {{ val.type }}</p>
+                <p class="text-xl">Size: {{val.size}} </p>
+                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+                <br>
               </rs-card>
             </div>
           </div>
@@ -248,14 +255,17 @@
               <rs-card class="p-5 relative" v-if="val.status == 'Ordered'">
                 <rs-badge class="float-right" variant="warning" v-if="val.status == 'Ordered'">Ordered</rs-badge>
                 <br><br>
-                <img :src="val.image" class="h-auto w-auto"/>
-                <h6>{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.name }}</h6>
                 <br>
-                <p>{{ val.type }}</p>
-                <p>{{val.size}}</p>
-                <p>{{val.quantity}}</p>
-                <br><br>
-                <rs-button size="sm" class="mt-2">Edit</rs-button>
+                <div class="mx-8">
+                  <img :src="val.image" class="h-64 "/>
+                </div>
+                <br>
+                <p class="text-xl">Type: {{ val.type }}</p>
+                <p class="text-xl">Size: {{val.size}} </p>
+                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+                <br>
+                
               </rs-card>
             </div>
           </div>
@@ -274,14 +284,16 @@
               <rs-card class="p-5 relative" v-if="val.status == 'New Arrival'">
                 <rs-badge class="float-right" variant="info" v-if="val.status == 'New Arrival'">New Arrival</rs-badge>
                 <br><br>
-                <img :src="val.image" class="h-auto w-auto"/>
-                <h6>{{ val.name }}</h6>
+                <h6 class="text-2xl">{{ val.name }}</h6>
                 <br>
-                <p>{{ val.type }}</p>
-                <p>{{val.size}}</p>
-                <p>{{val.quantity}}</p>
-                <br><br>
-                <rs-button size="sm" class="mt-2">Edit</rs-button>
+                <div class="mx-8">
+                  <img :src="val.image" class="h-64 "/>
+                </div>
+                <br>
+                <p class="text-xl">Type: {{ val.type }}</p>
+                <p class="text-xl">Size: {{val.size}} </p>
+                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+                <br>
               </rs-card>
             </div>
           </div>

@@ -60,7 +60,7 @@
     <nuxt-link :to="'/collection/add' ">
       <rs-button class="float-right">
         <Icon name="mdi:plus"></Icon>
-        Add
+         Add
       </rs-button>
     </nuxt-link>
     <br><br><br>
@@ -74,7 +74,10 @@
     <!-- Tab Collection by Type Stock -->
     <rs-tab variant="primary" type="card" justify="left">
     <rs-tab-item title="All">  
-      <h4> All</h4>
+      <div class="flex">
+        <p class="text-4xl mx-5"> All</p>
+      </div>
+      
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
         <rs-card class="p-5 relative" v-for="(val, index) in data">
@@ -83,15 +86,18 @@
           <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
           <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
           <br><br>
-          <h6>{{ val.name }}</h6><br><br>
-
-          <p>{{ val.image }}</p>
-          <p>{{ val.type }}</p>
-          <p>{{val.size}}</p>
-          <p>{{val.quantity}}</p>
-          <br><br>
+          <h6 class="text-2xl">{{ val.name }}</h6>
+          <br>
+          <div class="mx-8">
+            <img :src="val.image" class="h-64 "/>
+          </div>
+          <br>
+          <p class="text-xl">Type: {{ val.type }}</p>
+          <p class="text-xl">Size: {{val.size}} </p>
+          <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+          <br>
           <nuxt-link :to="'/collection/edit/:[id]' ">
-            <rs-button size="sm" class="mt-2">
+            <rs-button size="md" class="mt-2">
               Edit
             </rs-button>
           </nuxt-link>
@@ -99,7 +105,9 @@
       </div>
     </rs-tab-item>
     <rs-tab-item title="Shirt"> 
-      <h4> Shirt</h4>
+      <div class="flex">
+        <p class="text-4xl mx-5"> Shirt</p>
+      </div>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
         <div  v-for="(val, index) in data">
@@ -109,15 +117,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>
@@ -126,7 +137,10 @@
       </div>
     </rs-tab-item>
     <rs-tab-item title="Pants"> 
-      <h4> Pants</h4>
+      <div class="flex">
+        <p class="text-4xl mx-5"> Pants</p>
+        
+      </div>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
         <div  v-for="(val, index) in data">
@@ -136,15 +150,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>
@@ -153,7 +170,10 @@
       </div>
     </rs-tab-item>
     <rs-tab-item title="Jacket">  
-      <h4> Jacket</h4>
+      <div class="flex">
+        <p class="text-4xl mx-5"> Jacket</p>
+        
+      </div>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
         <div  v-for="(val, index) in data">
@@ -163,15 +183,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>
@@ -180,7 +203,10 @@
       </div>
     </rs-tab-item>
     <rs-tab-item title="Hood">  
-      <h4> Hood</h4>
+      <div class="flex">
+        <p class="text-4xl mx-5"> Hood</p>
+        
+      </div>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
         <div  v-for="(val, index) in data">
@@ -190,15 +216,18 @@
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
             <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
             <br><br>
-            <h6>{{ val.name }}</h6><br><br>
-
-            <p>{{ val.image }}</p>
-            <p>{{ val.type }}</p>
-            <p>{{val.size}}</p>
-            <p>{{val.quantity}}</p>
-            <br><br>
-            <nuxt-link :to="'/collection/edit' ">
-              <rs-button size="sm" class="mt-2">
+            <h6 class="text-2xl">{{ val.name }}</h6>
+            <br>
+            <div class="mx-8">
+              <img :src="val.image" class="h-64 "/>
+            </div>
+            <br>
+            <p class="text-xl">Type: {{ val.type }}</p>
+            <p class="text-xl">Size: {{val.size}} </p>
+            <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p> 
+            <br>
+            <nuxt-link :to="'/collection/edit/:[id]' ">
+              <rs-button size="md" class="mt-2">
                 Edit
               </rs-button>
             </nuxt-link>

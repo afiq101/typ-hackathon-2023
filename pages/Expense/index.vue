@@ -8,39 +8,41 @@ definePageMeta({
   <div>
     <LayoutsBreadcrumb />
   </div>
-  <div class="wrapper">
-    <h1>Expense Tracker</h1>
-    <form v-on:submit.prevent="addExpense">
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <input type="text" id="description" v-model="description" required />
-      </div>
-      <div class="form-group">
-        <label for="amount">Amount:</label>
-        <input type="number" id="amount" v-model="amount" required />
-      </div>
-      <button type="submit">Add Expense</button>
-    </form>
-    <div class="expense-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(expense, index) in expenses" :key="index">
-            <td>{{ expense.description }}</td>
-            <td>RM{{ expense.amount}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="total-expenses">
-        <p>Total Expenses Today: RM{{ totalExpenses}}</p>
+  <rs-card>
+    <div class="wrapper">
+      <h1>Expense Tracker</h1>
+      <form v-on:submit.prevent="addExpense">
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" id="description" v-model="description" required />
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" v-model="amount" required />
+        </div>
+        <button type="submit">Add Expense</button>
+      </form>
+      <div class="expense-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(expense, index) in expenses" :key="index">
+              <td>{{ expense.description }}</td>
+              <td>RM{{ expense.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="total-expenses">
+          <p>Total Expenses Today: RM{{ totalExpenses }}</p>
+        </div>
       </div>
     </div>
-  </div>
+  </rs-card>
 </template >
 
 <script>
@@ -63,14 +65,14 @@ export default {
       return expenses.value.reduce((total, expense) => total + expense.amount, 0)
     })
 
-   
+
 
     return {
       expenses,
       description,
       amount,
       addExpense,
-      
+
       totalExpenses
     }
   }

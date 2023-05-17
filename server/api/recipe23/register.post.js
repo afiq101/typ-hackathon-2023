@@ -14,9 +14,10 @@ export default defineEventHandler(async (event) => {
     
     // New Way
     const { 
-        username : username,
-        email : email, 
-        password : password 
+        usernameR : username,
+        emailR : email, 
+        passwordR : password ,
+
     } = await readBody(event);
 
     console.log("Detail : " , username , email , password)

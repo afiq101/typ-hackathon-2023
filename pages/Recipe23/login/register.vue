@@ -2,6 +2,48 @@
 definePageMeta({
   title: "Register",
 });
+
+const form = ref({
+  username: "",
+  email: "",
+  password: "",
+  Npassword:"",
+});
+
+const submit = async () => {
+
+  if (form.value.password != form.value.Npassword) {
+    alert("Password and New Password not match");
+    return;
+  }
+  else{
+      try {
+      const data = await useFetch("/api/recipe23/register", {
+        method: "POST",
+        body: {
+          usernameR: form.value.username,
+          passwordR: form.value.password,
+          emailR: form.value.email,
+        },
+      });
+
+
+      if (!data) {
+        console.log("Data display: " , data);
+        alert("Failed");
+      } else {
+        alert("Success");
+        window.location.href = `/login`;
+      }
+    } catch (error) {
+      console.log("Error display: " , error);
+
+    }
+  }
+
+  
+};
+
 </script>
 
 <template>
@@ -30,6 +72,7 @@ definePageMeta({
             >Username*</label
           >
           <input
+          v-model="form.username"
             type="text"
             class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -39,6 +82,7 @@ definePageMeta({
             >Email*</label
           >
           <input
+          v-model="form.email"
             type="email"
             class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -52,6 +96,7 @@ definePageMeta({
               >New Password*</label
             >
             <input
+            v-model="form.password"
               type="password"
               class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
@@ -66,6 +111,7 @@ definePageMeta({
               >Repeat Password*</label
             >
             <input
+            v-model="form.Npassword"
               type="password"
               class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
@@ -73,6 +119,7 @@ definePageMeta({
         </div>
         <div class="mt-6">
           <button
+          @click.prevent="submit"
             class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
           >
             Sign Up

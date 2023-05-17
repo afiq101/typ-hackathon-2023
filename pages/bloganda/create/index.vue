@@ -27,7 +27,7 @@ const submit = async () => {
 
     if (data.value.statusCode == 200) {
       alert("Success");
-      window.location.href = `/bloganda`; //ada github cop
+      window.location.href = `/bloganda`; 
     } else {
       alert("Failed");
     }

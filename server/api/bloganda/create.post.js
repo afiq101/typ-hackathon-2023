@@ -16,7 +16,7 @@ export default defineEventHandler (async(event) => {
 if (!title || !author || !content || !tag) {
     return {
         statusCode : 400,
-        message : "Title, author, content, and tag are required",
+        message : "Title, content, author and tag are required",
     };
 }
 

@@ -106,6 +106,7 @@ model pet {
 model owner {
   ownerID           Int       @id @default(autoincrement())
   ownerName         String?   @db.VarChar(255)
+  ownerPassword     String?   @db.VarChar(255)
   ownerAddress      String?   @db.VarChar(255)
   ownerPhone        String?   @db.VarChar(255)
   ownerEmail        String?   @db.VarChar(255)

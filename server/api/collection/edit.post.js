@@ -9,30 +9,39 @@ export default defineEventHandler(async (event) => {
 		const {
 			stockName: name,
 			stockType: type,
-			stockPrice: price
+			stockSize: size,
+			stockQuantity: quantity,
+			stockTotal: total,
+			stockStatus: status
 		} = await readBody(event);
 
 		if (!name || !type || !price) {
 			return {
 				statusCode: 400,
-				message: "Name, type dan price harus diisi",
+				message: "id, name, dan price harus diisi",
 			};
 		}
 
-		const insertStock = await prisma.stock.create({
+		const updateStock = await prisma.stock.update({
+			where: {
+				stockID: parseInt(id),
+			},
 			data: {
 				stockName: name,
 				stockType: type,
-				stockPrice: price
+				stockSize: size,
+				stockQuantity: quantity,
+				stockTotal: total,
+				stockStatus: status
 			},
 		});
 
-		if (!insertStock){
+		if (!updateStock){
 			return {
 				statusCode: 500,
 				message: "gagal",
 			}
-		}
+		};
 		return {
 			statusCode: 200,
 			message: "berhasil",
@@ -46,7 +55,7 @@ export default defineEventHandler(async (event) => {
 		console.log(error);
 		return {
 			statusCode: 500,
-			message: "gagal",
+			message: "masalah API",
 		};
 	}
 

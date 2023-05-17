@@ -4,27 +4,35 @@ const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
 	try {
-		const stocks = await prisma.stock.findMany({
+
+		const { stockID:id } = await getQuery(event);
+
+		const getStock = await prisma.stock.findUnique({
+			where: {
+				stockID: parseInt(id),
+			},
 			select: {
 				stockID: true,
 				stockName: true,
 				stockType: true,
-				stockPrice: true,
+				stockSize: true,
+				stockQuantity: true,
+				stockTotal: true,
+				stockStatus: true
 			},
 		});
 
 		return {
 			statusCode: 200,
 			message: "berhasil",
-			data: stocks,
+			data: getStock,
 		};
 	} catch(error) {
 
 		console.log(error);
 		return {
 			statusCode: 500,
-			message: "gagal",
+			message: "masalah API",
 		};
 	}
-
 });

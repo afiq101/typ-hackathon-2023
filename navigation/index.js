@@ -11,28 +11,18 @@ export default [
         "meta": {}
       },
       {
-        "title": "Collection",
-        "path": "/collection",
-        "icon": "",
-        "child": []
-      },
-      {
-        "title": "Add",
-        "path": "/collection/add",
-        "icon": "",
-        "child": []
-      },
-      {
-        "title": "Edit",
-        "path": "/collection/edit:id()",
-        "icon": "",
-        "child": []
-      },
-      {
         "title": "Wardrobe",
         "path": "/wardrobe",
-        "icon": "",
-        "child": []
+        "icon": "mdi:wardrobe-outline",
+        "child": [],
+        "meta": {}
+      },
+      {
+        "title": "Collection",
+        "path": "/collection",
+        "icon": "material-symbols:shelves-outline-rounded",
+        "child": [],
+        "meta": {}
       }
     ]
   },

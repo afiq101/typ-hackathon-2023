@@ -532,6 +532,7 @@ export default defineNuxtConfig({
       fireImmediately: false,
       throwError: false, // optional
     },
+    headers: false,
   },
   routeRules: {
     "/api/devtool/content/code/save": {

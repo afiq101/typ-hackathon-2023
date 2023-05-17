@@ -99,7 +99,7 @@
           <!-- Input Status -->
           <div class="flex flex-row items-center">
             <div class="w-1/2 pr-2">
-              <FormKit type="select" label="Status" validation="required" validation-visibility="dirty">
+              <FormKit type="select" label="Status" validation="required" validation-visibility="dirty" :options="status">
                 <template #label>
                   <label
                     class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500"

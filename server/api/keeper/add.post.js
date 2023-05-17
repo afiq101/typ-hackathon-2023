@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
         let secretKey = generateSecretKey();
         const body = await readBody(event);
 
-        if (!body.ownerName | !body.ownerUsername || !body.ownerPassword || !body.ownerEmail || !body.ownerPhone || !body.ownerAddress) {
+        if (!body.keeperName | !body.keeperUsername || !body.keeperPassword || !body.keeperEmail || !body.keeperPhone || !body.keeperAddress) {
             return {
                 statusCode: 400,
                 message: "Missing required information"
@@ -17,11 +17,10 @@ export default defineEventHandler(async (event) => {
 
         const findUser = await prisma.user.findMany({
             where: {
-                userUsername: body.ownerUsername
+                userUsername: body.keeperUsername
             }
         });
 
-        console.log("user : ", findUser);
         if (findUser.length > 0) {
             return {
                 statusCode: 400,
@@ -30,30 +29,30 @@ export default defineEventHandler(async (event) => {
         }
 
 
-        let password = sha256(body.ownerPassword).toString();
+        let password = sha256(body.keeperPassword).toString();
 
-        const insertOwner = await prisma.owner.create({
+        const insertKeeper = await prisma.keeper.create({
             data: {
-                ownerName: body.ownerName,
-                ownerUsername: body.ownerUsername,
-                ownerPassword: password,
-                ownerEmail: body.ownerEmail,
-                ownerPhone: body.ownerPhone,
-                ownerAddress: body.ownerAddress,
-                ownerStatus: "Active",
-                ownerCreatedDate: new Date(),
-                ownerModifiedDate: new Date()
+                keeperName: body.keeperName,
+                keeperUsername: body.keeperUsername,
+                keeperPassword: password,
+                keeperEmail: body.keeperEmail,
+                keeperPhone: body.keeperPhone,
+                keeperAddress: body.keeperAddress,
+                keeperStatus: "Active",
+                keeperCreatedDate: new Date(),
+                keeperModifiedDate: new Date()
             }
         });
 
         const insertUser = await prisma.user.create({
             data: {
                 userSecretKey: secretKey,
-                userUsername: body.ownerUsername,
+                userUsername: body.keeperUsername,
                 userPassword: password,
-                userFullName: body?.ownerName || "",
-                userEmail: body?.ownerEmail || "",
-                userPhone: body?.ownerPhone || "",
+                userFullName: body?.keeperName || "",
+                userEmail: body?.keeperEmail || "",
+                userPhone: body?.keeperPhone || "",
                 userStatus: "ACTIVE",
                 userCreatedDate: new Date(),
             },
@@ -62,22 +61,22 @@ export default defineEventHandler(async (event) => {
         const userRole = await prisma.userrole.create({
             data: {
                 userRoleUserID: insertUser.userID,
-                userRoleRoleID: 3,
+                userRoleRoleID: 4,
                 userRoleCreatedDate: new Date(),
             },
         });
 
 
-        if (!insertOwner) {
+        if (!insertKeeper) {
             return {
                 statusCode: 500,
-                message: "Error creating owner"
+                message: "Error creating keeper"
             }
         } else {
-            console.log("Owner created successfully");
+            console.log("Keeper created successfully");
             return {
                 statusCode: 200,
-                message: "Owner created successfully"
+                message: "Keeper created successfully"
             }
         }
 
@@ -85,7 +84,7 @@ export default defineEventHandler(async (event) => {
         console.log(error);
         return {
             statusCode: 500,
-            message: "Error creating owner"
+            message: "Error creating keeper"
         };
     }
 });

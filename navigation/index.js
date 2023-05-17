@@ -40,6 +40,12 @@ export default [
         "path": "/keeper-pet",
         "icon": "",
         "child": []
+      },
+      {
+        "title": "Manage Request",
+        "path": "/keeper-request",
+        "icon": "",
+        "child": []
       }
     ]
   },

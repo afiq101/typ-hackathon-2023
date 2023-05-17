@@ -13,6 +13,27 @@ export default [
     ]
   },
   {
+    "header": "BlogAnda",
+    "description": "Blogging platform",
+    "child": [
+      {
+        "title": "Homepage",
+        "path": "/homepage",
+        "icon": "material-symbols:home",
+        "child": [],
+        "meta": {}
+      },
+      {
+        "title": "Create Blog",
+        "path": "/create-blog",
+        "icon": "material-symbols:library-add-sharp",
+        "child": [],
+        "meta": {}
+      }
+    ],
+    "meta": {}
+  },
+  {
     "header": "Administration",
     "description": "Manage your application",
     "child": [

@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
 		console.log(error);
 		return {
 			statusCode: 500,
-			message: "gagal",
+			message: "gagal simpan data",
 		};
 	}
 

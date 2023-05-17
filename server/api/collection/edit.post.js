@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
 	try {
 			//new way
 		const {
+			stockID: id,
 			stockName: name,
 			stockType: type,
 			stockSize: size,
@@ -15,7 +16,7 @@ export default defineEventHandler(async (event) => {
 			stockStatus: status
 		} = await readBody(event);
 
-		if (!name || !type || !price) {
+		if (!id || !name || !type || !size || !quantity || !total || !status) {
 			return {
 				statusCode: 400,
 				message: "id, name, dan price harus diisi",

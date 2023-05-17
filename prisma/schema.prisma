@@ -9,28 +9,33 @@ datasource db {
 }
 
 model user {
-  userID           Int       @id @default(autoincrement())
-  userSecretKey    String?   @db.VarChar(255)
-  userUsername     String?   @db.VarChar(255)
-  userPassword     String?   @db.VarChar(255)
-  userFullName     String?   @db.VarChar(255)
-  userEmail        String?   @db.VarChar(255)
-  userPhone        String?   @db.VarChar(255)
-  userStatus       String?   @db.VarChar(255)
-  userCreatedDate  DateTime? @db.DateTime(0)
-  userModifiedDate DateTime? @db.DateTime(0)
+  userID           Int        @id @default(autoincrement())
+  userSecretKey    String?    @db.VarChar(255)
+  userUsername     String?    @db.VarChar(255)
+  userPassword     String?    @db.VarChar(255)
+  userFullName     String?    @db.VarChar(255)
+  userEmail        String?    @db.VarChar(255)
+  userPhone        String?    @db.VarChar(255)
+  userStatus       String?    @db.VarChar(255)
+  userCreatedDate  DateTime?  @db.DateTime(0)
+  userModifiedDate DateTime?  @db.DateTime(0)
+  userrole         userrole[]
 }
 
 model budget {
-  budgetId Int  @id @default(autoincrement())
-  userId   Int?
-  catId    Int?
+  budgetId       Int    @id @default(autoincrement())
+  userId         Int?
+  catId          Int?
+  budgetPerMonth Float?
 }
 
 model category {
-  catId     Int     @id @default(autoincrement())
-  catName   String? @db.VarChar(100)
-  catStatus String? @db.VarChar(100)
+  catId          Int       @id @default(autoincrement())
+  userID         Int?
+  catName        String?   @db.VarChar(100)
+  catDescription String?   @db.VarChar(500)
+  catCreatedDate DateTime? @db.DateTime(0)
+  catStatus      String?   @db.VarChar(100)
 }
 
 model expenses {
@@ -38,6 +43,7 @@ model expenses {
   userId      Int?
   amount      Float?
   description String?   @db.VarChar(100)
+  categoryID  Int?
   createdDate DateTime? @db.DateTime(0)
 }
 
@@ -83,12 +89,13 @@ model pagecontent {
 }
 
 model role {
-  roleID           Int       @id @default(autoincrement())
-  roleName         String?   @db.VarChar(255)
-  roleDescription  String?   @db.VarChar(255)
-  roleStatus       String?   @db.VarChar(255)
-  roleCreatedDate  DateTime? @db.DateTime(0)
-  roleModifiedDate DateTime? @db.DateTime(0)
+  roleID           Int        @id @default(autoincrement())
+  roleName         String?    @db.VarChar(255)
+  roleDescription  String?    @db.VarChar(255)
+  roleStatus       String?    @db.VarChar(255)
+  roleCreatedDate  DateTime?  @db.DateTime(0)
+  roleModifiedDate DateTime?  @db.DateTime(0)
+  userrole         userrole[]
 }
 
 model userrole {
@@ -96,7 +103,15 @@ model userrole {
   userRoleUserID      Int      @default(0)
   userRoleRoleID      Int      @default(0)
   userRoleCreatedDate DateTime @db.DateTime(0)
+  user                user     @relation(fields: [userRoleUserID], references: [userID], onDelete: NoAction, onUpdate: NoAction, map: "userrole_ibfk_1")
+  role                role     @relation(fields: [userRoleRoleID], references: [roleID], onDelete: NoAction, onUpdate: NoAction, map: "userrole_ibfk_2")
 
   @@index([userRoleRoleID], map: "FK_userrole_role")
   @@index([userRoleUserID], map: "FK_userrole_user")
+}
+
+model usercategory {
+  ucId     Int  @id @default(autoincrement())
+  ucUserId Int?
+  ucCatId  Int?
 }

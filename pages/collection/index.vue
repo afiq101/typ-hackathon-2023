@@ -73,18 +73,17 @@
 
     <!-- Tab Collection by Type Stock -->
     <rs-tab variant="primary" type="card" justify="left">
-    <rs-tab-item title="All">  
+    <rs-tab-item title="All">
       <h4> All</h4>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-        <rs-card class="p-5 relative" v-for="(val, index) in data">
+        <rs-card class="p-5 relative" v-for="(val, index) in data" :key="index">
           <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
           <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
           <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-          <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
+          <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
           <br><br>
           <h6>{{ val.name }}</h6><br><br>
-
           <p>{{ val.image }}</p>
           <p>{{ val.type }}</p>
           <p>{{val.size}}</p>
@@ -98,16 +97,16 @@
         </rs-card>
       </div>
     </rs-tab-item>
-    <rs-tab-item title="Shirt"> 
+    <rs-tab-item title="Shirt">
       <h4> Shirt</h4>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-        <div  v-for="(val, index) in data">
+        <div  v-for="(val, index) in data" :key="index">
           <rs-card class="p-5 relative" v-if="val.type == 'Shirt'">
             <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
             <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-            <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
+            <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
             <h6>{{ val.name }}</h6><br><br>
 
@@ -125,16 +124,16 @@
         </div>
       </div>
     </rs-tab-item>
-    <rs-tab-item title="Pants"> 
+    <rs-tab-item title="Pants">
       <h4> Pants</h4>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-        <div  v-for="(val, index) in data">
+        <div  v-for="(val, index) in data" :key="index">
           <rs-card class="p-5 relative" v-if="val.type == 'Pants'">
             <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
             <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-            <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
+            <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
             <h6>{{ val.name }}</h6><br><br>
 
@@ -152,16 +151,16 @@
         </div>
       </div>
     </rs-tab-item>
-    <rs-tab-item title="Jacket">  
+    <rs-tab-item title="Jacket">
       <h4> Jacket</h4>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-        <div  v-for="(val, index) in data">
+        <div  v-for="(val, index) in data" :key="index">
           <rs-card class="p-5 relative" v-if="val.type == 'Jacket'">
             <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
             <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-            <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
+            <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
             <h6>{{ val.name }}</h6><br><br>
 
@@ -179,16 +178,16 @@
         </div>
       </div>
     </rs-tab-item>
-    <rs-tab-item title="Hood">  
+    <rs-tab-item title="Hood">
       <h4> Hood</h4>
       <br>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-        <div  v-for="(val, index) in data">
+        <div  v-for="(val, index) in data" :key="index">
           <rs-card class="p-5 relative" v-if="val.type == 'Hood'">
             <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
             <rs-badge class="float-right" variant="danger" v-else-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
             <rs-badge class="float-right"  variant="warning" v-else-if="val.status == 'Ordered'">Ordered</rs-badge>
-            <rs-badge class="float-right" variant="info" v-else="val.status == 'New Arrival'">New Arrival</rs-badge> 
+            <rs-badge class="float-right" variant="info" v-else-if="val.status == 'New Arrival'">New Arrival</rs-badge>
             <br><br>
             <h6>{{ val.name }}</h6><br><br>
 
@@ -209,4 +208,3 @@
   </rs-tab>
   </div>
 </template>
-      

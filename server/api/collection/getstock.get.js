@@ -18,7 +18,8 @@ export default defineEventHandler(async (event) => {
 				stockSize: true,
 				stockQuantity: true,
 				stockTotal: true,
-				stockStatus: true
+				stockStatus: true,
+				stockImage: true
 			},
 		});
 

@@ -7,17 +7,14 @@ export default defineEventHandler(async (event) => {
 	try {
 			//new way
 		const {
-<<<<<<< HEAD
 			stockID: id,
-=======
-			stockID : id,
->>>>>>> 4971403ee5b80161c87a72d2cf3852cbe60f9ffc
 			stockName: name,
 			stockType: type,
 			stockSize: size,
 			stockQuantity: quantity,
 			stockTotal: total,
-			stockStatus: status
+			stockStatus: status,
+			stockImage: image
 		} = await readBody(event);
 
 		if (!id || !name || !type || !size || !quantity || !total || !status) {
@@ -37,7 +34,8 @@ export default defineEventHandler(async (event) => {
 				stockSize: size,
 				stockQuantity: quantity,
 				stockTotal: total,
-				stockStatus: status
+				stockStatus: status,
+				stockImage: image
 			},
 		});
 

@@ -87,6 +87,13 @@ model pagecontent {
   @@index([pageContentPageID], map: "FK__page")
 }
 
+model book {
+  bookID       Int     @id @default(autoincrement())
+  bookName     String?
+  bookSynopsis String?
+  bookAuthor   String?
+}
+
 model stock {
   stockID       Int     @id @default(autoincrement())
   stockName     String? @db.VarChar(255)
@@ -95,42 +102,5 @@ model stock {
   stockQuantity Int?
   stockTotal    Int?
   stockStatus   String? @db.VarChar(255)
-}
-
-model book {
-  bookID       Int     @id @default(autoincrement())
-  bookName     String?
-  bookSynopsis String?
-  bookAuthor   String?
-}
-
-model customer {
-  customerID      Int     @id @default(autoincrement())
-  customerName    String?
-  customerAddress String?
-  customerPhone   String?
-  customerStatus  String?
-  customerGender  String?
-}
-
-model recipe23recipe {
-  recipeId     Int           @id @default(autoincrement())
-  recipeName   String?       @db.VarChar(255)
-  ingredient   String?       @db.VarChar(255)
-  duration     Int?
-  recipe       String?       @db.VarChar(255)
-  spicy        Int?
-  country      String?       @db.VarChar(255)
-  userId       Int?
-  recipe23user recipe23user? @relation(fields: [userId], references: [userId], onDelete: NoAction, onUpdate: NoAction, map: "recipe23recipe_ibfk_1")
-
-  @@index([userId], map: "userId")
-}
-
-model recipe23user {
-  userId         Int              @id @default(autoincrement())
-  userName       String?          @db.VarChar(255)
-  userEmail      String?          @db.VarChar(255)
-  userPassword   String?          @db.VarChar(255)
-  recipe23recipe recipe23recipe[]
+  stockImage    String? @db.VarChar(255)
 }

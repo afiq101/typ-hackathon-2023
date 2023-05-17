@@ -18,6 +18,7 @@
   const countOrdered = ref(0);
   const countNew = ref(0);
 
+
   const data = [
     {
       id: 1,
@@ -139,7 +140,7 @@
     <LayoutsBreadcrumb />
 
     <br><br><br>
-  
+
     <!-- Slideshow -->
     <swiper
         :modules="modules"
@@ -151,7 +152,7 @@
         navigation
         class=""
         object-fit: cover
-        
+
     >
       <!-- <swiper-slide v-for="n in 10" :key="n">
         {{ n }}
@@ -192,7 +193,7 @@
         <template #header>In Stock</template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data">
+            <div v-for="(val, index) in data" :key="index">
               <rs-card class="p-5 relative" v-if="val.status == 'In Stock'">
                 <rs-badge class="float-right" variant="success" v-if="val.status == 'In Stock'">In Stock</rs-badge>
                 <br><br>
@@ -201,7 +202,7 @@
                 <h6 class="text-2xl">{{ val.name }}</h6>
                 <p class="text-xl">Type: {{ val.type }}</p>
                 <p class="text-xl">Size: {{val.size}} </p>
-                <p class="float-right text-7xl"> {{val.quantity}} <span class="text-2xl">Qty</span></p> 
+                <p class="float-right text-7xl"> {{val.quantity}} <span class="text-2xl">Qty</span></p>
                 <br>
                 <rs-button size="sm" class="mt-2">Edit</rs-button>
               </rs-card>
@@ -218,7 +219,7 @@
         <template #header>Out Stock</template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data">
+            <div v-for="(val, index) in data" :key="index">
               <rs-card class="p-5 relative" v-if="val.status == 'Out of Stock'">
                 <rs-badge class="float-right" variant="danger" v-if="val.status == 'Out of Stock'">Out of Stock</rs-badge>
                 <br><br>
@@ -244,7 +245,7 @@
         <template #header>Order Stock</template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data">
+            <div v-for="(val, index) in data" :key="index">
               <rs-card class="p-5 relative" v-if="val.status == 'Ordered'">
                 <rs-badge class="float-right" variant="warning" v-if="val.status == 'Ordered'">Ordered</rs-badge>
                 <br><br>
@@ -270,7 +271,7 @@
         <template #header> New Stock</template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-            <div v-for="(val, index) in data">
+            <div v-for="(val, index) in data" :key="index">
               <rs-card class="p-5 relative" v-if="val.status == 'New Arrival'">
                 <rs-badge class="float-right" variant="info" v-if="val.status == 'New Arrival'">New Arrival</rs-badge>
                 <br><br>
@@ -291,4 +292,3 @@
 
   </div>
 </template>
-      

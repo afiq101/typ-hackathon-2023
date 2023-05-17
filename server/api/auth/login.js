@@ -19,26 +19,20 @@ export default defineEventHandler(async (event) => {
   const user = await prisma.user.findFirst({
     where: {
       userUsername: body.username,
+      userPassword: body.password,
     },
   });
+
+  console.log(user);
 
   if (!user) {
     return {
       statusCode: 404,
-      message: "User not found",
+      message: "Invalid username or password",
     };
   }
 
-  const hashedPassword = sha256(body.password).toString();
-  if (user.userPassword !== hashedPassword) {
-    return {
-      statusCode: 401,
-      message: "Wrong password",
-    };
-  }
-
-  // Get user roles
-  const roles = await prisma.userrole.findMany({
+  const roles = await prisma.userrole.findFirst({
     where: {
       userRoleUserID: user.userID,
     },
@@ -51,15 +45,37 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  const roleNames = roles.map((r) => r.role.roleName);
+  // const roles = await prisma.userrole.findFirst({
+  //   where: {
+  //     userRoleUserID: user.userID,
+  //   },
+  // });
+
+  // Get user roles
+  // const roles = await prisma.userrole.findMany({
+  //   where: {
+  //     userRoleUserID: user.userID,
+  //   },
+  //   select: {
+  //     role: {
+  //       select: {
+  //         roleName: true,
+  //       },
+  //     },
+  //   },
+  // });
+
+  const roleName = roles.role.roleName;
+  // console.log(roles);
+  // const roleName = null;
 
   const accessToken = generateAccessToken({
     username: user.userUsername,
-    roles: roleNames,
+    roles: roleName,
   });
   const refreshToken = generateRefreshToken({
     username: user.userUsername,
-    roles: roleNames,
+    roles: roleName,
   });
 
   return {
@@ -67,7 +83,7 @@ export default defineEventHandler(async (event) => {
     message: "Login success",
     data: {
       username: user.userUsername,
-      roles: roleNames,
+      roles: roleName,
       accessToken,
       refreshToken,
     },

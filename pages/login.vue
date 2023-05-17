@@ -54,7 +54,7 @@ const login = async () => {
       // console.log(userStore.refreshToken);
       // console.log(userStore.isAuth);
 
-      await navigateTo("/dashboard");
+      await navigateTo("/Expense");
     } else {
       $swal.fire({
         title: "Error!",
@@ -76,7 +76,7 @@ const login = async () => {
       <rs-card class="h-screen md:h-auto px-10 md:px-16 py-12 md:py-20 mb-0">
         <h3 class="mb-4">Login</h3>
         <p class="text-slate-500 mb-6">
-          Welcome to Mawar. Please login to continue.
+          Welcome to DuitPantau. Please login to continue.
         </p>
         <div class="grid grid-cols-2">
           <FormKit

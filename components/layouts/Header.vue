@@ -1,4 +1,8 @@
 <script setup>
+import { useUserStore } from "~/stores/user";
+
+const userStore = useUserStore();
+
 const isVertical = ref(true);
 const isDesktop = ref(true);
 
@@ -9,6 +13,9 @@ const colorMode = useColorMode();
 const langList = languageList();
 
 const locale = ref("en");
+
+const user = userStore.username;
+const role = userStore.roles;
 
 // Change color mode
 function setColorMode() {
@@ -95,6 +102,7 @@ onMounted(() => {
             <ul class="header-dropdown w-full md:w-32">
               <li
                 v-for="lang in langList"
+                :key="lang.value"
                 class="flex items-center justify-center hover:bg-slate-200 hover:dark:bg-slate-700"
               >
                 <button
@@ -194,10 +202,8 @@ onMounted(() => {
               v-if="isDesktop"
               class="grid grid-cols-1 text-left ml-3 flex-none"
             >
-              <p class="font-semibold text-sm truncate w-24 mb-0">John Doe</p>
-              <span class="font-medium text-xs truncate w-24"
-                >RM 10,000.00</span
-              >
+              <p class="font-semibold text-sm truncate w-24 mb-0">{{ user }}</p>
+              <span class="font-medium text-xs truncate w-24">{{ role }}</span>
             </div>
             <Icon name="ic:outline-keyboard-arrow-down" class="ml-3" />
           </button>

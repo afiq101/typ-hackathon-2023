@@ -1,12 +1,68 @@
 <script setup>
+import axios from "axios";
+
 definePageMeta({
   title: "Register",
   layout: "empty",
   middleware: ["redirect-dashboard"],
 });
 
+const { $swal } = useNuxtApp();
+const username = ref("");
+const email = ref("");
+const password = ref("");
+const repassword = ref("");
+
 const togglePasswordVisibility = ref(false);
 const togglePasswordVisibility2 = ref(false);
+
+const register = async () => {
+  // console.log("register data: ", data);
+
+  let data = JSON.stringify({
+    username: username.value,
+    email: email.value,
+    password: password.value,
+  });
+
+  let config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: "http://localhost:3000/api/auth/register",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  await axios
+    .request(config)
+    .then(async (response) => {
+      console.log("register resp: ", response.data);
+
+      if (response.data.statusCode === 200) {
+        $swal.fire({
+          position: "center",
+          title: "Success",
+          text: response.data.message,
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+
+        await navigateTo("/login");
+      } else
+        $swal.fire({
+          title: "Error!",
+          text: response.data.message,
+          icon: "error",
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(async () => {});
+};
 </script>
 
 <template>
@@ -19,12 +75,22 @@ const togglePasswordVisibility2 = ref(false);
         <p class="text-slate-500 mb-6 col-sp">
           Please fill in the form to create an account.
         </p>
-        <FormKit label="Username" type="text" label-class="text-left" />
-        <FormKit label="Email" type="email" label-class="text-left" />
+        <FormKit
+          label="Username"
+          type="text"
+          v-model="username"
+          label-class="text-left"
+        />
+        <FormKit
+          label="Email"
+          type="email"
+          v-model="email"
+          label-class="text-left"
+        />
         <FormKit
           :type="togglePasswordVisibility ? 'text' : 'password'"
           label="Password"
-          type="password"
+          v-model="password"
           label-class="text-left"
         >
           <template #suffix>
@@ -44,7 +110,7 @@ const togglePasswordVisibility2 = ref(false);
         <FormKit
           :type="togglePasswordVisibility2 ? 'text' : 'password'"
           label="Re-enter Password"
-          type="password"
+          v-model="repassword"
           label-class="text-left"
         >
           <template #suffix>
@@ -68,15 +134,15 @@ const togglePasswordVisibility2 = ref(false);
         >
           <template #label
             >I agree to the
-            <a class="text-primary hover:underline ml-1"
-              >Term and Services</a
-            >
+            <a class="text-primary hover:underline ml-1">Term and Services</a>
           </template>
         </FormKit>
 
-        <NuxtLink to="/" class="col-span-1 md:col-span-2">
-          <FormKit type="button" input-class="w-full">Sign up</FormKit>
-        </NuxtLink>
+        <!-- <NuxtLink to="/" class="col-span-1 md:col-span-2"> -->
+        <FormKit @click="register()" type="button" input-class="w-full"
+          >Sign up</FormKit
+        >
+        <!-- </NuxtLink> -->
 
         <p class="mt-3 text-center text-slate-500">
           Already have an account?

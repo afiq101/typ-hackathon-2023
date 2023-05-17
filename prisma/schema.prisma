@@ -86,3 +86,11 @@ model pagecontent {
 
   @@index([pageContentPageID], map: "FK__page")
 }
+
+model blog {
+  blogID       Int     @id @default(autoincrement())
+  blogName     String?
+  blogContent String?
+  blogAuthor   String?
+  blogTag     String?
+}

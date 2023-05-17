@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     const ID = getID[0].userID;
 
     const listing =
-      await prisma.$queryRaw`SELECT expenseId, amount , description , createdDate FROM expenses where userId = ${ID} and date(createdDate) = date(${new Date()}) `;
+      await prisma.$queryRaw`SELECT expenseId, amount , description , catName , createdDate FROM expenses join category on categoryID = catId where expenses.userId = ${ID} and date(createdDate) = date(${new Date()}) `;
 
     if (!listing) {
       return {

@@ -171,21 +171,21 @@
     <!-- Card Stock By Status with total Stocks -->
     <p class="text-center text-purple-700">Double click here to view the stocks</p><br>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
-      <rs-card class="p-5 relative bg-purple-800 " @click="showInStock()">
+      <rs-card class="p-5 relative bg-primary" @click="showInStock()">
         <h5 class="text-2xl">In Stock</h5>
-        <p class="float-right text-7xl"> 1{{ countInStock }}</p>
+        <p class="text-right text-7xl"> 1{{ countInStock }}</p>
       </rs-card>
-      <rs-card class="p-5 relative bg-purple-800 " @click="showOutStock()">
+      <rs-card class="p-5 relative bg-purple-800" @click="showOutStock()">
         <h5 class="text-2xl">Out of Stock</h5>
-        <p class="float-right text-7xl"> {{ countOutStock }}</p>
+        <p class="text-right text-7xl"> {{ countOutStock }}</p>
       </rs-card>
-      <rs-card class="p-5 relative bg-purple-800 " @click="showOrderStock()">
+      <rs-card class="p-5 relative bg-purple-800" @click="showOrderStock()">
         <h5 class="text-2xl">Ordered</h5>
-        <p class="float-right text-7xl"> {{ countOrdered }}</p>
+        <p class="text-right text-7xl"> {{ countOrdered }}</p>
       </rs-card>
-      <rs-card class="p-5 relative bg-purple-800 " @click="showNewStock()">
+      <rs-card class="p-5 relative bg-purple-800" @click="showNewStock()">
         <h5 class="text-2xl">New Arrival</h5>
-        <p class="float-right text-7xl"> {{ countNew }}</p>
+        <p class="text-right text-7xl"> {{ countNew }}</p>
       </rs-card>
     </div>
 
@@ -193,7 +193,9 @@
     <div id="myInStock" hidden>
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card>
-        <template #header>In Stock</template>
+        <template #header>
+          <h5 class="text-3xl mx-8">In Stock</h5>
+        </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
             <div v-for="(val, index) in data" :key="index">
@@ -208,11 +210,12 @@
                 <br>
                 <p class="text-xl">Type: {{ val.type }}</p>
                 <p class="text-xl">Size: {{val.size}} </p>
-                <p class="float-right text-7xl"> {{val.quantity}} <span class="text-2xl">Qty</span></p>
+                <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
+                <br>
               </rs-card>
-			  </div>
-			  </div>
-			  </template>
+            </div>
+          </div>
+        </template>
       </rs-card>
     </div>
 
@@ -220,7 +223,9 @@
     <div id="myOutStock" hidden>
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card>
-        <template #header>Out Stock</template>
+        <template #header>
+          <h5 class="text-3xl mx-8">Out Stock</h5>
+        </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
             <div v-for="(val, index) in data" :key="index">
@@ -248,7 +253,9 @@
     <div id="myOrderStock" hidden>
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card >
-        <template #header>Order Stock</template>
+        <template #header>
+          <h5 class="text-3xl mx-8">Order Stock</h5>
+        </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
             <div v-for="(val, index) in data" :key="index">
@@ -265,7 +272,6 @@
                 <p class="text-xl">Size: {{val.size}} </p>
                 <p class="text-right text-7xl"> {{val.quantity}} <span class="text-xl">Qty</span></p>
                 <br>
-
               </rs-card>
             </div>
           </div>
@@ -277,7 +283,9 @@
     <div id="myNewStock" hidden>
       <p class="text-center text-purple-700">Click back the card to close the view</p><br>
       <rs-card >
-        <template #header> New Stock</template>
+        <template #header>
+          <h5 class="text-3xl mx-8">New Stock</h5>
+        </template>
         <template #body>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
             <div v-for="(val, index) in data" :key="index">

@@ -162,7 +162,11 @@ onMounted(() => {
           </div>
         </div>
         <div class="col-span-4">
-          <h4 class="ml-4">Budget</h4>
+          <div class="flex justify-between">
+            <h4 class="ml-4">Budget</h4>
+
+            <rs-button size="sm">Set Budget</rs-button>
+          </div>
 
           <VueApexCharts
             :key="changeKey2"

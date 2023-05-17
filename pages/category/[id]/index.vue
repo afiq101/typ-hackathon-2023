@@ -13,16 +13,16 @@ const { $swal } = useNuxtApp();
 
 const catName = ref("");
 const catDesc = ref("");
-const catStatus = ref("");
+const catStatus = ref(null);
 
 var options = [
   {
     value: "ACTIVE",
-    text: "ACTIVE",
+    label: "ACTIVE",
   },
   {
     value: "INACTIVE",
-    text: "INACTIVE",
+    label: "INACTIVE",
   },
 ];
 
@@ -51,7 +51,7 @@ const getCat = async () => {
       if (response.data.statusCode == 200) {
         catName.value = response.data.data.catName;
         catDesc.value = response.data.data.catDescription;
-        catStatus.value = response.data.data.ACTIVE;
+        catStatus.value = response.data.data.catStatus;
       } else {
         $swal.fire({
           title: "Error!",
@@ -65,13 +65,13 @@ const getCat = async () => {
     });
 };
 
-const addNewCategory = async () => {
+const updateCategory = async () => {
   progress.value = true;
 
-  if (!catName.value && !catDesc.value) {
+  if (!catName.value || !catDesc.value || !catStatus.value) {
     $swal.fire({
       title: "Error!",
-      text: "Category name and description is required",
+      text: "Category name, description and status are required",
       icon: "error",
     });
 
@@ -80,14 +80,16 @@ const addNewCategory = async () => {
 
   let data = JSON.stringify({
     user: userStore.username,
+    id: useRoute().params?.id,
     name: catName.value,
     description: catDesc.value,
+    status: catStatus.value,
   });
 
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "http://localhost:3000/api/category/create",
+    url: "http://localhost:3000/api/category/update",
     headers: {
       "Content-Type": "application/json",
     },
@@ -158,7 +160,7 @@ onMounted(() => {
         <rs-button
           class="mt-3"
           variant="success"
-          @click="addNewCategory"
+          @click="updateCategory"
           :disabled="progress"
           >Save</rs-button
         >

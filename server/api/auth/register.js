@@ -45,20 +45,48 @@ export default defineEventHandler(async (event) => {
     },
   });
 
-  const role = await prisma.userrole.create({
-    data: {
-      userRoleUserID: user.userID,
-      userRoleRoleID: 3,
-      roleCreatedDate: new Date(),
-    },
-  });
-
   if (!user) {
     return {
       statusCode: 400,
       message: "Unable to register user",
     };
   }
+
+  // ADD ROLE
+  const role = await prisma.userrole.create({
+    data: {
+      userRoleUserID: user.userID,
+      userRoleRoleID: 3,
+      userRoleCreatedDate: new Date(),
+    },
+  });
+
+  // ADD DEFAULT CATEGORY
+  const cat = await prisma.category.createMany({
+    data: [
+      {
+        userID: user.userID,
+        catName: "Food & Dining",
+        catDescription: "A Flavorful Journey through Culinary Delights",
+        catCreatedDate: new Date(),
+        catStatus: "ACTIVE",
+      },
+      {
+        userID: user.userID,
+        catName: "Transportation",
+        catDescription: "Effortless Travel and Seamless Commutes",
+        catCreatedDate: new Date(),
+        catStatus: "ACTIVE",
+      },
+      {
+        userID: user.userID,
+        catName: "Utilities",
+        catDescription: "Essential Services for Everyday Living",
+        catCreatedDate: new Date(),
+        catStatus: "ACTIVE",
+      },
+    ],
+  });
 
   //   const accessToken = generateAccessToken({
   //     username: user.username,

@@ -4,13 +4,6 @@ export default [
     description: "",
     child: [
       {
-        title: "Dashboard",
-        path: "/dashboard",
-        icon: "ic:outline-dashboard",
-        child: [],
-        meta: {},
-      },
-      {
         title: "Dashboard New",
         path: "/dashboard-new",
         icon: "ic:outline-dashboard",

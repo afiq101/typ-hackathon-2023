@@ -9,9 +9,10 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
+const { $swal } = useNuxtApp();
 
 const changedata = ref(false);
-const field = ["Id", "Category", "Description", "Action"];
+const field = ["No", "Category", "Description", "Status", "Action"];
 const list = ref([]);
 
 const getList = async () => {
@@ -40,6 +41,53 @@ const getList = async () => {
     })
     .catch((error) => {
       console.log(error);
+    });
+};
+
+const deleteCat = async (id) => {
+  $swal
+    .fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    })
+    .then(async (result) => {
+      if (result.isConfirmed) {
+        let data = JSON.stringify({
+          user: userStore.username,
+          id: id,
+        });
+
+        let config = {
+          method: "post",
+          maxBodyLength: Infinity,
+          url: "http://localhost:3000/api/category/delete",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: data,
+        };
+
+        await axios
+          .request(config)
+          .then((response) => {
+            console.log("delete: ", response.data);
+
+            if (response.data.statusCode === 200)
+              $swal.fire("Deleted!", response.data.message, "success");
+            else $swal.fire("Error!", response.data.message, "error");
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(async () => {
+            location.reload();
+          });
+      }
     });
 };
 
@@ -85,6 +133,14 @@ onMounted(async () => {
         }"
         basic
       >
+        <template v-slot:Status="data">
+          <rs-badge
+            :variant="data.value.catStatus === 'ACTIVE' ? 'success' : 'danger'"
+            :pill="true"
+          >
+            {{ data.value.catStatus }}
+          </rs-badge>
+        </template>
         <template v-slot:Action="data">
           <div class="flex gap-2">
             <nuxt-link :to="`/category/${data.value.catId}`">
@@ -93,7 +149,11 @@ onMounted(async () => {
               </rs-button>
             </nuxt-link>
 
-            <rs-button size="sm" variant="danger">
+            <rs-button
+              size="sm"
+              variant="danger"
+              @click="deleteCat(data.value.catId)"
+            >
               <Icon name="material-symbols:delete-forever" size="15"></Icon>
             </rs-button>
           </div>

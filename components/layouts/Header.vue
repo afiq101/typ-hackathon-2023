@@ -249,7 +249,7 @@ onMounted(() => {
   </div>
 
   <!-- Search Nav for Layout Vertical -->
-  <div
+  <!-- <div
     tabindex="0"
     class="w-header-search bg-white dark:bg-slate-800 px-4 z-40 duration-300 shadow-md shadow-slate-200 dark:shadow-slate-900 -top-20 focus-within:top-0 right-0"
   >
@@ -261,5 +261,5 @@ onMounted(() => {
       name="Search"
       placeholder="Search..."
     />
-  </div>
+  </div> -->
 </template>

@@ -19,57 +19,74 @@ const blogData = ref([
             blogName: "Lord of the Ring",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa aaaaa aaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: true,
+            blogTag: "book",
           },{
             blogID: 2,
             blogName: "123",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: false,
+            blogTag: "number",
           },{
             blogID: 1,
             blogName: "abc",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: false,
+            blogTag: "letters",
           },{
             blogID: 1,
             blogName: "defs",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: true,
+            blogTag: "letters",
           },
           {
             blogID: 1,
             blogName: "123",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: false,
+            blogTag: "numbers",
           },
           {
             blogID: 1,
             blogName: "123",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: false,
+            blogTag: "numbers",
           },
           {
             blogID: 1,
             blogName: "123",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: false,
+            blogTag: "numbers",
           },
           {
             blogID: 1,
             blogName: "123",
             blogContent: "aaaaaa aaaaaa aaaaaa aaaaaa aaaaaa aaaaaaa aaaaaa aaaaaa",
             blogAuthor: "JK Rowling",
-            bookFeatured: false,
+            blogTag: "numbers",
           },
         ]);
         
-</script>
+        const tagData = ref([
+          {
+            tagID: 1,
+            tagName: "book",
+          },{
+            tagID: 2,
+            tagName: "number",
+          },{
+            tagID: 3,
+            tagName: "letters",
+          },{
+            tagID: 4,
+            tagName: "numbers",
+          },
+        ]);
+</script> 
+
+
 <template>
   <h2 class="p-5 flex justify-between items-start md:items-center flex-col md:flex-row">
     <h2>Homepage</h2>
@@ -81,21 +98,39 @@ const blogData = ref([
     </nuxt-link>
   </h2>
 
-  <div>
-    <rs-card class="p-5">
-      <span class="text-xl font-bold mb-10">List of blogs</span>
-      <div class="flex justify-center">
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6">
-          <nuxt-link v-for="blog in blogData" :key="blog.blogID" :to="'/blog/' + blog.blogID">
-            <rs-card class="border border-gray-300 p-5 shadow-lg mb-4 mt-10 w-full">
-              <h5 class="text-md">{{ blog.blogName }}</h5>
-              <p class="py-5">{{ truncateContent(blog.blogContent) }}</p>
-              <h6 class="text-sm">{{ blog.blogAuthor }}</h6>
-            </rs-card>
-          </nuxt-link>
+  <div class="flex justify-between">
+    <div>
+      <rs-card class="p-5">
+        <span class="text-xl font-bold mb-10">List of blogs</span>
+        <div class="flex justify-center">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-6">
+            <nuxt-link v-for="blog in blogData" :key="blog.blogID" :to="'/bloganda/' + blog.blogID">
+              <rs-card class="border border-gray-300 p-5 shadow-lg mb-4 mt-10 w-full">
+                <h5 class="text-md">{{ blog.blogName }}</h5>
+                <p class="py-5">{{ truncateContent(blog.blogContent) }}</p>
+                <h6 class="text-sm">{{ blog.blogAuthor }}</h6>
+              </rs-card>
+            </nuxt-link>
+          </div>
         </div>
-      </div>
-    </rs-card>
+      </rs-card>
+    </div>
+    <div>
+      <rs-card class="px-15 py-5 ml-10 mr-5">
+        <div class="flex justify-center">
+          <span class="text-xl font-bold">Tags</span>
+        </div>
+        <div class="flex justify-center">
+          <div class="flex-row">
+            <nuxt-link v-for="tag in tagData" :key="tag.tagName" :to="'/blog/' + tag.tagName">
+              <rs-card class="border border-gray-300 p-2 shadow-lg mb-2 mt-5 w-full">
+                <h5 class="text-md">{{ tag.tagName }}</h5>
+              </rs-card>
+            </nuxt-link>
+          </div>
+        </div>
+      </rs-card>
+    </div>
   </div>
 </template>
 

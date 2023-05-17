@@ -29,6 +29,20 @@ export default [
         "icon": "material-symbols:library-add-sharp",
         "child": [],
         "meta": {}
+      },
+      {
+        "title": "Edit Blog",
+        "path": "/bloganda/edit:id()",
+        "icon": "material-symbols:edit-outline-sharp",
+        "child": [],
+        "meta": {}
+      },
+      {
+        "title": "Tags",
+        "path": "/bloganda/tag",
+        "icon": "ion:pricetags-sharp",
+        "child": [],
+        "meta": {}
       }
     ],
     "meta": {}

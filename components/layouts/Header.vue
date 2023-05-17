@@ -125,7 +125,7 @@ onMounted(() => {
           <Icon @click="toggleSearch" name="ic:round-search" class="" />
         </button>
 
-        <VDropdown placement="bottom-end" distance="13" name="notification">
+        <!-- <VDropdown placement="bottom-end" distance="13" name="notification">
           <button class="relative icon-btn h-10 w-10 rounded-full">
             <span
               class="w-3 h-3 absolute top-1 right-2 rounded-full bg-primary"
@@ -188,7 +188,7 @@ onMounted(() => {
               </perfect-scrollbar>
             </ul>
           </template>
-        </VDropdown>
+        </VDropdown> -->
 
         <VDropdown placement="bottom-end" distance="13" name="profile">
           <button

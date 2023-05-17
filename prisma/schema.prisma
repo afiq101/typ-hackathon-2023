@@ -9,24 +9,26 @@ datasource db {
 }
 
 model user {
-  userID           Int        @id @default(autoincrement())
-  userSecretKey    String?    @db.VarChar(255)
-  userUsername     String?    @db.VarChar(255)
-  userPassword     String?    @db.VarChar(255)
-  userFullName     String?    @db.VarChar(255)
-  userEmail        String?    @db.VarChar(255)
-  userPhone        String?    @db.VarChar(255)
-  userStatus       String?    @db.VarChar(255)
-  userCreatedDate  DateTime?  @db.DateTime(0)
-  userModifiedDate DateTime?  @db.DateTime(0)
+  userID           Int             @id @default(autoincrement())
+  userSecretKey    String?         @db.VarChar(255)
+  userUsername     String?         @db.VarChar(255)
+  userPassword     String?         @db.VarChar(255)
+  userFullName     String?         @db.VarChar(255)
+  userEmail        String?         @db.VarChar(255)
+  userPhone        String?         @db.VarChar(255)
+  userStatus       String?         @db.VarChar(255)
+  userCreatedDate  DateTime?       @db.DateTime(0)
+  userModifiedDate DateTime?       @db.DateTime(0)
+  budgetHistory    budgetHistory[]
   userrole         userrole[]
 }
 
 model budget {
-  budgetId       Int    @id @default(autoincrement())
-  userId         Int?
-  catId          Int?
-  budgetPerMonth Float?
+  budgetId          Int       @id @default(autoincrement())
+  userId            Int?
+  budgetPerMonth    Float?
+  budgetCreatedDate DateTime? @db.DateTime(0)
+  budgetUpdatedDate DateTime? @db.DateTime(0)
 }
 
 model category {
@@ -114,4 +116,15 @@ model usercategory {
   ucId     Int  @id @default(autoincrement())
   ucUserId Int?
   ucCatId  Int?
+}
+
+model budgetHistory {
+  bhId          Int       @id @default(autoincrement())
+  userId        Int?
+  bhAmount      Float?
+  bhCreatedDate DateTime? @db.DateTime(0)
+  bhStatus      String?   @db.VarChar(100)
+  user          user?     @relation(fields: [userId], references: [userID], onDelete: NoAction, onUpdate: NoAction, map: "budgetHistory_ibfk_1")
+
+  @@index([userId], map: "userId")
 }

@@ -12,7 +12,7 @@ const userStore = useUserStore();
 const { $swal } = useNuxtApp();
 
 const changedata = ref(false);
-const field = ["No", "Category", "Description", "Status", "Action"];
+const field = ["Category", "Description", "Status", "Action"];
 const list = ref([]);
 
 const getList = async () => {
@@ -133,6 +133,12 @@ onMounted(async () => {
         }"
         basic
       >
+        <template v-slot:Category="data">
+          <span>{{ data.value.catName }}</span>
+        </template>
+        <template v-slot:Description="data">
+          <span>{{ data.value.catDescription }}</span>
+        </template>
         <template v-slot:Status="data">
           <rs-badge
             :variant="data.value.catStatus === 'ACTIVE' ? 'success' : 'danger'"

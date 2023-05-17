@@ -54,7 +54,7 @@ const login = async () => {
       // console.log(userStore.refreshToken);
       // console.log(userStore.isAuth);
 
-      await navigateTo("/dashboard-new");
+      await navigateTo("/dashboard");
     } else {
       $swal.fire({
         title: "Error!",

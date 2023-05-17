@@ -88,6 +88,15 @@ export default defineEventHandler(async (event) => {
     ],
   });
 
+  // ADD BUDGET
+  const budget = await prisma.budget.create({
+    data: {
+      userId: user.userID,
+      budgetPerMonth: 0,
+      budgetCreatedDate: new Date(),
+    },
+  });
+
   //   const accessToken = generateAccessToken({
   //     username: user.username,
   //     role: role.roleName,

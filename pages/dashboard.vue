@@ -1,482 +1,295 @@
 <script setup>
+import { useUserStore } from "~/stores/user";
+import { PieChart, usePieChart } from "vue-chart-3";
+import axios from "axios";
+
 definePageMeta({
   title: "Dashboard",
   middleware: ["auth"], // This is for Login Auth for page
   requiresAuth: true, // This is use for Login Auth for page
 });
 
-const data1 = ref([]);
-const data2 = ref([]);
-const data3 = ref([]);
-const data4 = ref([]);
-var sparkline1Data = [47, 45, 54, 38, 56, 24, 65];
-var sparkline2Data = [61, 35, 66, 41, 59, 25, 32];
-var sparkline3Data = [25, 18, 36, 41, 43, 35, 14];
-var sparkline4Data = [8, 16, 22, 41, 43, 35, 14];
+const userStore = useUserStore();
+const changeKey1 = ref(0);
+const changeKey2 = ref(0);
 
-const changeKey = ref(0);
-
-const customers = [
+const series1 = ref([
   {
-    name: "Iqmal",
-    age: "25",
-    city: "Kuala Lumpur",
-    country: "Malaysia",
-    totalPurchase: 1524,
-    purchase: 23,
-  },
-  {
-    name: "Adi",
-    age: "45",
-    city: "Pulau Pinang",
-    country: "Malaysia",
-    totalPurchase: 643,
-    purchase: 14,
-  },
-  {
-    name: "Raziq",
-    age: "21",
-    city: "Kelantan",
-    country: "Malaysia",
-    totalPurchase: 543,
-    purchase: 12,
-  },
-  {
-    name: "Haqeem",
-    age: "19",
-    city: "Negeri Sembilan",
-    country: "Malaysia",
-    totalPurchase: 258,
-    purchase: 6,
-  },
-];
-
-const randomizeArray = function (arg) {
-  var array = arg.slice();
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-};
-
-data1.value.push({
-  name: "Revenues",
-  data: randomizeArray(sparkline1Data),
-});
-
-data2.value.push({
-  name: "Users",
-  data: randomizeArray(sparkline2Data),
-});
-
-data3.value.push({
-  name: "Products",
-  data: randomizeArray(sparkline3Data),
-});
-
-data4.value.push({
-  name: "Viewers",
-  data: randomizeArray(sparkline4Data),
-});
-
-const chartOptions = computed(() => ({
-  chart: {
-    type: "area",
-    sparkline: {
-      enabled: true,
-    },
-  },
-  stroke: {
-    curve: "smooth",
-  },
-  fill: {
-    opacity: 1,
-  },
-  labels: [...Array(7).keys()].map((n) => `2022-06-0${n + 1}`),
-  xaxis: {
-    type: "datetime",
-  },
-}));
-
-// Radial Chart
-
-const radialData = ref([44, 55, 67, 83]);
-
-const chartOptionsRadial = computed(() => ({
-  chart: {
-    height: 350,
-    type: "radialBar",
-  },
-  plotOptions: {
-    radialBar: {
-      dataLabels: {
-        style: {
-          colors: "#9CA3AF",
-        },
-        name: {
-          offsetY: 30,
-          fontSize: "18px",
-        },
-        value: {
-          offsetY: -15,
-          fontSize: "30px",
-        },
-        total: {
-          show: true,
-          label: "Total",
-          formatter: function (w) {
-            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-            return 249;
-          },
-        },
-      },
-    },
-  },
-  labels: ["Product A", "Product B", "Product C", "Product D"],
-  stroke: {
-    lineCap: "round",
-  },
-}));
-
-// Transaction Graph
-const transactionData = ref([
-  {
-    name: "Bill A",
-    data: [...Array(12).keys()].map((n) => Math.round(Math.random() * 100)),
-  },
-  {
-    name: "Bill B",
-    data: [...Array(12).keys()].map((n) => Math.round(Math.random() * 100)),
+    name: "Series 1",
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 12, 12, 12, 12],
   },
 ]);
 
-const chartOptionsTransaction = computed(() => ({
+const chartOptions1 = computed(() => ({
   chart: {
-    height: 350,
-    type: "area",
+    id: "apexChart",
     toolbar: {
       show: false,
     },
   },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: "smooth",
-  },
-  colors: ["#6366F1", "#F97316"],
-  yaxis: {
-    labels: {
-      style: {
-        colors: "#9CA3AF",
-        fontSize: "12px",
-      },
-    },
-  },
-  xaxis: {
-    type: "datetime",
-    categories: [
-      "2022-01-01",
-      "2022-02-01",
-      "2022-03-01",
-      "2022-04-01",
-      "2022-05-01",
-      "2022-06-01",
-      "2022-07-01",
-      "2022-08-01",
-      "2022-09-01",
-      "2022-10-01",
-      "2022-11-01",
-      "2022-12-01",
-    ],
-    labels: {
-      style: {
-        colors: "#9CA3AF",
-        fontSize: "14px",
-        fontWeight: 400,
-      },
-      datetimeFormatter: {
-        month: "MMM",
-      },
-    },
-  },
   legend: {
     position: "top",
-    horizontalAlign: "left",
-    labels: {
-      colors: "#9CA3AF",
-      useSeriesColors: false,
+  },
+  theme: {
+    mode: "light",
+    palette: "palette1",
+  },
+  xaxis: {
+    categories: [
+      "Jan",
+      "Feb",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+  },
+  plotOptions: {
+    bar: {
+      borderRadius: 4,
     },
   },
-  tooltip: {
-    x: {
-      format: "MMMM",
+  responsive: [
+    {
+      breakpoint: 768,
+      options: {
+        legend: {
+          position: "bottom",
+        },
+      },
     },
-  },
+  ],
 }));
+
+const series2 = ref([0]);
+
+const chartOptions2 = computed(() => ({
+  colors: ["#20E647"],
+  plotOptions: {
+    radialBar: {
+      hollow: {
+        margin: 0,
+        size: "70%",
+        background: "#293450",
+      },
+      track: {
+        dropShadow: {
+          enabled: true,
+          top: 2,
+          left: 0,
+          blur: 4,
+          opacity: 0.15,
+        },
+      },
+      dataLabels: {
+        name: {
+          offsetY: -10,
+          color: "#fff",
+          fontSize: "13px",
+        },
+        value: {
+          color: "#fff",
+          fontSize: "30px",
+          show: true,
+        },
+      },
+    },
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shade: "dark",
+      type: "vertical",
+      gradientToColors: ["#87D4F9"],
+      stops: [0, 100],
+    },
+  },
+  stroke: {
+    lineCap: "round",
+  },
+  labels: [`${month} Expense`],
+}));
+
+const categories = ref([]);
+
+const monthlyLimit = ref(0);
+const monthlyRemaining = ref(0);
+
+// CURRENT MONTH IN WORD
+const month = new Date().toLocaleString("default", { month: "long" });
+
+// CURRENT YEAR
+const year = new Date().getFullYear();
+
+const dashData = async () => {
+  let data = JSON.stringify({
+    user: userStore.username,
+  });
+
+  let config = {
+    method: "post",
+    maxBodyLength: Infinity,
+    url: "http://localhost:3000/api/dashboard/data",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  try {
+    const response = await axios.request(config);
+    console.log("data: ", response.data);
+
+    if (response.data.statusCode == 200) {
+      monthlyLimit.value = response.data.data.perMonth;
+      monthlyRemaining.value = response.data.data.remaining;
+      updateSeries2Value(response.data.data.percentage || 0);
+
+      series1.value = [
+        {
+          name: "Total Expense",
+          data: response.data.data.expensesByMonth,
+        },
+      ];
+
+      console.log(response.data.data.catExpenses);
+
+      // PUSH INTO CATEGORUES ARRAY
+      response.data.data.catExpenses.forEach((element) => {
+        categories.value.push({
+          name: element.CAT,
+          amount: element.AMOUNT || 0,
+        });
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+function updateSeries2Value(value) {
+  series2.value = [value];
+}
+
+function numberFormat(value) {
+  return parseFloat(value).toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
 
 onMounted(() => {
   setTimeout(() => {
-    changeKey.value++;
+    changeKey1.value++;
+    changeKey2.value++;
   }, 500);
+
+  dashData();
 });
 </script>
 
 <template>
   <div>
-    <LayoutsBreadcrumb />
-    <!-- First Row -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-x-6">
-      <!-- Summary Card #1 -->
-      <rs-card>
-        <div class="summary-1 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-primary/20 rounded-2xl"
-          >
-            <Icon
-              class="text-primary"
-              name="ic:outline-attach-money"
-            ></Icon>
-          </div>
-          <div class="flex-1 truncate">
-            <span class="block font-semibold text-xl leading-tight">
-              RM 100,000</span
-            >
-            <span class="text-base font-semibold text-gray-500"
-              >Total Revenues</span
-            >
-          </div>
-        </div>
-        <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#F43F5E'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data1[0].data) + 10,
-              },
-            }"
-            :series="data1"
-          ></VueApexCharts>
-        </client-only>
-      </rs-card>
-      <!-- Summary Card #2 -->
-      <rs-card>
-        <div class="summary-2 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-indigo-100 rounded-2xl"
-          >
-            <Icon
-              class="text-indigo-500"
-              name="ic:outline-account-circle"
-            ></Icon>
-          </div>
-          <div class="flex-1 truncate">
-            <span class="block font-semibold text-xl leading-tight"> 512</span>
-            <span class="text-base font-semibold text-gray-500"
-              >Total Users</span
-            >
-          </div>
-        </div>
-        <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#6366F1'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data2[0].data) + 10,
-              },
-            }"
-            :series="data2"
-          ></VueApexCharts>
-        </client-only>
-      </rs-card>
-      <!-- Summary Card #3 -->
-      <rs-card>
-        <div class="summary-3 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-orange-100 rounded-2xl"
-          >
-            <Icon class="text-orange-500" name="ic:outline-shopping-bag"></Icon>
-          </div>
-          <div class="flex-1 truncate">
-            <span class="block font-semibold text-xl leading-tight"> 20</span>
-            <span class="text-base font-semibold text-gray-500"
-              >Total Products</span
-            >
-          </div>
-        </div>
-        <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#F97316'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data3[0].data) + 10,
-              },
-            }"
-            :series="data3"
-          ></VueApexCharts>
-        </client-only>
-      </rs-card>
-      <!-- Summary Card #4 -->
-      <rs-card>
-        <div class="summary-4 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-blue-100 rounded-2xl"
-          >
-            <Icon class="text-blue-500" name="ic:outline-remove-red-eye"></Icon>
-          </div>
-          <div class="flex-1 truncate">
-            <span class="block font-semibold text-xl leading-tight">
-              2,452</span
-            >
-            <span class="text-base font-semibold text-gray-500"
-              >Total Viewers</span
-            >
-          </div>
-        </div>
-        <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#3B82F6'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data4[0].data) + 10,
-              },
-            }"
-            :series="data4"
-          ></VueApexCharts>
-        </client-only>
-      </rs-card>
-    </div>
-
-    <div class="flex flex-col md:flex-row gap-x-6">
-      <div class="w-12/2 md:w-8/12 flex flex-col">
-        <!-- Graph -->
-        <rs-card class="flex-1">
-          <template #header> Transaction </template>
-          <template #body>
-            <client-only>
-              <VueApexCharts
-                :key="changeKey"
-                width="100%"
-                height="300"
-                name="area"
-                :options="chartOptionsTransaction"
-                :series="transactionData"
-              ></VueApexCharts
-            ></client-only>
-          </template>
-        </rs-card>
-        <rs-card class="flex-1">
-          <template #header> Referral</template>
-          <template #body>
-            <div
-              v-for="(val, index) in customers"
-              :key="index"
-              class="flex justify-between items-center rounded-lg bg-gray-100 dark:bg-slate-700 p-5 first:mt-0 mt-3"
-            >
-              <div class="flex items-center gap-x-4">
-                <img
-                  src="@/assets/img/avatar/user.webp"
-                  class="h-10 w-10 rounded-lg"
-                />
-                <div class="flex-1">
-                  <div class="flex flex-col">
-                    <span
-                      class="text-gray-900 dark:text-white font-semibold text-lg"
-                    >
-                      {{ val.name }}
-                    </span>
-                    <span class="text-gray-600 dark:text-gray-50 text-sm">
-                      RM{{ parseFloat(val.totalPurchase).toFixed(2) }} |
-                      {{ val.purchase }} sold
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <button
-                  class="flex items-center p-4 rounded-full bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-900 shadow-md"
-                >
-                  <Icon size="20px" name="ic:baseline-mail-outline"></Icon>
-                </button>
-              </div>
+    <rs-card class="p-4">
+      <div class="grid grid-cols-12 gap-2">
+        <div class="col-span-8">
+          <div class="grid grid-cols-12 gap-2">
+            <div class="col-span-12">
+              <h4 class="ml-4">Expenses per month in <span class="text-primary">{{ year }}</span></h4>
             </div>
-          </template>
-        </rs-card>
-      </div>
-      <div class="w-12/2 md:w-4/12 flex flex-col">
-        <!-- Monthly Target Radial -->
-        <rs-card class="flex-1">
-          <template #header> Monthly Target </template>
-          <template #body>
-            <client-only>
+          </div>
+          <div class="grid grid-cols-12 mt-5">
+            <div class="col-span-12">
               <VueApexCharts
-                :key="changeKey"
+                :key="changeKey1"
                 width="100%"
                 height="300"
-                name="radialBar"
-                :options="chartOptionsRadial"
-                :series="radialData"
+                type="bar"
+                :options="chartOptions1"
+                :series="series1"
               ></VueApexCharts>
-            </client-only>
-            <hr class="my-4" />
-            <p class="text-xl py-5 font-medium">Products</p>
-            <div
-              class="flex item-center gap-x-4"
-              :class="{
-                'mt-0': index === 0,
-                'mt-3': index !== 0,
-              }"
-              v-for="(val, index) in ['A', 'B', 'C', 'D', 'E']"
-              :key="index"
-            >
-              <img
-                src="@/assets/img/default-thumbnail.jpg"
-                class="h-20 w-20 object-cover rounded-lg"
-              />
-              <div class="flex-1 flex items-center">
-                <div>
-                  <span class="font-semibold text-lg leading-tight"
-                    >Product {{ val }}</span
-                  >
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                </div>
-              </div>
             </div>
-          </template>
-        </rs-card>
+          </div>
+        </div>
+        <div class="col-span-4 border-l">
+          <div class="flex justify-between">
+            <h4 class="ml-4">Budget</h4>
+
+            <nuxt-link :to="`/permonth`">
+              <rs-button size="sm">Set Budget</rs-button>
+            </nuxt-link>
+          </div>
+
+          <VueApexCharts
+            :key="changeKey2"
+            width="100%"
+            height="300"
+            type="radialBar"
+            :options="chartOptions2"
+            :series="series2"
+          ></VueApexCharts>
+
+          <div class="flex justify-around">
+            <div class="flex flex-col text-center">
+              <h5 class="text-primary font-semibold">
+                RM {{ numberFormat(monthlyLimit) }}
+              </h5>
+              <span>Monthly limit</span>
+            </div>
+            <div class="flex flex-col text-center">
+              <h5 class="text-primary font-semibold">
+                RM {{ numberFormat(monthlyRemaining) }}
+              </h5>
+              <span>Remaining</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </rs-card>
+
+    <!-- <rs-card class="p-4"> -->
+    <h4>Categories with Biggest Expenses</h4>
+
+    <div class="grid grid-cols-12 gap-3 mt-3">
+      <rs-card
+        class="col-span-6 sm:col-span-2 p-3 text-center hover-card"
+        v-for="(data, index) in categories"
+        :key="index"
+      >
+        <span class="text-primary">
+          <Icon
+            name="material-symbols:category-outline"
+            size="50"
+            color="primary"
+          ></Icon>
+        </span>
+
+        <br />
+
+        <div class="mt-3">
+          <span> {{ data.name }}</span>
+          <h5 class="text-primary font-semibold">
+            RM {{ numberFormat(data.amount) }}
+          </h5>
+        </div>
+      </rs-card>
     </div>
+    <!-- </rs-card> -->
   </div>
 </template>
+
+<style scoped>
+.rs-card {
+  transition: transform 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: scale(1.1);
+}
+</style>

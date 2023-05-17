@@ -3,30 +3,29 @@
     title: "Edit Collection",
   });
 
-  const type = [
-    "Shirt",
-    "Pants",
-    "Jacket",
-    "Hood",
-  ];
+  const type = {
+    Shirt:  "Shirt",
+    Pants: "Pants",
+    Jacket: "Jacket",
+    Hood: "Hood",
+  };
 
-  const sizes = [
-    "XS",
-    "S",
-    "M",
-    "L",
-    "XL",
-    "XXL",
-    "Free",
-  ];
+  const sizes = {
+    XS:  "XS",
+    S: "S",
+    M: "M",
+    L: "L",
+    XL: "XL",
+    XXL: "XXL",
+    Free: "Free"
+  };
 
-  const status = [
-    "In Stock",
-    "Out of Stock",
-    "Ordered",
-    "New Arrival",
-    "Unknown",
-  ];
+  const status = {
+    inStock:  "In Stock",
+    outStock: "Out of Stock",
+    orderStock: "Ordered",
+    newStock: "New Arrival",
+  };
 
   const paramID = useRoute().params.id;
 
@@ -37,7 +36,7 @@
 	stockQuantity: "",
 	stockTotal: "",
 	stockStatus: "",
-	stockImage: "",
+	//stockImage: "",
 	});
 
 
@@ -55,7 +54,7 @@ if (data.value.statusCode == 200) {
 	form.value.stockQuantity = data.value.data.stockQuantity;
 	form.value.stockTotal = data.value.data.stockTotal;
 	form.value.stockStatus = data.value.data.stockStatus;
-	form.value.stockImage = data.value.data.stockImage;
+	//form.value.stockImage = data.value.data.stockImage;
 	} else {
 		alert("Tiada Stock dengan ID ini");
 	}
@@ -66,7 +65,7 @@ const submit = async () => {
   }
 
   try {
-	const { data } = await useFetch("/api/collection/add", {
+	const { data } = await useFetch("/api/collection/edit", {
 		method: "POST",
 		body: {
 			stockID: paramID,
@@ -76,13 +75,13 @@ const submit = async () => {
 			stockQuantity: form.value.stockQuantity,
 			stockTotal: form.value.stockTotal,
 			stockStatus: form.value.stockStatus,
-			stockImage: form.value.stockImage,
+			//stockImage: form.value.stockImage,
 		},
 	});
 
 	if (data.value.statusCode == 200) {
 		alert("Success");
-		window.location.href = '/collection';
+		window.location.href = "/collection";
 	} else {
 		alert("Failed");
 	}
@@ -131,7 +130,7 @@ const submit = async () => {
           </div>
 
           <!-- Input Size -->
-          <FormKit type="radio" label="Size" validation="required" validation-visibility="dirty" :options="sizes" class="inline"/>
+          <FormKit v-model="form.stockSize" type="radio" label="Size" validation="required" validation-visibility="dirty" :options="sizes" class="inline"/>
 
           <!-- Input Quantity -->
           <div class="flex flex-row items-center">
@@ -175,7 +174,7 @@ const submit = async () => {
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Image -->
-              <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>
+              <!--<FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>-->
             </div>
           </div>
 

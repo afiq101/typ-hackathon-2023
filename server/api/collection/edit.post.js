@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 			stockQuantity: quantity,
 			stockTotal: total,
 			stockStatus: status,
-			stockImage: image
+			//stockImage: image
 		} = await readBody(event);
 
 		if (!id || !name || !type || !size || !quantity || !total || !status) {
@@ -32,10 +32,10 @@ export default defineEventHandler(async (event) => {
 				stockName: name,
 				stockType: type,
 				stockSize: size,
-				stockQuantity: quantity,
-				stockTotal: total,
+				stockQuantity: parseInt(quantity),
+				stockTotal: parseInt(total),
 				stockStatus: status,
-				stockImage: image
+				//stockImage: image
 			},
 		});
 

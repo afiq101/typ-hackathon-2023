@@ -3,9 +3,12 @@ definePageMeta({
   title: "Recipe",
 });
 
+
 const { data: recipeData } = await useFetch("/api/recipe23/recipeList", {
   method: "GET",
 });
+const showModalCenter = ref(false);
+
 </script>
 
 <template>
@@ -38,7 +41,7 @@ const { data: recipeData } = await useFetch("/api/recipe23/recipeList", {
             <li>
               <a
                 class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                href="#"
+                href="/Recipe23#about"
                 >About</a
               >
             </li>
@@ -94,16 +97,15 @@ const { data: recipeData } = await useFetch("/api/recipe23/recipeList", {
         <div></div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
           <div v-for="(val, index) in recipeData.data" :key="index">
-
             <a href="#">
               <img
                 class="hover:grow hover:shadow-lg"
                 src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
               />
-            <label class="bold" for="">Ingredient</label>
-              <p class="limited-lines">{{ val.ingredient }}</p>
+            <label class="bold" for="">{{ val.recipeName }}</label>
               <div class="pt-3 flex items-center justify-between">
-                <p class="">{{ val.recipeName }}</p>
+                <label class="Bold"> Ingredient</label>
+                <p class="limited-lines">{{ val.ingredient }}</p>
                 <Icon
                   class="h-6 w-6 fill-current text-gray-500 hover:text-black"
                   name="material-symbols:download"
@@ -114,6 +116,19 @@ const { data: recipeData } = await useFetch("/api/recipe23/recipeList", {
                 ></Icon>
               </div>
             </a>
+            <rs-button @click="showModalCenter = true">Show More</rs-button>
+            <rs-modal v-model="showModalCenter">
+              <template #header> {{ val.recipeName }} </template>
+              <template #body>
+                <label class="Bold"> Ingredient</label>
+                <p class="">{{ val.ingredient }}</p>
+              </template>
+              <template #footer> 
+                <p class="text-sm opacity-50">
+                  Click outsite the box to close
+                </p>
+              </template>
+            </rs-modal>
           </div>
         </div>
       </div>
@@ -208,5 +223,6 @@ const { data: recipeData } = await useFetch("/api/recipe23/recipeList", {
   -webkit-line-clamp: 4; /* Limit the number of lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
-}</style>
+}
+</style>
       

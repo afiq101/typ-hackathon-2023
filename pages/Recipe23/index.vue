@@ -6,6 +6,7 @@ definePageMeta({
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 
 const modules = [Navigation, Pagination, Scrollbar, A11y, Autoplay];
+
 </script>
 
 <template>
@@ -38,7 +39,7 @@ const modules = [Navigation, Pagination, Scrollbar, A11y, Autoplay];
             <li>
               <a
                 class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-                href="#"
+                href="#about"
                 >About</a
               >
             </li>
@@ -314,7 +315,7 @@ const modules = [Navigation, Pagination, Scrollbar, A11y, Autoplay];
       </div>
     </section>
 
-    <section class="container mx-auto bg-white py-8 border-t border-gray-400">
+    <section id="about" class="container mx-auto bg-white py-8 border-t border-gray-400">
       <div class="container py-8 px-6 mx-auto">
         <a
           class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8"

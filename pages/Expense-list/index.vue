@@ -10,7 +10,7 @@ definePageMeta({
 const dt = DateTime.now();
 
 const userStore = useUserStore();
-const field = ["Amount (RM)", "Description", "Date"];
+const field = ["Amount (RM)", "Description", "Category" , "Date"];
 const table = ref([]);
 let total = 0;
 
@@ -24,7 +24,7 @@ if (listingExpense.value.data != null) {
   
   for (let i = 0; i < listingExpense.value.data.length; i++) {
     total = total + listingExpense.value.data[i].amount;
-    table.value.push({ Amount: "RM " + listingExpense.value.data[i].amount, description: listingExpense.value.data[i].description, date: dt.toISODate(listingExpense.value.data[i].createdDate) })
+    table.value.push({ Amount: "RM " + listingExpense.value.data[i].amount, description: listingExpense.value.data[i].description, Category: listingExpense.value.data[i].catName , date: dt.toISODate(listingExpense.value.data[i].createdDate) })
   }
   console.log(total)
 }

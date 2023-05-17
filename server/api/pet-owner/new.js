@@ -1,6 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client"
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
   // bookName, bookSynopsis, bookAuthor
@@ -20,26 +20,28 @@ export default defineEventHandler(async (event) => {
       petStatus: petstatus,
       petFee: fee,
       petColor: color,
+      petImage: petimg,
     } = await readBody(event)
 
     console.log("aum", readBody(event))
 
-    console.log("nama : " , nama)
+    console.log("nama : ", nama)
 
     const insertPet = await prisma.pet.create({
       data: {
         petName: nama,
-      petType: type,
-      petBreed: breed,
-      petDescription: description,
-      vaccinationStatus: vaccstatus,
-      dewormStatus: deworm,
-      petGender: gender,
-      petLocation: location,
-      petHealth: health,
-      petStatus: petstatus,
-      petFee: fee,
-      petColor: color,
+        petType: type,
+        petBreed: breed,
+        petDescription: description,
+        vaccinationStatus: vaccstatus,
+        dewormStatus: deworm,
+        petGender: gender,
+        petLocation: location,
+        petHealth: health,
+        petStatus: petstatus,
+        petFee: fee,
+        petColor: color,
+        petImage: petimg,
       },
     })
     console.log(insertPet)

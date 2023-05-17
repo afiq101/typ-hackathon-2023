@@ -15,23 +15,30 @@ const breed = [
   "British Short Hair",
 ]
 
-  const form = ref({
-      petName: "",
-      petType: "",
-      petBreed: "",
-      petDescription: "",
-      vaccinationStatus: "",
-      dewormStatus: "",
-      petGender: "",
-      petLocation: "",
-      petHealth: "",
-      petStatus: "",
-      petFee: "",
-      petColor: "",
+const form = ref({
+  petName: "",
+  petType: "",
+  petBreed: "",
+  petDescription: "",
+  vaccinationStatus: "",
+  dewormStatus: "",
+  petGender: "",
+  petLocation: "",
+  petHealth: "",
+  petStatus: "",
+  petFee: "",
+  petColor: "",
+  petImage: "",
 })
 
-  const submit = async () => {
+const submit = async () => {
+ //const formData = new FormData();
+ //   formData.append('petImage', this.selectedFile);
+
   try {
+
+    
+
     const { data } = await useFetch("/api/pet-owner/new", {
       method: "POST",
       body: {
@@ -47,6 +54,7 @@ const breed = [
         petStatus: form.value.petStatus,
         petFee: form.value.petFee,
         petColor: form.value.petColor,
+        petImage: form.value.petImage,
       },
     })
 
@@ -60,7 +68,6 @@ const breed = [
     return
   }
 }
-  
 </script>
 <template>
   <div>
@@ -77,17 +84,36 @@ const breed = [
       >
         <FormKit v-model="form.petName" type="text" label="Pet Name" />
 
-        <FormKit v-model="form.petType" type="select" label="Pet Type" :options="pettype" />
+        <FormKit
+          v-model="form.petType"
+          type="select"
+          label="Pet Type"
+          :options="pettype"
+        />
 
-        <FormKit v-model="form.petDescription" type="textarea" label="Description" />
+        <FormKit
+          v-model="form.petDescription"
+          type="textarea"
+          label="Description"
+        />
 
         <Label
           class="formkit-label text-gray-700 dark:text-gray-200 block mb-2 font-semibold text-sm formkit-invalid:text-red-500 dark:formkit-invalid:text-danger"
           >Breed</Label
         >
-        <v-select v-model="form.petBreed" label="" name="Breed" :options="breed" multiple></v-select>
+        <v-select
+          v-model="form.petBreed"
+          label=""
+          name="Breed"
+          :options="breed"
+          multiple
+        ></v-select>
 
-        <FormKit v-model="form.petCondition" type="text" label="Pet Condition" />
+        <FormKit
+          v-model="form.petCondition"
+          type="text"
+          label="Pet Condition"
+        />
 
         <FormKit
           v-model="form.petGender"
@@ -113,13 +139,34 @@ const breed = [
           :options="deworm"
         />
 
-        <FormKit v-model="form.petLocation" type="select" label="State" :options="negeri" />
+        <FormKit
+          v-model="form.petLocation"
+          type="select"
+          label="State"
+          :options="negeri"
+        />
 
-        <FormKit v-model="form.petFee" type="mask" label="Adoption Fee (RM)" mask="##.##" />
+        <FormKit
+          v-model="form.petFee"
+          type="mask"
+          label="Adoption Fee (RM)"
+          mask="##.##"
+        />
 
-        <FormKit v-model="form.petStatus" type="select" label="Status" :options="statuslist" />
+        <FormKit
+          v-model="form.petStatus"
+          type="select"
+          label="Status"
+          :options="statuslist"
+        />
+
+        <FormKit
+          v-model="form.petImage"
+          type="file"
+          label="Pet Photo"
+          accept=".jpeg,.png,.jpg"
+        />
       </FormKit>
-
       <rs-button @click="submit">Save</rs-button>
     </rs-card>
   </div>

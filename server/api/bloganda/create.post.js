@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -28,7 +28,6 @@ const insertBlog = await prisma.blog.create({
         blogTag: tag,
     },
 });
-
 
 if (!insertBlog) {
     return {

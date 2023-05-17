@@ -86,3 +86,13 @@ model pagecontent {
 
   @@index([pageContentPageID], map: "FK__page")
 }
+
+model stock {
+	stockID			Int		@id @default(autoincrement())
+	stockName		String?
+	stockType		String?
+	stockSize		String?
+	stockQuantity	String?
+	stockTotalorder	String?
+	stockStatus		String?
+}

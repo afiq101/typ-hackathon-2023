@@ -17,9 +17,16 @@ export default [
     "description": "Blogging platform",
     "child": [
       {
-        "title": "Homepage",
-        "path": "/bloganda/homepage",
+        "title": "Bloganda",
+        "path": "/bloganda",
         "icon": "material-symbols:home",
+        "child": [],
+        "meta": {}
+      },
+      {
+        "title": "Blogs",
+        "path": "/bloganda/blogs",
+        "icon": "ic:sharp-pages",
         "child": [],
         "meta": {}
       },
@@ -32,8 +39,8 @@ export default [
       },
       {
         "title": "Edit Blog",
-        "path": "/bloganda/edit:id()",
-        "icon": "material-symbols:edit-outline-sharp",
+        "path": "/bloganda/edit/:id()",
+        "icon": "material-symbols:edit-outline-rounded",
         "child": [],
         "meta": {}
       }

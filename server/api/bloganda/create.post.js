@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -16,7 +16,7 @@ export default defineEventHandler (async(event) => {
 if (!title || !author || !content || !tag) {
     return {
         statusCode : 400,
-        message : "Title, author, content, and tag are required",
+        message : "Title, content, author and tag are required",
     };
 }
 
@@ -28,7 +28,6 @@ const insertBlog = await prisma.blog.create({
         blogTag: tag,
     },
 });
-
 
 if (!insertBlog) {
     return {

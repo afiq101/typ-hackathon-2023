@@ -16,7 +16,7 @@ const changeKey2 = ref(0);
 const series1 = ref([
   {
     name: "Series 1",
-    data: [30, 40, 35, 50, 49, 60, 70, 91, 12, 12, 12, 12],
+    data: [],
   },
 ]);
 

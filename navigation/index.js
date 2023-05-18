@@ -31,10 +31,23 @@ export default [
         "child": []
       },
       {
-        "title": "Manage Request",
+        "title": "Adoption Request",
         "path": "/keeper-request",
         "icon": "",
-        "child": [],
+        "child": [
+          {
+            "title": "My Request",
+            "path": "/keeper-request/myrequest",
+            "icon": "",
+            "child": []
+          },
+          {
+            "title": "Pending Request",
+            "path": "/keeper-request/pendingrequest",
+            "icon": "",
+            "child": []
+          }
+        ],
         "meta": {
           "auth": {
             "role": [

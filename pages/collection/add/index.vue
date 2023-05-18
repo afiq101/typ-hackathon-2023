@@ -27,24 +27,6 @@
     newStock: "New Arrival",
   };
 
-  // const sizes = [
-  //   "XS",
-  //   "S",
-  //   "M",
-  //   "L",
-  //   "XL",
-  //   "XXL",
-  //   "Free",
-  // ];
-  
-  // const status = [
-  //   "In Stock",
-  //   "Out of Stock",
-  //   "Ordered",
-  //   "New Arrival",
-  //   "Unknown",
-  // ];
-
   const form = ref({
     stockName: "",
     stockType: "",
@@ -171,7 +153,7 @@
             </div>
             <div class="w-1/2 pl-2">
               <!-- Input Image -->
-               <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit> 
+               <!-- <FormKit v-model="form.stockImage" type="file" label="Image" accept=".png,.jpg,.jpeg"></FormKit>  -->
             </div>
           </div>
         </FormKit>

@@ -7,13 +7,19 @@
   import slide3 from "../../assets/img/clothes/banner3.png";
   import slide4 from "../../assets/img/clothes/banner4.png";
   import slide5 from "../../assets/img/clothes/banner1.png";
-
-  import img from "../../assets/img/clothes/rapunzel.jpg";
+  
+  
   import img1 from "../../assets/img/clothes/shirt2.jpeg";
 
   definePageMeta({
     title: "Wardrobe",
+
+    // mounted(){
+    //   calcStatStock()
+    // },
   });
+
+  
 
   const modules = [Navigation, Pagination, Scrollbar, A11y];
   const countInStock = ref(0);
@@ -21,6 +27,8 @@
   const countOrdered = ref(0);
   const countNew = ref(0);
 
+  //const pic = ref("rapunzel.jpg");
+  
 
   // const data = [
   //   {
@@ -110,44 +118,50 @@
     }
   };
 
-  // count total of each status to be display in summary
-  function calcStatStock() {
-
-    for(var i=0; i<data.length; i++) {
-      if(data.status == "In Stock")
-      {
-        countInStock.value ++;
-      }
-      else if(data.status == "Out of Stock")
-      {
-        countOutStock.value ++;
-      }
-      else if(data.status == "Ordered")
-      {
-        countOrdered.value ++;
-      }
-      else if(data.status == "New Arrival")
-      {
-        countNew.value ++;
-      }
-    }
-    return countInStock.value;
-    return countOutStock.value;
-    return countOrdered.value;
-    return countNew.value;
-  };
-
   const {data: stockData} = await useFetch("/api/collection/list", {
     method: "GET",
   });
+
+  // count total of each status to be display in summary
+  
+
+    for(var i=0; i<stockData.length; i++) {
+      if(stockData.stockStatus == "inStock")
+      {
+        countInStock++;
+        
+      }
+      else if(stockData.stockStatus == "outStock")
+      {
+        countOutStock++;
+        
+      }
+      else if(stockData.stockStatus == "orderStock")
+      {
+        countOrdered++;
+        
+      }
+      else if(stockData.stockStatus == "newStock")
+      {
+        countNew++;
+        
+      }
+    };
+    console.log( countInStock);
+    console.log(countNew);
+    console.log(countOrdered);
+    console.log(countOutStock);
+
+ 
 
 </script>
 <template>
   <div>
     <LayoutsBreadcrumb />
 
+    <!-- <img :src="`../../assets/img/clothes/${pic}`"/> -->
     <br><br><br>
-
+    
     <!-- Slideshow -->
     <swiper
         :modules="modules"
@@ -171,7 +185,7 @@
       <swiper-slide><img :src="slide5" class=""/></swiper-slide>
     </swiper>
     <br><br><br>
-
+    
     <!-- Card Stock By Status with total Stocks -->
     <p class="text-center text-purple-700">Double click here to view the stocks</p><br>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
@@ -211,7 +225,7 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.stockImage" class="h-64 "/>
+                  <img :src="img1" class="h-64 "/>
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -243,7 +257,7 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.stockImage" class="h-64 "/>
+                  <img :src="img1" class="h-64 "/>
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -275,7 +289,7 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.stockImage" class="h-64 "/>
+                  <img :src="img1" class="h-64 "/>
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -307,7 +321,8 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="val.stockImage" class="h-64 "/>
+                  <img :src="img1" class="h-64 "/>
+                  <!-- <img :src="val.stockImage" class="h-64 "/> -->
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>

@@ -1,4 +1,7 @@
 <script setup>
+
+  import img1 from "../../assets/img/clothes/shirt2.jpeg";
+
   definePageMeta({
     title: "Collection",
   });
@@ -70,11 +73,11 @@
     </nuxt-link>
     <br><br><br>
 
-    <Icon name="ph:t-shirt-duotone">Shirt</Icon>
+    <!-- <Icon name="ph:t-shirt-duotone">Shirt</Icon>
     <Icon name="icon-park-outline:clothes-pants"></Icon>
     <Icon name="ph:dress-duotone"></Icon>
     <Icon name="icon-park-outline:clothes-sweater"></Icon>
-    <Icon name="icon-park-twotone:clothes-hoodie"></Icon>
+    <Icon name="icon-park-twotone:clothes-hoodie"></Icon> -->
 
     <!-- Tab Collection by Type Stock -->
     <rs-tab variant="primary" type="card" justify="left">
@@ -93,7 +96,8 @@
               <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.stockImage" class="h-64 "/>
+                <img :src="img1" class="h-64 "/>
+                <!-- <img :src="val.stockImage" class="h-64 "/> -->
               </div>
               <br>
               <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -124,7 +128,7 @@
               <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.stockImage" class="h-64 "/>
+                <img :src="img1" class="h-64 "/>
               </div>
               <br>
               <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -156,7 +160,7 @@
               <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.stockImage" class="h-64 "/>
+                <img :src="img1" class="h-64 "/>
               </div>
               <br>
               <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -188,7 +192,7 @@
               <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.stockImage" class="h-64 "/>
+                <img :src="img1" class="h-64 "/>
               </div>
               <br>
               <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -220,7 +224,7 @@
               <h6 class="text-2xl">{{ val.stockName }}</h6>
               <br>
               <div class="mx-8">
-                <img :src="val.stockImage" class="h-64 "/>
+                <img :src="img1" class="h-64 "/>
               </div>
               <br>
               <p class="text-xl">Type: {{ val.stockType }}</p>

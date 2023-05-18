@@ -3,7 +3,7 @@ definePageMeta({
   title: "Customer",
 })
 const field = ["Id", "Name","Type","Breed", "Gender", "Status", "Action"]
-const { data: petData } = useFetch("/api/pet/list", {
+const { data: petData } = useFetch("/api/pet/getPetKeeper", {
   method: "GET",
 })
 
@@ -16,8 +16,8 @@ const { data: petData } = useFetch("/api/pet/list", {
     <p
       class="flex justify-between items-start md:items-center mb-4 flex-col md:flex-row"
     >
-      <span class="text-2xl font-bold">Customer</span>
-      <nuxt-link to="/createcustomer2">
+      <span class="text-2xl font-bold">Pet Keeper</span>
+      <nuxt-link to="owner-pet/newpet">
         <rs-button>
           <Icon name="material-symbols:add"></Icon>
           Add New

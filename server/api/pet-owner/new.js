@@ -1,11 +1,19 @@
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
+import { useUserStore } from "~/stores/user";
 
 export default defineEventHandler(async (event) => {
   // bookName, bookSynopsis, bookAuthor
+  const user = useUserStore();
 
   try {
+    const findUser = await prisma.user.findFirst({
+      where: {
+        userUsername: user.username,
+      },
+    });
+
     // New way
     const {
       petName: nama,
@@ -23,7 +31,6 @@ export default defineEventHandler(async (event) => {
       petImage: petimg,
     } = await readBody(event)
 
-    console.log("aum", readBody(event))
 
     console.log("nama : ", nama)
 
@@ -41,7 +48,8 @@ export default defineEventHandler(async (event) => {
         petStatus: petstatus,
         petFee: fee,
         petColor: color,
-        petImage: petimg,
+        petImage: petimg.length == 0 ? 'oyen.jpg' : petimg,
+        keeperID: findUser.userID,
       },
     })
     console.log(insertPet)

@@ -16,6 +16,151 @@ var sparkline4Data = [8, 16, 22, 41, 43, 35, 14];
 
 const changeKey = ref(0);
 
+let { data: petData } = await useFetch("/api/pet/list", {
+  method: "GET",
+});
+
+const negeri = "";
+
+const changeState = async (e) => {
+  console.log('e', e);
+
+  const { data: petData2 } = await useFetch("/api/pet/getPetState", {
+    method: "GET",
+    query: {
+      petLocation: e,
+    },
+  });
+
+
+  petData = petData2;
+  console.log('petData', petData);
+};
+
+const showModalRequest = ref(false);
+
+
+const requestAdopt = async (petId) => {
+  console.log("petId", petId);
+  showModalRequest.value = true;
+  form.value.petID = petId;
+};
+
+const form = ref({
+  dateAppointment: "",
+  timeAppointment: "",
+  petID: "",
+});
+
+const petID = "";
+
+const time = [
+  {
+    label: "10:00 AM", value: "10"
+  },
+  {
+    label: "10:30 AM", value: "1030"
+  },
+  {
+    label: "11:00 AM", value: "11"
+  },
+  {
+    label: "11:30 AM", value: "1130"
+  },
+  {
+    label: "12:00 PM", value: "12"
+  },
+  {
+    label: "12:30 PM", value: "1230"
+  },
+  {
+    label: "01:00 PM", value: "13"
+  },
+  {
+    label: "01:30 PM", value: "1330"
+  },
+  {
+    label: "02:00 PM", value: "14"
+  },
+  {
+    label: "02:30 PM", value: "1430"
+  },
+  {
+    label: "03:00 PM", value: "15"
+  },
+  {
+    label: "03:30 PM", value: "1530"
+  },
+  {
+    label: "04:00 PM", value: "16"
+  },
+  {
+    label: "04:30 PM", value: "1630"
+  },
+  {
+    label: "05:00 PM", value: "17"
+  },
+  {
+    label: "05:30 PM", value: "1730"
+  },
+  {
+    label: "06:00 PM", value: "18"
+  },
+  {
+    label: "06:30 PM", value: "1830"
+  },
+  {
+    label: "07:00 PM", value: "19"
+  },
+  {
+    label: "07:30 PM", value: "1930"
+  },
+  {
+    label: "08:00 PM", value: "20"
+  },
+
+];
+
+const submitDataRequest = async () => {
+
+  console.log("petID", petID);
+  console.log("form", form.value);
+  // return;
+
+  if (form.value.ownerName === "" || form.value.dateAppointment === "" || form.value.ownerEmail === "" || form.value.ownerAddress === "" || form.value.ownerPhone === "" || form.value.timeAppointment === "") {
+    // $toast.error("Please fill in the book name");
+    return;
+  }
+
+  try {
+    const { data } = await useFetch("/api/request-adopt/add", {
+      method: "POST",
+      body: {
+        ownerName: form.value.ownerName,
+        dateAppointment: form.value.dateAppointment,
+        timeAppointment: form.value.timeAppointment,
+        ownerEmail: form.value.ownerEmail,
+        ownerAddress: form.value.ownerAddress,
+        ownerPhone: form.value.ownerPhone,
+        adoptPetId: form.value.petID,
+      }
+    });
+
+    console.log(data);
+
+    if (data.value.statusCode == 200) {
+      showModalRequest.value = false;
+      alert("Register Success");
+      // $toast.success(data.message);
+    } else {
+      // $toast.error(data.message);
+      alert(data.value.message);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const customers = [
   {
     name: "Iqmal",
@@ -230,250 +375,198 @@ onMounted(() => {
     changeKey.value++;
   }, 500);
 });
+
+const options = [
+  { label: "Johor", value: "Johor" },
+  { label: "Kedah", value: "Kedah" },
+  { label: "Kelantan", value: "Kelantan" },
+  { label: "Melaka", value: "Melaka" },
+  { label: "Negeri Sembilan", value: "Negeri Sembilan" },
+  { label: "Pahang", value: "Pahang" },
+  { label: "Perak", value: "Perak" },
+  { label: "Perlis", value: "Perlis" },
+  { label: "Pulau Pinang", value: "Pulau Pinang" },
+  { label: "Selangor", value: "Selangor" },
+  { label: "Terengganu", value: "Terengganu" },
+];
 </script>
 
 <template>
   <div>
     <LayoutsBreadcrumb />
+
+
+    <!-- Modal Request -->
+    <rs-modal title="Adopt" position="top" v-model="showModalRequest">
+      <FormKit type="form" :actions="false" @submit="submitDataRequest" :incomplete-message="false">
+
+        <FormKit v-model="form.dateAppointment" type="date" label="Date Appointment"
+          help="Enter date (the date must be after 2020)" validation="required" validation-visibility="live" />
+
+        <FormKit type="select" label="Time Appointment" :options="time" v-model="form.timeAppointment" />
+
+
+        <div class="float-right">
+          <rs-button> Submit </rs-button>
+
+        </div>
+
+      </FormKit>
+
+      <template #footer></template>
+
+    </rs-modal>
+
     <!-- First Row -->
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-x-6">
       <!-- Summary Card #1 -->
       <rs-card>
         <div class="summary-1 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-primary/20 rounded-2xl"
-          >
-            <Icon
-              class="text-primary"
-              name="ic:outline-attach-money"
-            ></Icon>
+          <div class="p-5 flex justify-center items-center bg-primary/20 rounded-2xl">
+            <Icon class="text-primary" name="ic:outline-attach-money"></Icon>
           </div>
           <div class="flex-1 truncate">
             <span class="block font-semibold text-xl leading-tight">
-              RM 100,000</span
-            >
-            <span class="text-base font-semibold text-gray-500"
-              >Total Revenues</span
-            >
+              RM 100,000</span>
+            <span class="text-base font-semibold text-gray-500">Total Revenues</span>
           </div>
         </div>
         <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#F43F5E'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data1[0].data) + 10,
-              },
-            }"
-            :series="data1"
-          ></VueApexCharts>
+          <VueApexCharts :key="changeKey" width="100%" height="53" :options="{
+            ...chartOptions,
+            colors: ['#F43F5E'],
+            yaxis: {
+              min: 0,
+              max: Math.max(...data1[0].data) + 10,
+            },
+          }" :series="data1"></VueApexCharts>
         </client-only>
       </rs-card>
       <!-- Summary Card #2 -->
       <rs-card>
         <div class="summary-2 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-indigo-100 rounded-2xl"
-          >
-            <Icon
-              class="text-indigo-500"
-              name="ic:outline-account-circle"
-            ></Icon>
+          <div class="p-5 flex justify-center items-center bg-indigo-100 rounded-2xl">
+            <Icon class="text-indigo-500" name="ic:outline-account-circle"></Icon>
           </div>
           <div class="flex-1 truncate">
             <span class="block font-semibold text-xl leading-tight"> 512</span>
-            <span class="text-base font-semibold text-gray-500"
-              >Total Users</span
-            >
+            <span class="text-base font-semibold text-gray-500">Total Users</span>
           </div>
         </div>
         <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#6366F1'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data2[0].data) + 10,
-              },
-            }"
-            :series="data2"
-          ></VueApexCharts>
+          <VueApexCharts :key="changeKey" width="100%" height="53" :options="{
+            ...chartOptions,
+            colors: ['#6366F1'],
+            yaxis: {
+              min: 0,
+              max: Math.max(...data2[0].data) + 10,
+            },
+          }" :series="data2"></VueApexCharts>
         </client-only>
       </rs-card>
       <!-- Summary Card #3 -->
       <rs-card>
         <div class="summary-3 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-orange-100 rounded-2xl"
-          >
+          <div class="p-5 flex justify-center items-center bg-orange-100 rounded-2xl">
             <Icon class="text-orange-500" name="ic:outline-shopping-bag"></Icon>
           </div>
           <div class="flex-1 truncate">
             <span class="block font-semibold text-xl leading-tight"> 20</span>
-            <span class="text-base font-semibold text-gray-500"
-              >Total Products</span
-            >
+            <span class="text-base font-semibold text-gray-500">Total Products</span>
           </div>
         </div>
         <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#F97316'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data3[0].data) + 10,
-              },
-            }"
-            :series="data3"
-          ></VueApexCharts>
+          <VueApexCharts :key="changeKey" width="100%" height="53" :options="{
+            ...chartOptions,
+            colors: ['#F97316'],
+            yaxis: {
+              min: 0,
+              max: Math.max(...data3[0].data) + 10,
+            },
+          }" :series="data3"></VueApexCharts>
         </client-only>
       </rs-card>
       <!-- Summary Card #4 -->
       <rs-card>
         <div class="summary-4 pt-5 pb-3 px-5 flex items-center gap-4">
-          <div
-            class="p-5 flex justify-center items-center bg-blue-100 rounded-2xl"
-          >
+          <div class="p-5 flex justify-center items-center bg-blue-100 rounded-2xl">
             <Icon class="text-blue-500" name="ic:outline-remove-red-eye"></Icon>
           </div>
           <div class="flex-1 truncate">
             <span class="block font-semibold text-xl leading-tight">
-              2,452</span
-            >
-            <span class="text-base font-semibold text-gray-500"
-              >Total Viewers</span
-            >
+              2,452</span>
+            <span class="text-base font-semibold text-gray-500">Total Viewers</span>
           </div>
         </div>
         <client-only>
-          <VueApexCharts
-            :key="changeKey"
-            width="100%"
-            height="53"
-            :options="{
-              ...chartOptions,
-              colors: ['#3B82F6'],
-              yaxis: {
-                min: 0,
-                max: Math.max(...data4[0].data) + 10,
-              },
-            }"
-            :series="data4"
-          ></VueApexCharts>
+          <VueApexCharts :key="changeKey" width="100%" height="53" :options="{
+            ...chartOptions,
+            colors: ['#3B82F6'],
+            yaxis: {
+              min: 0,
+              max: Math.max(...data4[0].data) + 10,
+            },
+          }" :series="data4"></VueApexCharts>
         </client-only>
       </rs-card>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-x-6">
-      <div class="w-12/2 md:w-8/12 flex flex-col">
+    <div class="grid grid-cols-1 md:flex-row gap-x-6">
+      <div class="flex-col">
         <!-- Graph -->
         <rs-card class="flex-1">
-          <template #header> Transaction </template>
+          <template #header> Pet </template>
           <template #body>
-            <client-only>
-              <VueApexCharts
-                :key="changeKey"
-                width="100%"
-                height="300"
-                name="area"
-                :options="chartOptionsTransaction"
-                :series="transactionData"
-              ></VueApexCharts
-            ></client-only>
-          </template>
-        </rs-card>
-        <rs-card class="flex-1">
-          <template #header> Referral</template>
-          <template #body>
-            <div
-              v-for="(val, index) in customers"
-              :key="index"
-              class="flex justify-between items-center rounded-lg bg-gray-100 dark:bg-slate-700 p-5 first:mt-0 mt-3"
-            >
-              <div class="flex items-center gap-x-4">
-                <img
-                  src="@/assets/img/avatar/user.webp"
-                  class="h-10 w-10 rounded-lg"
-                />
-                <div class="flex-1">
-                  <div class="flex flex-col">
-                    <span
-                      class="text-gray-900 dark:text-white font-semibold text-lg"
-                    >
-                      {{ val.name }}
-                    </span>
-                    <span class="text-gray-600 dark:text-gray-50 text-sm">
-                      RM{{ parseFloat(val.totalPurchase).toFixed(2) }} |
-                      {{ val.purchase }} sold
-                    </span>
+
+            <div class="flex grid-cols-1 p-6 justify-center items-baseline gap-6">
+
+
+              <label class="items-center">
+                <span class="text-gray-700">Choose State</span>
+              </label>
+              <FormKit type="select" :options="options" class="items-center" @change="changeState(negeri)"
+                v-model="negeri" />
+
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 p-6">
+              <rs-card v-for="(val, index) in petData.data" class="p-5 relative border-2">
+                <div class="flex-col justify-between">
+                  <div>
+                    <img :src="'img/' + val.petImage" alt="image" class="w-full h-48 object-cover rounded-lg" />
+                    <h5>
+                      {{ val.petName }}
+                      <!-- test -->
+                    </h5>
+                    <p class="">
+                      <!-- test -->
+                      {{ val.petBreed }}
+                    </p>
+                    <br />
+                    <p class="">
+                      <!-- test -->
+                      {{ val.petDescription }}
+                    </p>
+                    <br />
+                    <!-- <span>Author: {{ val.bookAuthor }}</span> -->
+                    <span> {{ val.petLocation }}</span>
+
+                  </div>
+
+                  <div class=" flex flex-row justify-center p-6 gap-5">
+                    <!-- <nuxt-link :to="`/bookstore/edit/${val.bookID}`"> -->
+                    <nuxt-link :to="`pet/pet-info/${val.petID}`">
+                      <rs-button size="sm" @click="requestAdopt(val.petID)"> Info </rs-button>
+
+                    </nuxt-link>
+                    <rs-button size="sm" @click="requestAdopt(val.petID)"> Request </rs-button>
+                    <!-- </nuxt-link> -->
                   </div>
                 </div>
-              </div>
-              <div>
-                <button
-                  class="flex items-center p-4 rounded-full bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-900 shadow-md"
-                >
-                  <Icon size="20px" name="ic:baseline-mail-outline"></Icon>
-                </button>
-              </div>
+
+              </rs-card>
             </div>
-          </template>
-        </rs-card>
-      </div>
-      <div class="w-12/2 md:w-4/12 flex flex-col">
-        <!-- Monthly Target Radial -->
-        <rs-card class="flex-1">
-          <template #header> Monthly Target </template>
-          <template #body>
-            <client-only>
-              <VueApexCharts
-                :key="changeKey"
-                width="100%"
-                height="300"
-                name="radialBar"
-                :options="chartOptionsRadial"
-                :series="radialData"
-              ></VueApexCharts>
-            </client-only>
-            <hr class="my-4" />
-            <p class="text-xl py-5 font-medium">Products</p>
-            <div
-              class="flex item-center gap-x-4"
-              :class="{
-                'mt-0': index === 0,
-                'mt-3': index !== 0,
-              }"
-              v-for="(val, index) in ['A', 'B', 'C', 'D', 'E']"
-              :key="index"
-            >
-              <img
-                src="@/assets/img/default-thumbnail.jpg"
-                class="h-20 w-20 object-cover rounded-lg"
-              />
-              <div class="flex-1 flex items-center">
-                <div>
-                  <span class="font-semibold text-lg leading-tight"
-                    >Product {{ val }}</span
-                  >
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
-                </div>
-              </div>
-            </div>
+
           </template>
         </rs-card>
       </div>

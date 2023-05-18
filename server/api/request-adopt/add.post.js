@@ -1,21 +1,29 @@
 import { PrismaClient } from "@prisma/client";
 import moment from "moment";
+import { useUserStore } from "~/stores/user";
 
 const prisma = new PrismaClient();
 
 export default defineEventHandler(async (event) => {
+    const user = useUserStore();
+
     try {
+        const findUser = await prisma.user.findFirst({
+            where: {
+                userUsername: user.username,
+            },
+        });
 
         const body = await readBody(event);
 
-        if (!body.ownerName | !body.dateAppointment || !body.ownerEmail || !body.ownerAddress || !body.ownerPhone) {
+        if (!body.dateAppointment) {
             return {
                 statusCode: 400,
                 message: "Missing required information"
             }
         }
 
-        const findKeeper = await prisma.pet.findMany({
+        const findKeeper = await prisma.pet.findFirst({
             where: {
                 petID: body.adoptPetId
             }
@@ -34,16 +42,13 @@ export default defineEventHandler(async (event) => {
 
         const insertAdopt = await prisma.requestAdoption.create({
             data: {
-                requestAdoptionOwnerName: body.ownerName,
-                requestAdoptionOwnerEmail: body.ownerEmail,
-                requestAdoptionOwnerPhone: body.ownerPhone,
-                requestAdoptionOwnerAddress: body.ownerAddress,
-                requestAdoptionStatus: "Active",
+                requestAdoptionStatus: "Pending",
                 requestAdoptionDateAppointment: new Date(datetime),
                 requestAdoptionCreatedDate: new Date(),
                 requestAdoptionModifiedDate: new Date(),
                 requestAdoptionPetID: body.adoptPetId,
-                requestAdoptionKeeperID: findKeeper[0].keeperID,
+                keeperIDRequest: findUser.userID,
+                keeperIDReceived: findKeeper.keeperID,
             }
         });
 

@@ -240,22 +240,9 @@ const requestAdopt = async (petId) => {
       </FormKit>
 
       <FormKit v-model="form.dateAppointment" type="date" label="Date Appointment"
-        help="Enter date (the date must be after 2020)" validation="required|date_after:2020-12-31"
-        validation-visibility="live" />
+        help="Enter date (the date must be after 2020)" validation="required" validation-visibility="live" />
 
-      <FormKit v-model="form.timeAppointment" type="date" label="Date Appointment"
-        help="Enter date (the date must be after 2020)" validation="required|date_after:2020-12-31"
-        validation-visibility="live" />
-
-      <FormKit type="dropdown" v-model="form.timeAppointment" name="framework" label="Date Appointment"
-        placeholder="Date Appointment" :options="time" />
-
-      <rs-dropdown title="Primary" variant="primary-outline" v-for="(val, index) in time" >
-        <rs-dropdown-item> {{ val.label }} </rs-dropdown-item>
-
-      </rs-dropdown>
-
-      
+      <FormKit type="select" label="Time Appointment" :options="time" v-model="form.timeAppointment" />
 
       <FormKit v-model="form.ownerPhone" type="text" label="Phone Number" validation="required"
         validation-visibility="dirty" :validation-messages="{
@@ -281,21 +268,16 @@ const requestAdopt = async (petId) => {
 
   </rs-modal>
 
-  <div>
+  <div class="bg-info">
 
-    <div class=" flex-1 bg-violet-500 col-span-1 ">
-      <div class=" flex justify-between grid-cols-1 items-center bg-red-200">
+    <div class=" flex-1 col-span-1 ">
+      <div class=" flex justify-between grid-cols-1 items-center">
         <!-- image logo -->
-        <img src="@@/assets/img/logo/mewonity_logo_1.png" alt="logo" class="w-35 h-20" />
+        <img src="@@/assets/img/logo/mewonity_logo_1.png" alt="logo" class="w-35 h-20 pl-10" />
         <div class="flex grid-cols-1 gap-4 pr-8">
           <div>
-            <rs-button>
+            <rs-button >
               Home
-            </rs-button>
-          </div>
-          <div>
-            <rs-button>
-              About Us
             </rs-button>
           </div>
           <div>
@@ -327,28 +309,36 @@ const requestAdopt = async (petId) => {
       </div>
     </div>
 
-    <div class="flex justify-center grid-cols-3 p-8 ">
+    <div class="flex justify-center grid-cols-3 p-8 gap-10">
 
-      <div class="w-32 flex flex-col items-center">
-        <div class="h-10">
-          <h4>Today's Adoption</h4>
+      <rs-card>
+        <div class="w-50 flex flex-col items-center">
+          <div class="h-10">
+            <h4>Today's Adoption</h4>
+          </div>
+          <span class="justify-center pt-10">8</span>
         </div>
-        <span class="justify-center pt-6">8</span>
-      </div>
-      <div class="w-32 flex flex-col items-center ">
-        <div class="h-10">
-          <h4>Total Pets</h4>
-        </div>
-        <span class="justify-center pt-6">10</span>
-      </div>
+      </rs-card>
 
-      <div class="w-32 flex flex-col items-center ">
-        <div class="h-10">
-          <h4>Total Registered Owner</h4>
+      <rs-card>
+        <div class="w-50 flex flex-col items-center ">
+          <div class="h-10">
+            <h4>Total Pets</h4>
+          </div>
+          <span class="justify-center pt-10">10</span>
         </div>
-        <span class="justify-center pt-6">40</span>
+      </rs-card>
 
-      </div>
+      <rs-card>
+        <div class="w-50 flex flex-col items-center ">
+          <div class="h-10">
+            <h4>Total Registered Keeper</h4>
+          </div>
+          <span class="justify-center pt-10">40</span>
+
+        </div>
+      </rs-card>
+
 
     </div>
     <div class="flex grid-cols-1 p-6 justify-center items-center">
@@ -370,7 +360,7 @@ const requestAdopt = async (petId) => {
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 p-6">
       <rs-card v-for="(val, index) in petData.data" class="p-5 relative bg-black">
-        <img :src="'img/' + val.petImage" alt="image" class="w-full h-48 object-cover rounded-lg" />
+        <img :src="'../../img/' + val.petImage" alt="image" class="w-full h-48 object-cover rounded-lg" />
         <h5>
           {{ val.petName }}
           <!-- test -->

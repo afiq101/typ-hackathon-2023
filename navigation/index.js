@@ -25,12 +25,6 @@ export default [
         }
       },
       {
-        "title": "Pet Keeper",
-        "path": "/keeper-pet",
-        "icon": "",
-        "child": []
-      },
-      {
         "title": "Adoption Request",
         "path": "/keeper-request",
         "icon": "",

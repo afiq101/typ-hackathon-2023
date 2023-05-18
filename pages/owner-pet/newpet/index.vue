@@ -7,7 +7,22 @@ const gender = ["Male", "Female"]
 const statuslist = ["Active", "Inactive"]
 const vaccineStatus = ["Yes", "No"]
 const deworm = ["Yes", "No"]
-const negeri = ["KL", "Selangor", "Negeri 9", "Kedah", "Pahang", "Perak"]
+// const negeri = ["KL", "Selangor", "Negeri 9", "Kedah", "Pahang", "Perak"]
+
+const negeri = [
+  { label: "Johor", value: "Johor" },
+  { label: "Kedah", value: "Kedah" },
+  { label: "Kelantan", value: "Kelantan" },
+  { label: "Melaka", value: "Melaka" },
+  { label: "Negeri Sembilan", value: "Negeri Sembilan" },
+  { label: "Pahang", value: "Pahang" },
+  { label: "Perak", value: "Perak" },
+  { label: "Perlis", value: "Perlis" },
+  { label: "Pulau Pinang", value: "Pulau Pinang" },
+  { label: "Selangor", value: "Selangor" },
+  { label: "Terengganu", value: "Terengganu" },
+];
+
 const pettype = ["Cat", "Dog"]
 const breed = [
   "Domestic Short Hair",

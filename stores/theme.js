@@ -6,7 +6,7 @@ export const useThemeStore = defineStore({
   state: () => ({
     theme: "light",
     layoutType: "vertical",
-    primaryColor: useLocalStorage("primaryColor", "#F3586A"),
+    primaryColor: useLocalStorage("primaryColor", "#4682B4"),
     secondaryColor: useLocalStorage("secondaryColor", "#F07A25"),
     infoColor: useLocalStorage("infoColor", "#4185F2"),
     successColor: useLocalStorage("successColor", "#4FC067"),
@@ -28,7 +28,7 @@ export const useThemeStore = defineStore({
       this[type] = color;
     },
     resetThemeColor() {
-      this.primaryColor = "#F3586A";
+      this.primaryColor = "#4682B4";
       this.secondaryColor = "#F07A25";
       this.infoColor = "#4185F2";
       this.successColor = "#4FC067";
@@ -37,7 +37,7 @@ export const useThemeStore = defineStore({
     },
   },
   hydrate(state, initialState) {
-    state.primaryColor = useLocalStorage("primaryColor", "#F3586A");
+    state.primaryColor = useLocalStorage("primaryColor", "#4682B4");
     state.secondaryColor = useLocalStorage("secondaryColor", "#F07A25");
     state.infoColor = useLocalStorage("infoColor", "#4185F2");
     state.successColor = useLocalStorage("successColor", "#4FC067");

@@ -121,11 +121,8 @@ model keeper {
 model requestAdoption {
   requestAdoptionID              Int       @id @default(autoincrement())
   requestAdoptionPetID           Int?
-  requestAdoptionOwnerName       String?
-  requestAdoptionOwnerAddress    String?   @db.VarChar(255)
-  requestAdoptionOwnerPhone      String?   @db.VarChar(255)
-  requestAdoptionOwnerEmail      String?   @db.VarChar(255)
-  requestAdoptionKeeperID        Int?
+  keeperIDRequest                Int?
+  keeperIDReceived               Int?
   requestAdoptionStatus          String?   @db.VarChar(255)
   requestAdoptionDateAppointment DateTime? @db.DateTime(0)
   requestAdoptionCreatedDate     DateTime? @db.DateTime(0)

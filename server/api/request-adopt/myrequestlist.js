@@ -1,12 +1,26 @@
 import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
+import { useUserStore } from "~/stores/user";
 
 const prisma_mawardb = new PrismaClient({
   datasources: { db: { url: process.env.DATABASE_URL } },
 })
 
 export default defineEventHandler(async (event) => {
+
+  const user = useUserStore();
+
+  console.log("myrequestlist.js", user.username)
+
   try {
+    const findUser = await prisma_mawardb.user.findFirst({
+      where: {
+        userUsername: user.username,
+      },
+    });
+
+    console.log("findUser", findUser.userID)
+
     const myrequest =
       await prisma_mawardb.$queryRaw`SELECT a.requestAdoptionID, b.petName, d.keeperName AS receivedKeeperName,
       a.requestAdoptionDateAppointment,
@@ -15,7 +29,7 @@ export default defineEventHandler(async (event) => {
       LEFT JOIN pet b ON a.requestAdoptionPetID = b.petID
       LEFT JOIN keeper c ON a.keeperIDRequest = c.keeperID
       LEFT JOIN keeper d ON a.keeperIDReceived = d.keeperID
-      WHERE c.keeperID = 1`
+      WHERE c.keeperID = ${findUser.userID}`
 
     console.log(myrequest)
 

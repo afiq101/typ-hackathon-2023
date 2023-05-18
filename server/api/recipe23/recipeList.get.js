@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
     try{
         const recipeList = await prisma.recipe23recipe.findMany({
             select:{
+                recipeId:true,
                 recipeName: true,
                 ingredient: true,
             }

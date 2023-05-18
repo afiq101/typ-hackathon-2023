@@ -94,7 +94,6 @@ const showModalCenter = ref(false);
           </div>
         </nav>
 
-        <div></div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6">
           <div v-for="(val, index) in recipeData.data" :key="index">
             <a href="#">
@@ -104,36 +103,59 @@ const showModalCenter = ref(false);
               />
             <label class="bold" for="">{{ val.recipeName }}</label>
               <div class="pt-3 flex items-center justify-between">
-                <label class=""> Ingredient</label>
-                <p class="limited-lines">{{ val.ingredient }}</p>
-                <Icon
-                  class="h-6 w-6 fill-current text-gray-500 hover:text-black"
+                <!-- <Icon
+                  class="mt-5 h-6 w-6 fill-current text-gray-500 hover:text-black"
                   name="material-symbols:download"
-                ></Icon>
-                <input type="checkbox" id="heart-toggle">
-<label for="heart-toggle">
-  <svg class="h-6 w-6 fill-current text-gray-500 hover:text-pink-500" viewBox="0 0 24 24">
-    <path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 8.4 10 9 10s9-4.75 9-10c0-4.97-4.03-9-9-9zm0 16.4l-1.4-1.4c-2.3-2.29-3.6-3.6-3.6-6s1.7-4.7 4-4.7 4 2.1 4 4.7c0 2.4-1.3 3.7-3.6 6z"/>
-  </svg>
-</label>
-
+                ></Icon> -->
+                <Icon
+                class="mt-5 h-6 w-6 fill-current text-gray-500 hover:text-black"
+                name="material-symbols:favorite-outline"
+              ></Icon>
+              <!-- <Icon
+                class="mt-5 h-6 w-6 fill-current text-gray-500 hover:text-black"
+                name="material-symbols:info-outline"
+              ></Icon> -->
               </div>
             </a>
-            <rs-button @click="showModalCenter = true">Show More</rs-button>
+            
+            <rs-button class="mt-5" @click="showModalCenter = true">Show More</rs-button>
             <rs-modal v-model="showModalCenter">
+              <template #header><h4 class="font-bold">{{ val.recipeName }}</h4> </template>
+              <template #body>
+                <label class="font-bold"> Ingredient</label>
+                <p>{{ val.ingredient }}</p>
+              </template>
+            </rs-modal>
+          </div>
+        </div>
+
+        <!-- <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col" v-for="(val, index) in recipeData.data" :key="index">
+          <a href="#">
+            <img
+              class="hover:grow hover:shadow-lg"
+              src="https://images.unsplash.com/photo-1555982105-d25af4182e4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&h=400&q=80"
+            />
+            <div class="pt-3 flex items-center justify-between">
+              <p class="">{{ val.recipeName }}</p>
+              <Icon
+                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
+                name="material-symbols:favorite-outline"
+              ></Icon>
+              <Icon
+                class="h-6 w-6 fill-current text-gray-500 hover:text-black"
+                name="material-symbols:info-outline"
+              ></Icon>
+            </div>
+          <rs-button @click="showModalCenter=true">Show More</rs-button>
+          <rs-modal v-model="showModalCenter">
               <template #header><h4 class="font-bold">{{ val.recipeName }}</h4> </template>
               <template #body>
                 <label class="font-bold"> Ingredient</label>
                 <p class="">{{ val.ingredient }}</p>
               </template>
-              <template #footer> 
-                <p class="text-sm opacity-50">
-                  Click outsite the box to close
-                </p>
-              </template>
             </rs-modal>
-          </div>
-        </div>
+          </a>
+        </div> -->
       </div>
     </section>
 

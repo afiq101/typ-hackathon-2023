@@ -149,7 +149,7 @@ const dashData = async () => {
     if (response.data.statusCode == 200) {
       monthlyLimit.value = response.data.data.perMonth;
       monthlyRemaining.value = response.data.data.remaining;
-      updateSeries2Value(response.data.data.percentage || 0);
+      updateSeries2Value(response.data.data.percentage.toFixed(2) || 0);
 
       series1.value = [
         {

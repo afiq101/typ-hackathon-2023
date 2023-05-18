@@ -10,6 +10,9 @@
   
   
   import img1 from "../../assets/img/clothes/shirt2.jpeg";
+  import img2 from "../../assets/img/clothes/pants2.jpeg";
+  import img3 from "../../assets/img/clothes/jacket2.jpeg";
+  import img4 from "../../assets/img/clothes/hoody3.jpeg";
 
   definePageMeta({
     title: "Wardrobe",
@@ -225,7 +228,10 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="img1" class="h-64 "/>
+                  <img :src="img1" v-if="val.stockType == 'Shirt'" class="h-64 "/>
+                  <img :src="img2" v-else-if="val.stockType == 'Pants'" class="h-64 "/>
+                  <img :src="img3" v-else-if="val.stockType == 'Jacket'" class="h-64 "/>
+                  <img :src="img4" v-else-if="val.stockType == 'Hood'" class="h-64 "/>
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -257,7 +263,10 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="img1" class="h-64 "/>
+                  <img :src="img1" v-if="val.stockType == 'Shirt'" class="h-64 "/>
+                  <img :src="img2" v-else-if="val.stockType == 'Pants'" class="h-64 "/>
+                  <img :src="img3" v-else-if="val.stockType == 'Jacket'" class="h-64 "/>
+                  <img :src="img4" v-else-if="val.stockType == 'Hood'" class="h-64 "/>
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -289,7 +298,10 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="img1" class="h-64 "/>
+                  <img :src="img1" v-if="val.stockType == 'Shirt'" class="h-64 "/>
+                  <img :src="img2" v-else-if="val.stockType == 'Pants'" class="h-64 "/>
+                  <img :src="img3" v-else-if="val.stockType == 'Jacket'" class="h-64 "/>
+                  <img :src="img4" v-else-if="val.stockType == 'Hood'" class="h-64 "/>
                 </div>
                 <br>
                 <p class="text-xl">Type: {{ val.stockType }}</p>
@@ -321,7 +333,10 @@
                 <h6 class="text-2xl">{{ val.stockName }}</h6>
                 <br>
                 <div class="mx-8">
-                  <img :src="img1" class="h-64 "/>
+                  <img :src="img1" v-if="val.stockType == 'Shirt'" class="h-64 "/>
+                  <img :src="img2" v-else-if="val.stockType == 'Pants'" class="h-64 "/>
+                  <img :src="img3" v-else-if="val.stockType == 'Jacket'" class="h-64 "/>
+                  <img :src="img4" v-else-if="val.stockType == 'Hood'" class="h-64 "/>
                   <!-- <img :src="val.stockImage" class="h-64 "/> -->
                 </div>
                 <br>

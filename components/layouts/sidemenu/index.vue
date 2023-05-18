@@ -33,12 +33,12 @@ onMounted(() => {
   <div
     class="vertical-menu bg-white dark:bg-slate-800 text-base h-screen fixed w-64 top-0 z-50 duration-300 border-l-0 shadow-md shadow-slate-200 dark:shadow-slate-900"
   >
-    <div class="p-2 px-4">
+    <div class="pt-8 px-4">
       <nuxt-link to="/">
         <div class="flex flex-auto gap-3 justify-center items-center h-[48px]">
           <img
-            class="h-24  block dark:hidden"
-            src="@/assets/img/logo/logo-full-transparent.webp"
+            class="h-48  block dark:hidden"
+            src="@/assets/img/logo/duitPantau.png"
             alt=""
           />
           <img

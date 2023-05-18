@@ -88,9 +88,9 @@ model pagecontent {
 }
 
 model blog {
-  blogID       Int     @id @default(autoincrement())
-  blogName     String?
+  blogID      Int     @id @default(autoincrement())
+  blogName    String?
   blogContent String?
-  blogAuthor   String?
+  blogAuthor  String?
   blogTag     String?
 }

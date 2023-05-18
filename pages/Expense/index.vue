@@ -74,7 +74,7 @@ const submit = async () => {
         <p class="">
           <nuxt-link to="/expense-list">
             <rs-button>
-              Check Today Spending
+              Check This Month Expense
             </rs-button>
           </nuxt-link>
         </p>

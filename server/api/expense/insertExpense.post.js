@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
         const insertExpense = await prisma.expenses.create({
             data: {
-                amount: parseDouble(amount),
+                amount: parseInt(amount),
                 description: description,
                 categoryID: parseInt(category),
                 userId: parseInt(ID),

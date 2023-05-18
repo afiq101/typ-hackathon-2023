@@ -1,10 +1,18 @@
 <script setup>
+import { useUserStore } from "~/stores/user";
+
   definePageMeta({
     title: "Task Progress",
   });
 
+  const userStore = useUserStore();
+  //console.log(userStore.username);
+
   const { data: taskData } = await useFetch("/api/task/getTask", {
-    method: "GET",
+    method: "POST",
+    body: {
+      username: userStore.username,
+    },
   });
 
   

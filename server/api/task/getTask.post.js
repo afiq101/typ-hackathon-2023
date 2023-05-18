@@ -30,6 +30,10 @@ const prisma_mawardb = new PrismaClient({
       // Using Raw SQL and call from another database (main_app)
       //---------------------------------------------
   
+      const {
+        username: username,
+      } = await readBody(event);
+
       const tasks = await prisma_main_app.$queryRaw`
         SELECT 
             taskId,
@@ -39,8 +43,9 @@ const prisma_mawardb = new PrismaClient({
             taskDescription,
             taskStatus
         FROM 
-            task
-        WHERE taskUserId = '3'
+            task t, mawardb.user u
+        WHERE u.userID = taskUserId 
+        AND u.userUsername = ${username}
         `;
   
       if (!tasks) {

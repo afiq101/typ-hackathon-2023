@@ -427,8 +427,8 @@ const options = [
           </div>
           <div class="flex-1 truncate">
             <span class="block font-semibold text-xl leading-tight">
-              RM 100,000</span>
-            <span class="text-base font-semibold text-gray-500">Total Revenues</span>
+              {{ petData.data.length }}</span>
+            <span class="text-base font-semibold text-gray-500">Total Pet</span>
           </div>
         </div>
         <client-only>
@@ -449,8 +449,8 @@ const options = [
             <Icon class="text-indigo-500" name="ic:outline-account-circle"></Icon>
           </div>
           <div class="flex-1 truncate">
-            <span class="block font-semibold text-xl leading-tight"> 512</span>
-            <span class="text-base font-semibold text-gray-500">Total Users</span>
+            <span class="block font-semibold text-xl leading-tight"> 2</span>
+            <span class="text-base font-semibold text-gray-500">Total Registered Keeper</span>
           </div>
         </div>
         <client-only>
@@ -471,8 +471,8 @@ const options = [
             <Icon class="text-orange-500" name="ic:outline-shopping-bag"></Icon>
           </div>
           <div class="flex-1 truncate">
-            <span class="block font-semibold text-xl leading-tight"> 20</span>
-            <span class="text-base font-semibold text-gray-500">Total Products</span>
+            <span class="block font-semibold text-xl leading-tight"> 2</span>
+            <span class="text-base font-semibold text-gray-500">Total Request Adopt</span>
           </div>
         </div>
         <client-only>
@@ -494,8 +494,8 @@ const options = [
           </div>
           <div class="flex-1 truncate">
             <span class="block font-semibold text-xl leading-tight">
-              2,452</span>
-            <span class="text-base font-semibold text-gray-500">Total Viewers</span>
+              4</span>
+            <span class="text-base font-semibold text-gray-500">Total Pending Request</span>
           </div>
         </div>
         <client-only>

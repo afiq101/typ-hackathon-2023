@@ -87,6 +87,19 @@ model pagecontent {
   @@index([pageContentPageID], map: "FK__page")
 }
 
+model keeper {
+  keeperID           Int       @id @default(autoincrement())
+  keeperName         String?   @db.VarChar(255)
+  keeperUsername     String?   @db.VarChar(255)
+  keeperPassword     String?   @db.VarChar(255)
+  keeperAddress      String?   @db.VarChar(255)
+  keeperPhone        String?   @db.VarChar(255)
+  keeperEmail        String?   @db.VarChar(255)
+  keeperStatus       String?   @db.VarChar(255)
+  keeperCreatedDate  DateTime? @db.DateTime(0)
+  keeperModifiedDate DateTime? @db.DateTime(0)
+}
+
 model pet {
   petID             Int     @id @default(autoincrement())
   petName           String? @db.VarChar(255)
@@ -103,19 +116,6 @@ model pet {
   petFee            String? @db.VarChar(255)
   petColor          String? @db.VarChar(255)
   keeperID          Int?
-}
-
-model keeper {
-  keeperID           Int       @id @default(autoincrement())
-  keeperName         String?   @db.VarChar(255)
-  keeperUsername     String?   @db.VarChar(255)
-  keeperPassword     String?   @db.VarChar(255)
-  keeperAddress      String?   @db.VarChar(255)
-  keeperPhone        String?   @db.VarChar(255)
-  keeperEmail        String?   @db.VarChar(255)
-  keeperStatus       String?   @db.VarChar(255)
-  keeperCreatedDate  DateTime? @db.DateTime(0)
-  keeperModifiedDate DateTime? @db.DateTime(0)
 }
 
 model requestAdoption {
